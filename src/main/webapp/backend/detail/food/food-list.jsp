@@ -297,7 +297,7 @@
 	
    <!-- 其他功能超链接 -->
 	<div id="TableTail" align="center">
-		<div class="FunctionButton"><a href="food-save.html">添加</a></div>
+		<div class="FunctionButton"><a href="food-save.jsp">添加</a></div>
     </div> 
 </div>
 </body>

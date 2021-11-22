@@ -1,4 +1,4 @@
-﻿
+﻿<%@page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -51,7 +51,7 @@
 						<td>1</td>
 						<td>粤菜</td>
 						<td>
-							<a href="foodtype-update.html" class="FunctionButton">更新</a>
+							<a href="foodtype-update.jsp" class="FunctionButton">更新</a>
 							<a href="#" class="FunctionButton">删除</a>
 						</td>
 					</tr>
@@ -60,7 +60,7 @@
 						<td>2</td>
 						<td>川菜</td>
 						<td>
-							<a href="foodtype-update.html" class="FunctionButton">更新</a> 
+							<a href="foodtype-update.jsp" class="FunctionButton">更新</a>
 							<a href="#" class="FunctionButton">删除</a>
 						</td>
 					</tr>
@@ -69,7 +69,7 @@
 						<td>3</td>
 						<td>湘菜</td>
 						<td>
-							<a href="foodtype-update.html" class="FunctionButton">更新</a> 
+							<a href="foodtype-update.jsp" class="FunctionButton">更新</a>
 							<a href="#" class="FunctionButton">删除</a>
 						</td>
 					</tr>
@@ -78,7 +78,7 @@
 						<td>4</td>
 						<td>东北菜</td>
 						<td>
-							<a href="foodtype-update.html" class="FunctionButton">更新</a> 
+							<a href="foodtype-update.jsp" class="FunctionButton">更新</a>
 							<a href="#" class="FunctionButton">删除</a>
 						</td>
 					</tr>
@@ -88,7 +88,7 @@
 		<!-- 其他功能超链接 -->
 		<div id="TableTail" align="center">
 			<div class="FunctionButton">
-				<a href="foodtype-save.html">添加</a>
+				<a href="foodtype-save.jsp">添加</a>
 			</div>
 		</div>
 	</div>

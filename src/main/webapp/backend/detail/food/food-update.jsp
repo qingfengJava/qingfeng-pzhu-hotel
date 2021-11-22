@@ -1,4 +1,4 @@
-﻿
+﻿<%@page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -23,8 +23,8 @@
 		<div id="TitleArea_Title_Content">
 			
 				
+					<img border="0" width="13" height="13" src="../style/images/title_arrow.gif"/> 更新新菜品
 				
-					<img border="0" width="13" height="13" src="../style/images/title_arrow.gif"/> 添加新菜品
 				
 			
 		</div>
@@ -51,7 +51,7 @@
                             <select name="cid" style="width:80px">
 	                            
 			   						<option value="1" 
-			   							
+			   							selected="selected"
 			   						>粤菜</option>
 			   						
 			   					
@@ -71,28 +71,32 @@
 			   						
 			   					
                             </select>
-                             *<input type="hidden" name="id" value="" /></td>
+                             *<input type="hidden" name="id" value="1" /></td>
 						</tr>
 						<tr>
 							<td width="80px">菜名</td>
-							<td><input type="text" name="foodName" class="InputStyle" value=""/> *</td>
+							<td><input type="text" name="foodName" class="InputStyle" value="白灼虾"/> *</td>
 						</tr>
 						<tr>
 							<td>价格</td>
-							<td><input type="text" name="price" class="InputStyle" value=""/> *</td>
+							<td><input type="text" name="price" class="InputStyle" value="36.0"/> *</td>
 						</tr>
                         <tr>
 							<td>会员价格</td>
-							<td><input type="text" name="mprice" class="InputStyle" value=""/> *</td>
+							<td><input type="text" name="mprice" class="InputStyle" value="23.0"/> *</td>
 						</tr>
 						
 						<tr>
 							<td>简介</td>
-							<td><textarea name="introduce" class="TextareaStyle"></textarea></td>
+							<td><textarea name="introduce" class="TextareaStyle">粤菜白灼虾，大件！</textarea></td>
 						</tr>
 						<tr>
 							<td width="80px">菜品图片</td>
 							<td>
+								
+									<img style='max-width:68px;width:68px;width:expression(width>68?"68px":width "px");max-width: 68px;' 
+									src="../style/images/baizhuoxia.jpg">
+									<input type="hidden" name="image" value="baizhuoxia.jpg">
 								
 								<input type="file" name="imageUrl"/> *
 							</td>
@@ -107,8 +111,8 @@
 		<div id="InputDetailBar">
             
 				
+					 <input type="submit" value="修改" class="FunctionButtonInput">
 				
-					 <input type="submit" value="添加" class="FunctionButtonInput">
 				
 			
             

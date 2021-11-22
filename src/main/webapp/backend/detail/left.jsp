@@ -1,6 +1,5 @@
-﻿
-
-
+﻿<%@page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -91,19 +90,23 @@ body {
 				系统菜单
 			</div>
             <ul class="MenuLevel2">
-            	<li class="level2 level2Style">
-                    <a target="right" href="table/table-list.html">餐桌管理</a>
-				</li>
-                <li class="level2 level2Style">
+				<%-- 遍历后端查到的数据 --%>
+				<c:forEach items="${menus}" var="menu">
+					<li class="level2 level2Style">
+						<a target="right" href="${menu.menuUrl}">${menu.menuName}</a>
+					</li>
+				</c:forEach>
+
+                <%--<li class="level2 level2Style">
                 	<!--<a target="right" href="foodtype/food-type-list.html">菜系管理</a>-->
                 	<a target="right" href="/foodtype/search">菜系管理</a>
 				</li>
                 <li class="level2 level2Style">
-                	<a target="right" href="food/food-list.html">菜品管理</a>
+                	<a target="right" href="food/food-list.jsp">菜品管理</a>
 				</li>
                 <li class="level2 level2Style">
-                	<a target="right" href="order/order-list.html">餐厅订单</a>
-				</li>
+                	<a target="right" href="order/order-list.jsp">餐厅订单</a>
+				</li>--%>
             </ul>
         </li>
     </ul>
