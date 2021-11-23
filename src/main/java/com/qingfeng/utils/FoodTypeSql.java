@@ -1,6 +1,6 @@
 package com.qingfeng.utils;
 
-import com.qingfeng.pojo.Menu;
+import com.qingfeng.pojo.FoodType;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,19 +16,19 @@ import java.util.List;
  * @date 2021/11/21
  * @apiNote
  */
-public class MenuSql {
+public class FoodTypeSql {
 
     /**
      * 查询所有的书籍信息
      * @param sql
      * @return 返回一个书籍对象的集合
      */
-    public static List<Menu> findAllMenu(String sql){
+    public static List<FoodType> findAllFoodType(String sql){
         //获取连接
         Connection con = DbUtils.getCon();
         PreparedStatement pst = null;
         ResultSet rs = null;
-        List<Menu> menus = new ArrayList<>();
+        List<FoodType> foodTypes = new ArrayList<>();
         try {
             if (con != null) {
                 //利用con(连接)建立查询语句
@@ -37,13 +37,12 @@ public class MenuSql {
                 rs = pst.executeQuery();
                 while (rs.next()){
                     //将数据进行封装
-                    Long menuId = rs.getLong("menu_id");
-                    String menuName = rs.getString("menu_name");
-                    String menuUrl = rs.getString("menu_url");
+                    Long typeId = rs.getLong("type_id");
+                    String typeName = rs.getString("type_name");
 
-                    menus.add(new Menu(menuId,menuName,menuUrl));
+                    foodTypes.add(new FoodType(typeId,typeName));
                 }
-                return menus;
+                return foodTypes;
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -1,8 +1,6 @@
 package com.qingfeng.utils;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 /**
  * 加载数据库类
@@ -51,6 +49,35 @@ public class DbUtils {
         System.out.println(con);
         if(con!=null){
             con.close();
+        }
+    }
+
+    /**
+     * 定义通用的关闭资源的方法
+     * @param con
+     * @param pst
+     */
+    public static void close(Connection con, PreparedStatement pst, ResultSet rs) {
+        if (rs != null){
+            try {
+                rs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if (pst != null) {
+            try {
+                pst.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if (con != null) {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

@@ -50,11 +50,12 @@
 			//3、调用send方法发送请求
 			xmlhttprequest.send();
 
-
 			// 默认只显示第1个二级菜单
-			$(".MenuLevel2").hide();
-			$(".MenuLevel2:first").show();
+			document.getElementById("menuId").hidden;
+			/*$(".MenuLevel2").hide();
+			$(".MenuLevel2:first").show();*/
 		}
+
 	</script>
 	<!-- 内容总宽度为 3px边框 * 2 + 155px内容 = 161px; -->
 	<style type="text/css">
