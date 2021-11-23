@@ -1,7 +1,5 @@
 ﻿<%@page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%-- 设置项目虚拟路径 --%>
-<c:set var="ctx" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -114,7 +112,7 @@ margin-left: 10px;
 	<div id="Head_1">
 		<!-- 标题 -->
 		<div id="Head_1_Logo">
-			<b style="font-family: '黑体'">餐馆王酒家信息管理平台</b> <!-- <img border="0" src="style/images/logo.png" /> -->
+			<b style="font-family: '黑体'">攀大餐馆信息后台管理平台</b> <!-- <img border="0" src="style/images/logo.png" /> -->
         </div>
 		<!-- 欢迎用户的文字 -->
 		<div id="Head_1_UserWelcome">

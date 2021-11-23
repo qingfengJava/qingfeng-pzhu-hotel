@@ -5,21 +5,56 @@
 <head>
 	<title>Frame left</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<script type="text/javascript" src="style/js/jquery.js"></script>
 	<script type="text/javascript" src="style/js/page_common.js"></script>
     <link href="style/css/common_style_blue.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript">
-		// 显示或隐藏二级菜单 
+		// 显示或隐藏二级菜单
 		function menuClick( menuDiv ){
 			$(".MenuLevel2").not( $(menuDiv).next() ).hide();
 			$(menuDiv).next().toggle();
 		}
 		
-		$(function(){
+		/*$(function(){
 			// 默认只显示第1个二级菜单
 			$(".MenuLevel2").hide();
 			$(".MenuLevel2:first").show();
-		});
+		});*/
+
+		window.onload = function (oldChild){
+			//当页面加载完成的时候，就访问/menu/list读取数据
+
+			//在这里使用JavaScript语言发起Ajax请求，访问服务器AjaxServlet中JavaScriptAjax
+			//1、我们首先要创建XMLHttpRequest
+			let xmlhttprequest = new XMLHttpRequest();
+			//2、调用open方法设置请求参数，将请求发送给服务器
+			xmlhttprequest.open("GET","http://localhost:8080/hotel/menu/list",true);
+
+			//4、在send方法前绑定onreadystatechange事件，处理请求完成后的操作。
+			xmlhttprequest.onreadystatechange = function (){
+				//4表示请求已经完成，且响应数据
+				if (xmlhttprequest.readyState == 4 && xmlhttprequest.status == 200){
+					//获取数据
+					let jsonObj = JSON.parse(xmlhttprequest.responseText);
+
+					for (let i = 0; i < jsonObj.data.length; i++) {
+						//把服务器响应的数据显示在页面上
+						document.getElementById("menuId").innerHTML +=
+								"<li class=\"level2 level2Style\">\n"+
+									"<a target=\"right\" href="+jsonObj.data[i].menuUrl+">"+jsonObj.data[i].menuName+"</a>\n"+
+								"</li>";
+					}
+
+				}
+			}
+
+			//3、调用send方法发送请求
+			xmlhttprequest.send();
+
+
+			// 默认只显示第1个二级菜单
+			$(".MenuLevel2").hide();
+			$(".MenuLevel2:first").show();
+		}
 	</script>
 	<!-- 内容总宽度为 3px边框 * 2 + 155px内容 = 161px; -->
 	<style type="text/css">
@@ -89,24 +124,14 @@ body {
 				<img src="style/images/func20001.gif" class="Icon" /> 
 				系统菜单
 			</div>
-            <ul class="MenuLevel2">
-				<%-- 遍历后端查到的数据 --%>
-				<c:forEach items="${menus}" var="menu">
-					<li class="level2 level2Style">
+            <ul class="MenuLevel2" id="menuId">
+				<%-- 遍历后端查到的数据，在javascript中通过异步ajax请求实现 --%>
+				<%--<c:forEach items="${menus}" var="menu">
+					<li id="child" class="level2 level2Style">
 						<a target="right" href="${menu.menuUrl}">${menu.menuName}</a>
 					</li>
-				</c:forEach>
+				</c:forEach>--%>
 
-                <%--<li class="level2 level2Style">
-                	<!--<a target="right" href="foodtype/food-type-list.html">菜系管理</a>-->
-                	<a target="right" href="/foodtype/search">菜系管理</a>
-				</li>
-                <li class="level2 level2Style">
-                	<a target="right" href="food/food-list.jsp">菜品管理</a>
-				</li>
-                <li class="level2 level2Style">
-                	<a target="right" href="order/order-list.jsp">餐厅订单</a>
-				</li>--%>
             </ul>
         </li>
     </ul>

@@ -4,7 +4,6 @@
 <head>
 	<title>Frame bottom</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<script type="text/javascript" src="style/js/jquery.js"></script>
 	<link href="style/css/common_style_blue.css" rel="stylesheet" type="text/css" />
 	<style type="text/css">
 		body{
@@ -48,7 +47,7 @@
 <div id="StatusBar">
 	<!-- 链接 -->
     <div id="StatusBar_Links">
-		<a href="http://www.test.cn" target="_blank">教育平台</a>，专业的Java培训！
+		<a href="#" target="_blank">攀枝花学院</a>，web应用开发专业团队！
     </div>
 	<!-- 右侧功能按钮 -->
     <div id="StatusBar_Right">

@@ -7,7 +7,7 @@
 </head>
 	<body>
 		<center>
-			<h1>欢迎使用餐馆王平台后台管理</h1>
+			<h1>欢迎使用攀大点餐平台后台管理</h1>
 		</center>
 	</body>
 </html>
