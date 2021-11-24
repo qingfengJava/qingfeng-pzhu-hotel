@@ -23,6 +23,13 @@ public interface FoodTypeService {
     /**
      * 根据菜系Id 删除菜系
      * @param typeId
+     * @throws Exception
      */
     void deleteById(String typeId) throws Exception;
+
+    /**
+     * 添加菜系
+     * @param typeName
+     */
+    void save(String typeName);
 }

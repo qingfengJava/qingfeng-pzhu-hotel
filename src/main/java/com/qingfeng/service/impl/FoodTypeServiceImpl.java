@@ -40,6 +40,7 @@ public class FoodTypeServiceImpl implements FoodTypeService {
     /**
      * 根据菜系id 删除菜系
      * @param typeId
+     * @throws Exception
      */
     @Override
     public void deleteById(String typeId) throws Exception {
@@ -47,6 +48,21 @@ public class FoodTypeServiceImpl implements FoodTypeService {
         try {
             foodTypeDao.deleteById(Long.parseLong(typeId));
         } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 添加菜系
+     * @param typeName
+     */
+    @Override
+    public void save(String typeName) {
+        try {
+            if (typeName !=null && typeName != ""){
+                foodTypeDao.save(typeName);
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

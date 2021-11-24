@@ -34,13 +34,14 @@ public class MenuController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         try {
             //调用业务层方法查询所有菜单列表
             List<Menu> list = menuService.findAll();
             //将查询到的列表集合存入session域对象中，共享出去。这里要注意：存入request域中，只有一次请求，无法访问到。
-        /*request.getSession().setAttribute("menus",list);
-        request.getRequestDispatcher("/backend/index.jsp").forward(request,response);*/
+            /*request.getSession().setAttribute("menus",list);
+            request.getRequestDispatcher("/backend/index.jsp").forward(request,response);*/
 
             //json格式的字符串
             Gson gson = new Gson();

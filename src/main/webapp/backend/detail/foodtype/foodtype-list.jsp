@@ -53,7 +53,7 @@
 						<td>${type.typeId}</td>
 						<td>${type.typeName}</td>
 						<td>
-							<a href="foodtype-update.jsp" class="FunctionButton">更新</a>
+							<a href="/foodtype/findById?typeId=${type.typeId}" class="FunctionButton">更新</a>
 							<a href="javascript:void(0)" class="FunctionButton" onclick="deleteById(${type.typeId});">删除</a>
 						</td>
 					</tr>

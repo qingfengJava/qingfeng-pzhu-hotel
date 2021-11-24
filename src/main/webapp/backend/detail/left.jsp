@@ -5,21 +5,15 @@
 <head>
 	<title>Frame left</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<script type="text/javascript" src="style/js/page_common.js"></script>
-	<script type="text/javascript" src="style/js/jquery.js"></script>
-    <link href="style/css/common_style_blue.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="/backend/detail/style/js/page_common.js"></script>
+	<script type="text/javascript" src="/backend/detail/style/js/jquery.js"></script>
+    <link href="/backend/detail/style/css/common_style_blue.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript">
 		// 显示或隐藏二级菜单
 		function menuClick( menuDiv ){
 			$(".MenuLevel2").not( $(menuDiv).next() ).hide();
 			$(menuDiv).next().toggle();
 		}
-		
-		/*$(function(){
-			// 默认只显示第1个二级菜单
-			$(".MenuLevel2").hide();
-			$(".MenuLevel2:first").show();
-		});*/
 
 		window.onload = function (oldChild){
 			//当页面加载完成的时候，就访问/menu/list读取数据
@@ -123,7 +117,7 @@ body {
     <ul id="Menu">
 	    <li class="level1">
             <div onClick="menuClick(this);" class="level1Style">
-				<img src="style/images/func20001.gif" class="Icon" /> 
+				<img src="/backend/detail/style/images/func20001.gif" class="Icon" />
 				系统菜单
 			</div>
             <ul class="MenuLevel2" id="menuId">

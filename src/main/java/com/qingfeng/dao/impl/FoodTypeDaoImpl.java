@@ -31,10 +31,22 @@ public class FoodTypeDaoImpl implements FoodTypeDao {
     /**
      * 根据菜系id，删除相应的菜系
      * @param id
+     * @throws SQLException
      */
     @Override
     public void deleteById(long id) throws SQLException {
         String sql = "delete from t_food_type where type_id = "+id+"";
+        FoodTypeSql.updateFoodType(sql);
+    }
+
+    /**
+     * 添加菜系
+     * @param typeName
+     * @throws SQLException
+     */
+    @Override
+    public void save(String typeName) throws SQLException {
+        String sql = "insert into t_food_type(type_name) values('"+typeName+"')";
         FoodTypeSql.updateFoodType(sql);
     }
 }

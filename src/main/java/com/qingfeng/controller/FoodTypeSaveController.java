@@ -9,14 +9,13 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 
 /**
- * 删除菜系的控制层
  *
  * @author 清风学Java
  * @date 2021/11/24
  * @version 1.0.0
  */
-@WebServlet("/foodtype/delete")
-public class FoodTypeDeleteController extends HttpServlet {
+@WebServlet("/foodtype/save")
+public class FoodTypeSaveController extends HttpServlet {
 
     private FoodTypeService foodTypeService = new FoodTypeServiceImpl();
 
@@ -24,18 +23,13 @@ public class FoodTypeDeleteController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
-        try {
-            //获取前端要删除的Id值
-            String typeId = request.getParameter("typeId");
-            //调用业务层删除的方法
-            foodTypeService.deleteById(typeId);
+        //1、获取请求参数
+        String typeName = request.getParameter("typeName");
+        //2、调用业务层，添加菜系的方法
+        foodTypeService.save(typeName);
 
-            //删除成功，重定向到菜系管理，展示所有的菜系
-            response.sendRedirect(request.getContextPath() + "/foodType/search");
-        } catch (Exception e) {
-            e.printStackTrace();
-            response.getWriter().write("服务器正忙，请稍后重试... ...");
-        }
+        //添加成功，重定向到菜系管理，展示所有的菜系
+        response.sendRedirect(request.getContextPath() + "/foodType/search");
     }
 
     @Override

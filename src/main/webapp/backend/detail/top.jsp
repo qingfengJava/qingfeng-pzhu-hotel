@@ -6,9 +6,9 @@
 <head>
     <title>Frame top</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<script type="text/javascript" src="style/js/jquery.js"></script>
-	<script type="text/javascript" src="style/js/page_common.js"></script>
-    <link href="style/css/common_style_blue.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="/backend/detail/style/js/jquery.js"></script>
+	<script type="text/javascript" src="/backend/detail/style/js/page_common.js"></script>
+    <link href="/backend/detail/style/css/common_style_blue.css" rel="stylesheet" type="text/css" />
 	
 	<style type="text/css">
 <!--
@@ -116,16 +116,16 @@ margin-left: 10px;
         </div>
 		<!-- 欢迎用户的文字 -->
 		<div id="Head_1_UserWelcome">
-			<img border="0" width="13" height="14" src="style/images/user.gif" /> 
+			<img border="0" width="13" height="14" src="/backend/detail/style/images/user.gif" />
 			您好，<b>管理员</b>
 		</div>
 		<!-- 一些链接按钮 -->
 		<div id="Head_1_FunctionButton">
 			<a target="right" href="javascript:void(0)">
-				<img width="78" height="20" src="style/images/help2.gif" />
+				<img width="78" height="20" src="/backend/detail/style/images/help2.gif" />
 			</a>
 			<a target="_parent" href="javascript:void(0)">
-				<img width="78" height="20" alt="退出系统" src="style/images/logout.gif" />
+				<img width="78" height="20" alt="退出系统" src="/backend/detail/style/images/logout.gif" />
 			</a>
 		</div>
 	</div>
@@ -140,11 +140,11 @@ margin-left: 10px;
 		
 		<div class="Head2_FunctionList" style="float:left">
 			<a href="javascript: window.parent.right.history.back();">
-				<img src="style/images/Header_back.gif" width="24" height="24" style="margin-top: -8px;"/>
+				<img src="/backend/detail/style/images/Header_back.gif" width="24" height="24" style="margin-top: -8px;"/>
 				<b>后退</b>
 			</a>
 			<a href="javascript: window.parent.right.history.forward();">
-				<img src="style/images/Header_forward.gif" width="24" height="24" style="margin-top: -8px;"/>
+				<img src="/backend/detail/style/images/Header_forward.gif" width="24" height="24" style="margin-top: -8px;"/>
 				<b>前进</b>		
 			</a>
         </div>
@@ -156,11 +156,11 @@ margin-left: 10px;
 				使用 window.parent.right.history.go(0) 实现刷新，在IE、Chrome中都可以运行，但在FF中不可以！（但没有测试什么时候会使用缓存）。
 			 -->
 			<a href="javascript: window.parent.right.history.go(0);">
-				<img src="style/images/Header_refresh.gif" width="24" height="24" style="margin-top: -8px;"/>
+				<img src="/backend/detail/style/images/Header_refresh.gif" width="24" height="24" style="margin-top: -8px;"/>
 				<b>刷新(IE、Chrome)</b>		
 			</a>
 			<a href="javascript: window.parent.right.location.reload(true);">
-				<img src="style/images/Header_refresh.gif" width="24" height="24" style="margin-top: -8px;"/>
+				<img src="/backend/detail/style/images/Header_refresh.gif" width="24" height="24" style="margin-top: -8px;"/>
 				<b>刷新(Firefox)</b>		
 			</a>
 		</div>

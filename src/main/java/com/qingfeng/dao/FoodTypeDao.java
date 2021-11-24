@@ -24,6 +24,14 @@ public interface FoodTypeDao {
     /**
      * 根据菜系id，删除相应的菜系
      * @param id
+     * @throws SQLException
      */
     void deleteById(long id) throws SQLException;
+
+    /**
+     * 添加菜系
+     * @param typeName
+     * @throws SQLException
+     */
+    void save(String typeName) throws SQLException;
 }
