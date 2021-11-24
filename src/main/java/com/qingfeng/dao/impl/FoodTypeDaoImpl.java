@@ -46,22 +46,46 @@ public class FoodTypeDaoImpl implements FoodTypeDao {
      */
     @Override
     public void save(String typeName) throws SQLException {
-        String sql = "insert into t_food_type(type_name) values('"+typeName+"')";
-        FoodTypeSql.updateFoodType(sql);
+        if (typeName != null && typeName != "") {
+            //给程序做健壮性判断，不允许添加重复的菜系
+            String sql = "select * from t_food_type where type_name = '"+typeName+"'";
+            List<FoodType> foodTypeList = FoodTypeSql.findAllFoodType(sql);
+            if(foodTypeList.size() == 0){
+                //说明没有相同的菜系名，可以添加
+                String sql2 = "insert into t_food_type(type_name) values('"+typeName+"')";
+                FoodTypeSql.updateFoodType(sql2);
+            }
+        }
     }
 
+    /**
+     * 根据id查找
+     * @param typeId
+     * @return
+     */
     @Override
     public FoodType findById(long typeId) {
         String sql = "select * from t_food_type where type_id = "+typeId;
         return FoodTypeSql.findAllFoodType(sql).get(0);
     }
 
+    /**
+     * 更新菜系
+     * @param foodType
+     * @throws SQLException
+     */
     @Override
     public void update(FoodType foodType) throws SQLException {
         //程序健壮性判断
         if (foodType.getTypeName() != null && foodType.getTypeName() != ""){
-            String sql = "update t_food_type set type_name = '"+foodType.getTypeName()+"' where type_id = "+foodType.getTypeId();
-            FoodTypeSql.updateFoodType(sql);
+            //健壮性判断，存在相同的名字，则不允许修改
+            String sql = "select * from t_food_type where type_name = '"+foodType.getTypeName()+"'";
+            List<FoodType> foodTypeList = FoodTypeSql.findAllFoodType(sql);
+            if(foodTypeList.size() == 0){
+                //查询不到相同的菜系名称时，才允许修改
+                String sql2 = "update t_food_type set type_name = '"+foodType.getTypeName()+"' where type_id = "+foodType.getTypeId();
+                FoodTypeSql.updateFoodType(sql2);
+            }
         }
     }
 }

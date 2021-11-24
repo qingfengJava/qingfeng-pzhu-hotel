@@ -8,10 +8,29 @@
 <script type="text/javascript" src="/backend/detail/style/js/page_common.js"></script>
 <link href="/backend/detail/style/css/common_style_blue.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="/backend/detail/style/css/index_1.css" />
+
+	<script type="text/javascript">
+
+		window.onload = function() {
+
+			let updateName = document.getElementsByName("updateName")[0];
+
+			//给添加按钮绑定事件
+			document.getElementById("form").onsubmit = function () {
+				if (updateName.value != ""){
+					return confirm("Are you sure you want to update foodType? \r\n你确定要修改菜系信息吗？");
+				}else {
+					alert("请输入要修改的内容！");
+					return false;
+				}
+			}
+		}
+
+	</script>
+
 </head>
+
 <body>
-
-
 <!-- 页面标题 -->
 <div id="TitleArea">
 	<div id="TitleArea_Head"></div>
@@ -27,7 +46,7 @@
 <!-- 主内容区域（数据列表或表单显示） -->
 <div id="MainArea">
 	<!-- 表单内容 -->
-	<form action="/foodtype/update" method="post">
+	<form id="form" action="/foodtype/update" method="post">
 	
 		<!-- 本段标题（分段标题） -->
 		<div class="ItemBlock_Title">

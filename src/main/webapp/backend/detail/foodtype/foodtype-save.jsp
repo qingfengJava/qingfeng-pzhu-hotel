@@ -3,14 +3,31 @@
 <html>
 <head>
 <title>攀大点餐系统——添加菜系</title>
-
-
-
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="text/javascript" src="/backend/detail/style/js/jquery.js"></script>
 <script type="text/javascript" src="/backend/detail/style/js/page_common.js"></script>
 <link href="/backend/detail/style/css/common_style_blue.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="/backend/detail/style/css/index_1.css" />
+
+	<script type="text/javascript">
+
+		window.onload = function() {
+
+			let typeName = document.getElementsByName("typeName")[0];
+
+			//给添加按钮绑定事件
+			document.getElementById("form").onsubmit = function () {
+				if (typeName.value != ""){
+					return confirm("Are you sure you want to add foodType? \r\n你确定要添加菜系信息吗？");
+				}else {
+					alert("请输入要添加菜系的名称！");
+					return false;
+				}
+			}
+		}
+
+	</script>
+
 </head>
 <body>
 
@@ -30,7 +47,7 @@
 <!-- 主内容区域（数据列表或表单显示） -->
 <div id="MainArea">
 	<!-- 表单内容 -->
-	<form action="/foodtype/save" method="post">
+	<form id="form" action="/foodtype/save" method="post">
 	
 		<!-- 本段标题（分段标题） -->
 		<div class="ItemBlock_Title">
