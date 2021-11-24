@@ -28,8 +28,8 @@ public class FoodTypeSearchController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
+        /*request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");*/
         try {
             //获取输入框输入的菜系名称
             String keyword = request.getParameter("keyword");

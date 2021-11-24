@@ -22,8 +22,8 @@ public class FoodTypeDeleteController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
+        /*request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");*/
         try {
             //获取前端要删除的Id值
             String typeId = request.getParameter("typeId");

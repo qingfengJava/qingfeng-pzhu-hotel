@@ -34,8 +34,8 @@ public class MenuController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
+        /*request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");*/
         try {
             //调用业务层方法查询所有菜单列表
             List<Menu> list = menuService.findAll();

@@ -24,8 +24,8 @@ public class FoodTypeFindByIdController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
+        /*request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");*/
         //1、获取请求的参数Id
         String typeId = request.getParameter("typeId");
         //根据id调用业务层查询的方法，返回一个foodType对象

@@ -24,8 +24,8 @@ public class FoodTypeUpdateController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
+        /*request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");*/
         //1、获取请求参数
         String updateName = request.getParameter("updateName");
         String updateId = request.getParameter("updateId");
