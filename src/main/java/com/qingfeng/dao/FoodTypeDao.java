@@ -2,6 +2,7 @@ package com.qingfeng.dao;
 
 import com.qingfeng.pojo.FoodType;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -19,4 +20,10 @@ public interface FoodTypeDao {
      * @return
      */
     List<FoodType> findCondition(FoodType foodType);
+
+    /**
+     * 根据菜系id，删除相应的菜系
+     * @param id
+     */
+    void deleteById(long id) throws SQLException;
 }

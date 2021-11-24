@@ -19,4 +19,10 @@ public interface FoodTypeService {
      * @return
      */
     List<FoodType> findCondition(FoodType foodType);
+
+    /**
+     * 根据菜系Id 删除菜系
+     * @param typeId
+     */
+    void deleteById(String typeId) throws Exception;
 }

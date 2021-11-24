@@ -18,6 +18,11 @@ public class FoodTypeServiceImpl implements FoodTypeService {
 
     private FoodTypeDao foodTypeDao = new FoodTypeDaoImpl();
 
+    /**
+     * 根据条件查询菜系
+     * @param foodType 菜系类
+     * @return
+     */
     @Override
     public List<FoodType> findCondition(FoodType foodType) {
         //这里要对foodType对象进行判断  对象不为空，值不为空，去掉空格不为空
@@ -30,5 +35,19 @@ public class FoodTypeServiceImpl implements FoodTypeService {
         }
 
         return foodTypeDao.findCondition(foodType);
+    }
+
+    /**
+     * 根据菜系id 删除菜系
+     * @param typeId
+     */
+    @Override
+    public void deleteById(String typeId) throws Exception {
+        //异常处理，保证程序的健壮性
+        try {
+            foodTypeDao.deleteById(Long.parseLong(typeId));
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
     }
 }

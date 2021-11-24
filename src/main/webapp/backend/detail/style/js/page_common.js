@@ -92,8 +92,8 @@ function gotoPage( pageNum ){
 /**
  * 删除前的确认提示
  */
-function delConfirm(){
-	return window.confirm("您确定要删除一条记录码？");	
+function delConfirm(id){
+	return window.confirm("您确定要删除ID为 "+id+" 的记录码？");
 }
 
 

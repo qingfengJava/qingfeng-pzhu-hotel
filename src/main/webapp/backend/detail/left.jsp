@@ -6,6 +6,7 @@
 	<title>Frame left</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<script type="text/javascript" src="style/js/page_common.js"></script>
+	<script type="text/javascript" src="style/js/jquery.js"></script>
     <link href="style/css/common_style_blue.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript">
 		// 显示或隐藏二级菜单
@@ -27,7 +28,7 @@
 			//1、我们首先要创建XMLHttpRequest
 			let xmlhttprequest = new XMLHttpRequest();
 			//2、调用open方法设置请求参数，将请求发送给服务器
-			xmlhttprequest.open("GET","http://localhost:8080/hotel/menu/list",true);
+			xmlhttprequest.open("GET","http://localhost:8080/menu/list",true);
 
 			//4、在send方法前绑定onreadystatechange事件，处理请求完成后的操作。
 			xmlhttprequest.onreadystatechange = function (){

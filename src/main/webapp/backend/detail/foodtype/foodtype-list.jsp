@@ -54,37 +54,10 @@
 						<td>${type.typeName}</td>
 						<td>
 							<a href="foodtype-update.jsp" class="FunctionButton">更新</a>
-							<a href="#" class="FunctionButton">删除</a>
+							<a href="javascript:void(0)" class="FunctionButton" onclick="deleteById(${type.typeId});">删除</a>
 						</td>
 					</tr>
 				</c:forEach>
-
-				<%--<tr>
-						<td>2</td>
-						<td>川菜</td>
-						<td>
-							<a href="foodtype-update.jsp" class="FunctionButton">更新</a>
-							<a href="#" class="FunctionButton">删除</a>
-						</td>
-					</tr>
-				
-					<tr>
-						<td>3</td>
-						<td>湘菜</td>
-						<td>
-							<a href="foodtype-update.jsp" class="FunctionButton">更新</a>
-							<a href="#" class="FunctionButton">删除</a>
-						</td>
-					</tr>
-				
-					<tr>
-						<td>4</td>
-						<td>东北菜</td>
-						<td>
-							<a href="foodtype-update.jsp" class="FunctionButton">更新</a>
-							<a href="#" class="FunctionButton">删除</a>
-						</td>
-					</tr>--%>
 				
 			</tbody>
 		</table>
@@ -96,4 +69,14 @@
 		</div>
 	</div>
 </body>
+
+<script>
+	function deleteById(id) {
+		if (delConfirm(id)){
+			//确认之后，执行删除操作，发送请求
+			location.href = "/foodtype/delete?typeId="+id;
+		}
+	}
+</script>
+
 </html>

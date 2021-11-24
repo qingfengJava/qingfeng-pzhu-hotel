@@ -45,7 +45,7 @@ public class DbUtils {
         return con;
     }
 
-    public void closeCon(Connection con)throws Exception{
+    public static void closeCon(Connection con)throws Exception{
         System.out.println(con);
         if(con!=null){
             con.close();
