@@ -35,7 +35,7 @@ public class FoodTypeDaoImpl implements FoodTypeDao {
      */
     @Override
     public void deleteById(long id) throws SQLException {
-        String sql = "delete from t_food_type where type_id = "+id+"";
+        String sql = "delete from t_food_type where type_id = "+id;
         FoodTypeSql.updateFoodType(sql);
     }
 
@@ -48,5 +48,20 @@ public class FoodTypeDaoImpl implements FoodTypeDao {
     public void save(String typeName) throws SQLException {
         String sql = "insert into t_food_type(type_name) values('"+typeName+"')";
         FoodTypeSql.updateFoodType(sql);
+    }
+
+    @Override
+    public FoodType findById(long typeId) {
+        String sql = "select * from t_food_type where type_id = "+typeId;
+        return FoodTypeSql.findAllFoodType(sql).get(0);
+    }
+
+    @Override
+    public void update(FoodType foodType) throws SQLException {
+        //程序健壮性判断
+        if (foodType.getTypeName() != null && foodType.getTypeName() != ""){
+            String sql = "update t_food_type set type_name = '"+foodType.getTypeName()+"' where type_id = "+foodType.getTypeId();
+            FoodTypeSql.updateFoodType(sql);
+        }
     }
 }

@@ -32,4 +32,17 @@ public interface FoodTypeService {
      * @param typeName
      */
     void save(String typeName);
+
+    /**
+     * 根据id查询菜系
+     * @param typeId
+     * @return
+     */
+    FoodType findById(String typeId);
+
+    /**
+     * 修改菜系信息
+     * @param foodType
+     */
+    void update(FoodType foodType);
 }

@@ -34,4 +34,17 @@ public interface FoodTypeDao {
      * @throws SQLException
      */
     void save(String typeName) throws SQLException;
+
+    /**
+     * 根据id查询菜系
+     * @param parseLong
+     * @return 返回一个foodType对象
+     */
+    FoodType findById(long parseLong);
+
+    /**
+     * 修改菜系信息
+     * @param foodType
+     */
+    void update(FoodType foodType) throws SQLException;
 }

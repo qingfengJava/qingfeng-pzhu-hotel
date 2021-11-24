@@ -66,4 +66,32 @@ public class FoodTypeServiceImpl implements FoodTypeService {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 根据id查询菜系
+     * @param typeId
+     * @return
+     */
+    @Override
+    public FoodType findById(String typeId) {
+        try {
+            return foodTypeDao.findById(Long.parseLong(typeId));
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * 修改菜系信息
+     * @param foodType
+     */
+    @Override
+    public void update(FoodType foodType) {
+        try {
+            foodTypeDao.update(foodType);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
