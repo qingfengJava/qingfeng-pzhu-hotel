@@ -46,7 +46,9 @@
 <!-- 主内容区域（数据列表或表单显示） -->
 <div id="MainArea">
 	<!-- 表单内容 -->
-	<form id="form" action="/foodtype/update" method="post">
+	<form id="form" action="/foodtype" method="post">
+		<%-- 因为是post提交，那么请求的参数传值建议使用隐藏域提交 --%>
+		<input type="hidden" name="method" value="update" />
 	
 		<!-- 本段标题（分段标题） -->
 		<div class="ItemBlock_Title">

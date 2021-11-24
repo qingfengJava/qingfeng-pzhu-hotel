@@ -27,7 +27,7 @@
 	</div>
 	<!-- 过滤条件 -->
 	<div id="QueryArea">
-		<form action="/foodType/search" method="post">
+		<form action="/foodtype?method=search" method="post">
 			<input type="hidden" name="method" value="search">
 			&nbsp;&nbsp;菜系名称: <input type="text" name="keyword" placeholder="请输入菜系名称" title="请输入菜系名称" value="${keyword}">
 			<input type="submit" value="搜索">
@@ -53,7 +53,7 @@
 						<td>${type.typeId}</td>
 						<td>${type.typeName}</td>
 						<td>
-							<a href="/foodtype/findById?typeId=${type.typeId}" class="FunctionButton">更新</a>
+							<a href="/foodtype?method=findById&typeId=${type.typeId}" class="FunctionButton">更新</a>
 							<a href="javascript:void(0)" class="FunctionButton" onclick="deleteById(${type.typeId});">删除</a>
 						</td>
 					</tr>
@@ -74,7 +74,7 @@
 	function deleteById(id) {
 		if (delConfirm(id)){
 			//确认之后，执行删除操作，发送请求
-			location.href = "/foodtype/delete?typeId="+id;
+			location.href = "/foodtype?method=delete&typeId="+id;
 		}
 	}
 </script>
