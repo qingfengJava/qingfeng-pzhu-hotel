@@ -6,9 +6,9 @@ package com.qingfeng.controller; /**
 
 import com.google.gson.Gson;
 import com.qingfeng.entity.ResultVO;
+import com.qingfeng.factory.BeanFactory;
 import com.qingfeng.pojo.Menu;
 import com.qingfeng.service.MenuService;
-import com.qingfeng.service.impl.MenuServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,9 +28,9 @@ import java.util.List;
 public class MenuController extends HttpServlet {
 
     /**
-     * 控制层维护业务层对象
+     * 通过自己封装的工厂类创建对象
      */
-    private MenuService menuService = new MenuServiceImpl();
+    private MenuService menuService = (MenuService) BeanFactory.getBean("menuService");
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

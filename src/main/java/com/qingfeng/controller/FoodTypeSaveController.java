@@ -1,11 +1,13 @@
 package com.qingfeng.controller;
 
+import com.qingfeng.factory.BeanFactory;
 import com.qingfeng.service.FoodTypeService;
-import com.qingfeng.service.impl.FoodTypeServiceImpl;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
@@ -17,7 +19,10 @@ import java.io.IOException;
 @WebServlet("/foodtype/save")
 public class FoodTypeSaveController extends HttpServlet {
 
-    private FoodTypeService foodTypeService = new FoodTypeServiceImpl();
+    /**
+     * 通过自己封装的工厂类来创建对象
+     */
+    private FoodTypeService foodTypeService = (FoodTypeService) BeanFactory.getBean("foodTypeService");
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

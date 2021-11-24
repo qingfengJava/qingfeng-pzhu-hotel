@@ -1,7 +1,7 @@
 package com.qingfeng.service.impl;
 
 import com.qingfeng.dao.FoodTypeDao;
-import com.qingfeng.dao.impl.FoodTypeDaoImpl;
+import com.qingfeng.factory.BeanFactory;
 import com.qingfeng.pojo.FoodType;
 import com.qingfeng.service.FoodTypeService;
 
@@ -16,7 +16,10 @@ import java.util.List;
  */
 public class FoodTypeServiceImpl implements FoodTypeService {
 
-    private FoodTypeDao foodTypeDao = new FoodTypeDaoImpl();
+    /**
+     * 通过自己封装的工厂类来创建对象
+     */
+    private FoodTypeDao foodTypeDao = (FoodTypeDao) BeanFactory.getBean("foodTypeDao");
 
     /**
      * 根据条件查询菜系

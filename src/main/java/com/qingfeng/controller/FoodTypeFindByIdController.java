@@ -1,8 +1,8 @@
 package com.qingfeng.controller;
 
+import com.qingfeng.factory.BeanFactory;
 import com.qingfeng.pojo.FoodType;
 import com.qingfeng.service.FoodTypeService;
-import com.qingfeng.service.impl.FoodTypeServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,7 +20,10 @@ import java.io.IOException;
 @WebServlet("/foodtype/findById")
 public class FoodTypeFindByIdController extends HttpServlet {
 
-    private FoodTypeService foodTypeService = new FoodTypeServiceImpl();
+    /**
+     * 通过自己封装的工厂类来创建对象
+     */
+    private FoodTypeService foodTypeService = (FoodTypeService) BeanFactory.getBean("foodTypeService");
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
