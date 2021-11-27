@@ -1,5 +1,6 @@
 package com.qingfeng.service.impl;
 
+import com.qingfeng.constant.BeanFactoryConstant;
 import com.qingfeng.dao.FoodTypeDao;
 import com.qingfeng.factory.BeanFactory;
 import com.qingfeng.pojo.FoodType;
@@ -19,7 +20,7 @@ public class FoodTypeServiceImpl implements FoodTypeService {
     /**
      * 通过自己封装的工厂类来创建对象
      */
-    private FoodTypeDao foodTypeDao = (FoodTypeDao) BeanFactory.getBean("foodTypeDao");
+    private FoodTypeDao foodTypeDao = (FoodTypeDao) BeanFactory.getBean(BeanFactoryConstant.FOODTYPE_DAO);
 
     /**
      * 根据条件查询菜系

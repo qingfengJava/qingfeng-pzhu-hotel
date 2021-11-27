@@ -1,4 +1,4 @@
-package com.qingfeng.controller; /**
+package com.qingfeng.controller.menu; /**
  * @author 清风学Java
  * @date 2021/11/21
  * @version 1.0.0

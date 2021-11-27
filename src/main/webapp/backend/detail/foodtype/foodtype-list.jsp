@@ -27,7 +27,7 @@
 	</div>
 	<!-- 过滤条件 -->
 	<div id="QueryArea">
-		<form action="/foodtype?method=search" method="post">
+		<form action="/foodtype" method="post">
 			<input type="hidden" name="method" value="search">
 			&nbsp;&nbsp;菜系名称: <input type="text" name="keyword" placeholder="请输入菜系名称" title="请输入菜系名称" value="${keyword}">
 			<input type="submit" value="搜索">
