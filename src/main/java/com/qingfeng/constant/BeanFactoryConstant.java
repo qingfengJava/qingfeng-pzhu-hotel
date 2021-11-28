@@ -7,8 +7,12 @@ package com.qingfeng.constant;
  */
 public interface BeanFactoryConstant {
 
-    String FOODTYPE_DAO = "foodTpyeDao";
+    String FOODTYPE_DAO = "foodTypeDao";
     String FOODTYPE_SERVICE = "foodTypeService";
+
     String MENU_DAO = "menuDao";
     String MENU_SERVICE = "menuService";
+
+    String FOOD_DAO = "foodDao";
+    String FOOD_SERVICE = "foodService";
 }

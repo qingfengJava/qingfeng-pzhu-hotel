@@ -1,5 +1,7 @@
 package com.qingfeng.pojo;
 
+import java.io.Serializable;
+
 /**
  * 菜系类
  * 对应数据库表 t_food_type
@@ -8,7 +10,7 @@ package com.qingfeng.pojo;
  * @version 1.0.0
  * @date 2021/11/24
  */
-public class FoodType {
+public class FoodType implements Serializable {
 
     /**
      * 菜系的id

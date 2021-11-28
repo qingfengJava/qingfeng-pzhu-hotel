@@ -1,6 +1,7 @@
-package com.qingfeng.utils;
+package com.qingfeng.utils.sql;
 
 import com.qingfeng.pojo.FoodType;
+import com.qingfeng.utils.DbUtils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -49,10 +50,10 @@ public class FoodTypeSql {
     }
 
     /**
-     * 查询所有的书籍信息
+     * 查询菜系
      *
      * @param sql
-     * @return 返回一个书籍对象的集合
+     * @return 返回一个菜系集合
      */
     public static List<FoodType> findAllFoodType(String sql) {
         //获取连接

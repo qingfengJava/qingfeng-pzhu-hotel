@@ -2,7 +2,7 @@ package com.qingfeng.dao.impl;
 
 import com.qingfeng.dao.FoodTypeDao;
 import com.qingfeng.pojo.FoodType;
-import com.qingfeng.utils.FoodTypeSql;
+import com.qingfeng.utils.sql.FoodTypeSql;
 
 import java.sql.SQLException;
 import java.util.List;

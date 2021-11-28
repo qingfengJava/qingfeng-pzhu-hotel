@@ -1,5 +1,6 @@
 package com.qingfeng.service.impl;
 
+import com.qingfeng.constant.BeanFactoryConstant;
 import com.qingfeng.dao.MenuDao;
 import com.qingfeng.factory.BeanFactory;
 import com.qingfeng.pojo.Menu;
@@ -19,7 +20,7 @@ public class MenuServiceImpl implements MenuService {
     /**
      * 业务层维护持久层对象
      */
-    private MenuDao menuDao = (MenuDao) BeanFactory.getBean("menuDao");
+    private MenuDao menuDao = (MenuDao) BeanFactory.getBean(BeanFactoryConstant.MENU_DAO);
 
     /**
      * 查询所有菜单列表

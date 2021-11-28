@@ -28,7 +28,7 @@ margin: 0;
     top: 12px;
 	color: #F1F9FE;
     font-family: Arial Black,Arial;
-    font-size: 28px;
+    font-size: 40px;
 }
 #Head_1 #Head_1_UserWelcome {
     float: right;
@@ -112,7 +112,7 @@ margin-left: 10px;
 	<div id="Head_1">
 		<!-- 标题 -->
 		<div id="Head_1_Logo">
-			<b style="font-family: '黑体'">攀大餐馆信息后台管理平台</b> <!-- <img border="0" src="style/images/logo.png" /> -->
+			<b style="font-family: '华文行楷'">攀大餐馆后台信息管理平台</b>
         </div>
 		<!-- 欢迎用户的文字 -->
 		<div id="Head_1_UserWelcome">

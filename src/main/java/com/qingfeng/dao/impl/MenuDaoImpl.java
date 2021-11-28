@@ -2,7 +2,7 @@ package com.qingfeng.dao.impl;
 
 import com.qingfeng.dao.MenuDao;
 import com.qingfeng.pojo.Menu;
-import com.qingfeng.utils.MenuSql;
+import com.qingfeng.utils.sql.MenuSql;
 
 import java.util.List;
 

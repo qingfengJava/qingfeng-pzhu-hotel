@@ -1,6 +1,7 @@
-package com.qingfeng.utils;
+package com.qingfeng.utils.sql;
 
 import com.qingfeng.pojo.Menu;
+import com.qingfeng.utils.DbUtils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,9 +20,9 @@ import java.util.List;
 public class MenuSql {
 
     /**
-     * 查询所有的书籍信息
+     * 查询所有的菜单列表
      * @param sql
-     * @return 返回一个书籍对象的集合
+     * @return 返回一个菜单列表集合
      */
     public static List<Menu> findAllMenu(String sql){
         //获取连接
