@@ -15,7 +15,7 @@
 			$(menuDiv).next().toggle();
 		}
 
-		window.onload = function (oldChild){
+		window.onload = function (){
 			//当页面加载完成的时候，就访问/menu/list读取数据
 
 			//在这里使用JavaScript语言发起Ajax请求，访问服务器AjaxServlet中JavaScriptAjax
@@ -30,6 +30,7 @@
 				if (xmlhttprequest.readyState == 4 && xmlhttprequest.status == 200){
 					//获取数据
 					let jsonObj = JSON.parse(xmlhttprequest.responseText);
+					console.log(jsonObj); /* 测试代码 */
 
 					for (let i = 0; i < jsonObj.data.length; i++) {
 						//把服务器响应的数据显示在页面上
@@ -52,8 +53,8 @@
 		}
 
 	</script>
-	<!-- 内容总宽度为 3px边框 * 2 + 155px内容 = 161px; -->
-	<style type="text/css">
+<!-- 内容总宽度为 3px边框 * 2 + 155px内容 = 161px; -->
+<style type="text/css">
 <!--
 html{
 height: 100%;

@@ -43,7 +43,7 @@ public class FoodTypeController extends BaseServlet {
             foodTypeService.deleteById(typeId);
 
             //删除成功，返回重定向的路径到菜系管理，展示所有的菜系
-            return MessageConstant.FREFIX_REDIRECT +req.getContextPath() + "/foodtype?method=search";
+            return MessageConstant.PREFIX_REDIRECT +req.getContextPath() + "/foodtype?method=search";
     }
 
     /**
@@ -57,7 +57,7 @@ public class FoodTypeController extends BaseServlet {
         foodTypeService.save(typeName);
 
         //添加成功，返回重定向的路径，到菜系管理，展示所有的菜系
-        return MessageConstant.FREFIX_REDIRECT+req.getContextPath() + "/foodtype?method=search";
+        return MessageConstant.PREFIX_REDIRECT +req.getContextPath() + "/foodtype?method=search";
     }
 
     /**
@@ -75,7 +75,7 @@ public class FoodTypeController extends BaseServlet {
         foodTypeService.update(foodType);
 
         //添加成功，返回重定向的路径，到菜系管理，展示所有的菜系
-        return MessageConstant.FREFIX_REDIRECT+req.getContextPath() + "/foodtype?method=search";
+        return MessageConstant.PREFIX_REDIRECT +req.getContextPath() + "/foodtype?method=search";
     }
 
     /**
@@ -91,7 +91,7 @@ public class FoodTypeController extends BaseServlet {
         //将foodType对象存入request域中，进行数据共享
         req.setAttribute("foodType",foodType);
         //查询成功，返回请求转发的路径，更新页面
-        return MessageConstant.FREFIX_FORWAED+"/backend/detail/foodtype/foodtype-update.jsp";
+        return MessageConstant.PREFIX_FORWAED +"/backend/detail/foodtype/foodtype-update.jsp";
     }
 
     /**
@@ -113,6 +113,6 @@ public class FoodTypeController extends BaseServlet {
         //将查询的菜名也存到request域对象中，用作数据的回显
         req.setAttribute("keyword",foodType.getTypeName());
         //返回请求转发的路径，将数据共享
-        return MessageConstant.FREFIX_FORWAED+"/backend/detail/foodtype/foodtype-list.jsp";
+        return MessageConstant.PREFIX_FORWAED +"/backend/detail/foodtype/foodtype-list.jsp";
     }
 }

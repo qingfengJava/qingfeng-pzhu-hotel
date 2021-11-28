@@ -2,6 +2,7 @@ package com.qingfeng.service;
 
 import com.qingfeng.pojo.Food;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -20,4 +21,17 @@ public interface FoodService {
      * @return
      */
     List<Food> findByCondition(Food food);
+
+    /**
+     * 添加菜品
+     * @param food
+     */
+    void save(Food food) throws SQLException;
+
+    /**
+     * 根据菜品Id，查询菜品对象
+     * @param foodId
+     * @return 返回一个菜品对象
+     */
+    Food findFoodById(String foodId);
 }

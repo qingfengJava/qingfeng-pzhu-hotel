@@ -52,10 +52,10 @@ public class BaseServlet extends HttpServlet {
                 String result = (String) obj;
                 //截取我们要转发的url，只有匹配才能进行请求转发或者重定向
                 String url = result.substring(result.indexOf(MessageConstant.TAG)+1);
-                if (result.startsWith(MessageConstant.FREFIX_FORWAED)){
+                if (result.startsWith(MessageConstant.PREFIX_FORWAED)){
                     //匹配是请求转发
                     req.getRequestDispatcher(url).forward(req,resp);
-                }else if (result.startsWith(MessageConstant.FREFIX_REDIRECT)){
+                }else if (result.startsWith(MessageConstant.PREFIX_REDIRECT)){
                     //匹配是重定向
                     resp.sendRedirect(url);
                 }else{

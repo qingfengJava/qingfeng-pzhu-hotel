@@ -17,12 +17,12 @@ public interface MessageConstant {
     /**
      * 请求转发前缀
      */
-    String FREFIX_FORWAED = "forward:";
+    String PREFIX_FORWAED = "forward:";
 
     /**
      * 重定向前缀
      */
-    String FREFIX_REDIRECT = "redirect:";
+    String PREFIX_REDIRECT = "redirect:";
 
     /**
      * 标志符
@@ -33,4 +33,5 @@ public interface MessageConstant {
      * 方法参数：method
      */
     String PARAM_METHOD = "method";
+    String FILEUPLOAD_ERROR = "上传文件不能为空！！！";
 }

@@ -2,6 +2,7 @@ package com.qingfeng.dao;
 
 import com.qingfeng.pojo.Food;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -20,4 +21,17 @@ public interface FoodDao {
      * @return
      */
     List<Food> findFoodCondition(Food food);
+
+    /**
+     * 保存/添加菜品
+     * @param food
+     */
+    void save(Food food) throws SQLException;
+
+    /**
+     * 根据菜品Id，查询菜品信息，用于更新时回显数据局
+     * @param foodId
+     * @return
+     */
+    Food findFoodById(long foodId);
 }

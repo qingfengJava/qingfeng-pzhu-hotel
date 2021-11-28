@@ -5,7 +5,7 @@
 <head>
 	<!-- 包含公共的JSP代码片段 -->
 	
-<title>餐馆王平台</title>
+<title>攀大餐馆平台</title>
 	
 	<a href="${pageContext.request.contextPath}"></a>
 
@@ -57,6 +57,7 @@
 				<td>菜品编号</td>
 				<td>菜名</td>
 				<td>所属菜系</td>
+				<td>图片</td>
 				<td>价格</td>
                 <td>会员价格</td>
 				<td>操作</td>
@@ -71,10 +72,12 @@
 					<td>${food.foodId}</td>
 					<td>${food.foodName}</td>
 					<td>${food.foodType.typeName}</td>
+					<td><img src="${food.foodImage}" style="width: 120px"></td>
 					<td>${food.foodPrice}</td>
 					<td>${food.foodMprice}</td>
 					<td>
-						<a href="food-update.html.html" class="FunctionButton">更新</a>
+						<%-- 更新数据，要将数据的Id，一起传过去 --%>
+						<a href="/food?method=toSaveUI&foodId=${food.foodId}" class="FunctionButton">更新</a>
 						<a href="/wirelessplatform/food.html?method=delete&id=1" onClick="return delConfirm();"class="FunctionButton">删除</a>
 					</td>
 				</tr>
@@ -84,7 +87,7 @@
 	
    <!-- 其他功能超链接 -->
 	<div id="TableTail" align="center">
-		<div class="FunctionButton"><a href="food-save.jsp">添加</a></div>
+		<div class="FunctionButton"><a href="/backend/detail/food/food-save.jsp">添加</a></div>
     </div> 
 </div>
 </body>

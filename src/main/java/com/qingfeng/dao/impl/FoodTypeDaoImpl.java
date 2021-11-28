@@ -2,6 +2,7 @@ package com.qingfeng.dao.impl;
 
 import com.qingfeng.dao.FoodTypeDao;
 import com.qingfeng.pojo.FoodType;
+import com.qingfeng.utils.sql.DbSql;
 import com.qingfeng.utils.sql.FoodTypeSql;
 
 import java.sql.SQLException;
@@ -36,7 +37,7 @@ public class FoodTypeDaoImpl implements FoodTypeDao {
     @Override
     public void deleteById(long id) throws SQLException {
         String sql = "delete from t_food_type where type_id = "+id;
-        FoodTypeSql.updateFoodType(sql);
+        DbSql.update(sql);
     }
 
     /**
@@ -53,7 +54,7 @@ public class FoodTypeDaoImpl implements FoodTypeDao {
             if(foodTypeList.size() == 0){
                 //说明没有相同的菜系名，可以添加
                 String sql2 = "insert into t_food_type(type_name) values('"+typeName+"')";
-                FoodTypeSql.updateFoodType(sql2);
+                DbSql.update(sql2);
             }
         }
     }
@@ -84,7 +85,7 @@ public class FoodTypeDaoImpl implements FoodTypeDao {
             if(foodTypeList.size() == 0){
                 //查询不到相同的菜系名称时，才允许修改
                 String sql2 = "update t_food_type set type_name = '"+foodType.getTypeName()+"' where type_id = "+foodType.getTypeId();
-                FoodTypeSql.updateFoodType(sql2);
+                DbSql.update(sql2);
             }
         }
     }

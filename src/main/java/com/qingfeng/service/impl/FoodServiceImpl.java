@@ -7,6 +7,7 @@ import com.qingfeng.pojo.Food;
 import com.qingfeng.pojo.FoodType;
 import com.qingfeng.service.FoodService;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -43,5 +44,25 @@ public class FoodServiceImpl implements FoodService {
 
         }
         return foodDao.findFoodCondition(food);
+    }
+
+    /**
+     * 添加菜品
+     * @param food
+     */
+    @Override
+    public void save(Food food) throws SQLException {
+        //添加、保存数据操作
+        foodDao.save(food);
+    }
+
+    /**
+     * 根据菜品Id，查询菜品信息
+     * @param foodId
+     * @return
+     */
+    @Override
+    public Food findFoodById(String foodId) {
+        return foodDao.findFoodById(Long.parseLong(foodId));
     }
 }
