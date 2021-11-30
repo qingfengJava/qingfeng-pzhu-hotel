@@ -1,5 +1,6 @@
 package com.qingfeng.service;
 
+import com.qingfeng.entity.ResultVO;
 import com.qingfeng.pojo.FoodType;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public interface FoodTypeService {
      * @param typeId
      * @throws Exception
      */
-    void deleteById(String typeId) throws Exception;
+    ResultVO deleteById(String typeId) throws Exception;
 
     /**
      * 添加菜系

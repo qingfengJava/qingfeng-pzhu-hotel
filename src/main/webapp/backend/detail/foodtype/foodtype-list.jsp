@@ -54,7 +54,7 @@
 						<td>${type.typeName}</td>
 						<td>
 							<a href="/foodtype?method=findById&typeId=${type.typeId}" class="FunctionButton">更新</a>
-							<a href="javascript:void(0)" class="FunctionButton" onclick="deleteById(${type.typeId});">删除</a>
+							<a href="javascript:deleteById(${type.typeId});" class="FunctionButton">删除</a>
 						</td>
 					</tr>
 				</c:forEach>

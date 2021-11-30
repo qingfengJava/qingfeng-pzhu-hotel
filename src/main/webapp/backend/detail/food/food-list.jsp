@@ -21,15 +21,15 @@
 	</style>
 
 	<script type="text/javascript">
-		window.onload = function(){
 			/**
 			 * 删除前的确认提示
 			 */
-			function delConfirm(id){
-				return window.confirm("Are you sure you want to delete food information?\r\n您确定要删除id为"+id+"de菜品信息吗？");
-			}
+			function deleteById(id){
 
-		}
+				if(confirm("Are you sure you want to delete food information?\r\n您确定要删除id为"+id+"的菜品信息吗？")){
+					location.href = "/food?method=deleteFood&foodId="+id;
+				}
+			}
 	</script>
 
 </head>
@@ -98,7 +98,7 @@
 					<td>
 						<%-- 更新数据，要将数据的Id，一起传过去 --%>
 						<a href="/food?method=toSaveUI&foodId=${food.foodId}" class="FunctionButton">更新</a>
-						<a href="/food?method=deleteFood&foodId=${food.foodId}" onClick="return delConfirm(${food.foodId});"class="FunctionButton">删除</a>
+						<a href="javascript:deleteById(${food.foodId});" class="FunctionButton">删除</a>
 					</td>
 				</tr>
 			</c:forEach>

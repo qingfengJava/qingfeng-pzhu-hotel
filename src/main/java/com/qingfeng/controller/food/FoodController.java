@@ -60,7 +60,7 @@ public class FoodController extends BaseServlet {
         }
         if (rows == null || "".equals(rows)){
             //默认显示6条数据
-            rows = "6";
+            rows = "5";
         }
 
 
@@ -188,7 +188,6 @@ public class FoodController extends BaseServlet {
 
             //上传成功，删除原来的图片
             String oldFileName = oldImage.substring(oldImage.lastIndexOf("/") + 1);
-            System.out.println(oldFileName);
             //得到上传文件的目标位置
             String desPath = req.getSession().getServletContext().getRealPath("/files/images/");
             File file = new File(desPath,oldFileName);
@@ -200,8 +199,6 @@ public class FoodController extends BaseServlet {
             //将信息保存到food对象中
             food = new Food(Long.parseLong(foodId),Long.parseLong(foodTypeId),foodName,Double.parseDouble(foodPrice),Double.parseDouble(foodMprice),newImage,foodDesc,null);
         }
-
-        System.out.println("---------------food="+food);
 
         //调用业务层更新菜品信息的操作
         foodService.updateFoodById(food);

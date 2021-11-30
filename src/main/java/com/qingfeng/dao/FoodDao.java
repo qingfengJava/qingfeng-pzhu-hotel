@@ -58,4 +58,11 @@ public interface FoodDao {
      * @return
      */
     int findTotalCount(String foodName, String typeName);
+
+    /**
+     * 根据菜系id，查询菜品总的记录数
+     * @param typeId
+     * @return
+     */
+    int countByTypeId(long typeId);
 }

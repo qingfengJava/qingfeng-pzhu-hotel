@@ -93,7 +93,7 @@ function gotoPage( pageNum ){
  * 删除前的确认提示
  */
 function delConfirm(id){
-	return window.confirm("Are you sure you want to delete food information?\r\n您确定要删除id为"+foodId+"de菜品信息吗？");
+	return window.confirm("您确定要删除ID为 "+id+" 的记录码？");
 }
 
 

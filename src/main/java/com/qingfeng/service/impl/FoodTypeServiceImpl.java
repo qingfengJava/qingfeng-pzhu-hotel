@@ -1,11 +1,15 @@
 package com.qingfeng.service.impl;
 
 import com.qingfeng.constant.BeanFactoryConstant;
+import com.qingfeng.constant.ExceptionMessageConstant;
+import com.qingfeng.dao.FoodDao;
 import com.qingfeng.dao.FoodTypeDao;
+import com.qingfeng.entity.ResultVO;
 import com.qingfeng.factory.BeanFactory;
 import com.qingfeng.pojo.FoodType;
 import com.qingfeng.service.FoodTypeService;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -21,6 +25,7 @@ public class FoodTypeServiceImpl implements FoodTypeService {
      * 通过自己封装的工厂类来创建对象
      */
     private FoodTypeDao foodTypeDao = (FoodTypeDao) BeanFactory.getBean(BeanFactoryConstant.FOODTYPE_DAO);
+    private FoodDao foodDao = (FoodDao) BeanFactory.getBean(BeanFactoryConstant.FOOD_DAO);
 
     /**
      * 根据条件查询菜系
@@ -47,13 +52,21 @@ public class FoodTypeServiceImpl implements FoodTypeService {
      * @throws Exception
      */
     @Override
-    public void deleteById(String typeId) throws Exception {
+    public ResultVO deleteById(String typeId) throws Exception {
         //异常处理，保证程序的健壮性
         try {
+            //删除菜系之前，要根据菜系id查询有没有关联的菜品   有关联的 不能删除  没有关联的，可以删除
+            if(foodDao.countByTypeId(Long.parseLong(typeId))>0){
+                //查询的总的记录数大于0，不可以删除
+                return new ResultVO(false,ExceptionMessageConstant.FOODTYPE_DELETE_FAIL_MESSAGE,null);
+            }
             foodTypeDao.deleteById(Long.parseLong(typeId));
-        } catch (NumberFormatException e) {
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
+        //成功
+        return new ResultVO();
     }
 
     /**

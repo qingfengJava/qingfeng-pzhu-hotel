@@ -78,4 +78,10 @@ public class FoodDaoImpl implements FoodDao {
         String sql = "select count(*) from t_food f,t_food_type ft where f.type_id = ft.type_id and ft.type_name like '%"+typeName+"%' and f.food_name like '%"+foodName+"%'";
         return FoodSql.findTotalCount(sql);
     }
+
+    @Override
+    public int countByTypeId(long typeId) {
+        String sql = "select count(*) from t_food where type_id = "+typeId;
+        return FoodSql.findTotalCount(sql);
+    }
 }
