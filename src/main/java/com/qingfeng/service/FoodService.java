@@ -1,9 +1,9 @@
 package com.qingfeng.service;
 
+import com.qingfeng.entity.PageBean;
 import com.qingfeng.pojo.Food;
 
 import java.sql.SQLException;
-import java.util.List;
 
 /**
  * 菜品的业务层接口
@@ -20,7 +20,7 @@ public interface FoodService {
      * @param food
      * @return
      */
-    List<Food> findByCondition(Food food);
+    PageBean<Food> findByCondition(Food food, String _currentPage, String _rows);
 
     /**
      * 添加菜品

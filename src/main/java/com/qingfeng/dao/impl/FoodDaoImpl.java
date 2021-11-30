@@ -21,11 +21,13 @@ public class FoodDaoImpl implements FoodDao {
      * 根据条件查询对应的菜品
      * 可根据菜名，菜系条件查询
      * @param food
+     * @param start
+     * @param rows
      * @return
      */
     @Override
-    public List<Food> findFoodCondition(Food food) {
-        String sql = "select f.*,ft.type_name from t_food f,t_food_type ft where f.type_id = ft.type_id and ft.type_name like '%"+food.getFoodType().getTypeName()+"%' and f.food_name like '%"+food.getFoodName()+"%' order by f.food_id desc";
+    public List<Food> findFoodCondition(Food food,int start,int rows) {
+        String sql = "select f.*,ft.type_name from t_food f,t_food_type ft where f.type_id = ft.type_id and ft.type_name like '%"+food.getFoodType().getTypeName()+"%' and f.food_name like '%"+food.getFoodName()+"%' order by f.food_id desc limit "+start+","+rows;
         //调用封装的查询的方法，进行查询
         return FoodSql.findCondition(sql);
     }
@@ -69,5 +71,11 @@ public class FoodDaoImpl implements FoodDao {
     public void deleteFood(long foodId) throws SQLException {
         String sql = "delete from t_food where food_id = "+foodId;
         DbSql.update(sql);
+    }
+
+    @Override
+    public int findTotalCount(String foodName, String typeName) {
+        String sql = "select count(*) from t_food f,t_food_type ft where f.type_id = ft.type_id and ft.type_name like '%"+typeName+"%' and f.food_name like '%"+foodName+"%'";
+        return FoodSql.findTotalCount(sql);
     }
 }

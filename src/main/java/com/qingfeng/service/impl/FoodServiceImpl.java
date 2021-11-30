@@ -2,6 +2,7 @@ package com.qingfeng.service.impl;
 
 import com.qingfeng.constant.BeanFactoryConstant;
 import com.qingfeng.dao.FoodDao;
+import com.qingfeng.entity.PageBean;
 import com.qingfeng.factory.BeanFactory;
 import com.qingfeng.pojo.Food;
 import com.qingfeng.pojo.FoodType;
@@ -20,7 +21,21 @@ public class FoodServiceImpl implements FoodService {
     private FoodDao foodDao = (FoodDao) BeanFactory.getBean(BeanFactoryConstant.FOOD_DAO);
 
     @Override
-    public List<Food> findByCondition(Food food) {
+    public PageBean<Food> findByCondition(Food food, String _currentPage, String _rows) {
+        //根据当前页码和每页的记录数，查询封装相关的数据
+        int currentPage = Integer.parseInt(_currentPage);
+        int rows = Integer.parseInt(_rows);
+
+        //上一页边界判断
+        if (currentPage <= 0){
+            currentPage = 1;
+        }
+
+        //1、创建空的PageBean对象
+        PageBean<Food> pb = new PageBean<>();
+        //2、设置参数  页码和每页的记录数
+        pb.setRows(rows);
+
         //这里要对food对象进行判断  对象不为空，值不为空，去掉空格不为空
         if(food != null && food.getFoodName() != null && !food.getFoodName().trim().equals("")){
             //foodName 不是空 去掉空格
@@ -43,7 +58,31 @@ public class FoodServiceImpl implements FoodService {
             food.setFoodType(foodType);
 
         }
-        return foodDao.findFoodCondition(food);
+
+        //3、调用dao查询总记录数，要根据模糊查询的条件来查询
+        int totalCount = foodDao.findTotalCount(food.getFoodName(),food.getFoodType().getTypeName());
+        pb.setTotalCount(totalCount);
+
+        //4、计算总页码  总的记录数 除以 每页显示的记录数来判断
+        int totalPage = (totalCount % rows == 0)? (totalCount / rows) : (totalCount / rows) + 1;
+        //给page对象设置总页码
+        pb.setTotalPage(totalPage);
+
+        //下一页边界判断
+        if (currentPage >= totalPage){
+            currentPage = (totalPage == 0) ? 1: totalPage;
+        }
+        pb.setCurrentPage(currentPage);
+
+        //计算开始记录的索引
+        int start = (currentPage-1)*rows;
+
+        //5、调用dao分页查询，查询每页显示的记录数，要根据模糊查询的条件来查询
+        List<Food> list =  foodDao.findFoodCondition(food,start,rows);
+        //将查询到的每页的记录数据设置到page对象中
+        pb.setList(list);
+
+        return pb;
     }
 
     /**

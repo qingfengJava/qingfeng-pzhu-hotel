@@ -60,4 +60,36 @@ public class FoodSql {
         return null;
     }
 
+    /**
+     * 条件查询菜品总的记录数
+     * @param sql
+     * @return
+     */
+    public static int findTotalCount(String sql) {
+        //获取连接
+        Connection con = DbUtils.getCon();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        List<Food> foods = new ArrayList<>();
+        try {
+            if (con != null) {
+                //利用con(连接)建立查询语句
+                pst = con.prepareStatement(sql);
+                //利用SQL语句做查询
+                rs = pst.executeQuery();
+
+                //移动一个指针，获取总的记录数
+                rs.next();
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DbUtils.close(con, pst, rs);
+        }
+        return 0;
+    }
+
+
+
 }

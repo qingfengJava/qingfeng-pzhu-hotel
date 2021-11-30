@@ -18,9 +18,11 @@ public interface FoodDao {
      * 根据条件查询对应的菜品
      * 可根据菜名，菜系条件查询
      * @param food
+     * @param start
+     * @param rows
      * @return
      */
-    List<Food> findFoodCondition(Food food);
+    List<Food> findFoodCondition(Food food, int start, int rows);
 
     /**
      * 保存/添加菜品
@@ -45,6 +47,15 @@ public interface FoodDao {
     /**
      * 根据菜品id删除菜品信息
      * @param parseLong
+     * @throws SQLException
      */
     void deleteFood(long parseLong) throws SQLException;
+
+    /**
+     * 条件查询菜品总的记录数
+     * @param foodName
+     * @param typeName
+     * @return
+     */
+    int findTotalCount(String foodName, String typeName);
 }

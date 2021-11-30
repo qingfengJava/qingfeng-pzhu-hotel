@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.qingfeng.constant.BeanFactoryConstant;
 import com.qingfeng.constant.MessageConstant;
 import com.qingfeng.controller.BaseServlet;
+import com.qingfeng.entity.PageBean;
 import com.qingfeng.factory.BeanFactory;
 import com.qingfeng.pojo.Food;
 import com.qingfeng.pojo.FoodType;
@@ -64,9 +65,9 @@ public class FoodController extends BaseServlet {
 
 
         //调用业务层查询的方法
-        List<Food> foods = foodService.findByCondition(food);
+        PageBean<Food> pb = foodService.findByCondition(food,currentPage,rows);
         //将数据存放到request域中
-        request.setAttribute("foods",foods);
+        request.setAttribute("pb",pb);
         //将接收的参数存入request域中，一并做回显
         request.setAttribute("foodName",foodName);
         request.setAttribute("foodTypeName",foodTypeName);
