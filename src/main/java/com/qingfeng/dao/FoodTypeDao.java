@@ -32,8 +32,9 @@ public interface FoodTypeDao {
      * 添加菜系
      * @param typeName
      * @throws SQLException
+     * @return
      */
-    void save(String typeName) throws SQLException;
+    int save(String typeName) throws SQLException;
 
     /**
      * 根据id查询菜系

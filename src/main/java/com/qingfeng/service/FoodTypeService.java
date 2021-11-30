@@ -31,8 +31,9 @@ public interface FoodTypeService {
     /**
      * 添加菜系
      * @param typeName
+     * @return
      */
-    void save(String typeName);
+    int save(String typeName);
 
     /**
      * 根据id查询菜系

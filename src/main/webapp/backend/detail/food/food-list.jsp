@@ -1,6 +1,6 @@
 ﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
 <title>攀大美味餐厅</title>
@@ -98,7 +98,7 @@
 					<td>
 						<%-- 更新数据，要将数据的Id，一起传过去 --%>
 						<a href="/food?method=toSaveUI&foodId=${food.foodId}" class="FunctionButton">更新</a>
-						<a href="javascript:deleteById(${food.foodId});" class="FunctionButton">删除</a>
+						<a href="javascript:deleteById(${food.foodId});" style="color: red" class="FunctionButton">删除</a>
 					</td>
 				</tr>
 			</c:forEach>
@@ -109,21 +109,21 @@
 		<ul style="list-style-type: none;">
 			<%-- 上一页边界逻辑判断 --%>
 			<c:if test="${pb.currentPage <= 1}">
-				<li style="float: left;"><a class="page" href="/food?method=search&currentPage=1&rows=6&foodName=${foodName}&foodTypeName=${foodTypeName}" style="border: 1px solid black;padding: 10px 10px;">上一页</a></li>
+				<li style="float: left;"><a class="page" href="/food?method=search&currentPage=1&rows=5&foodName=${foodName}&foodTypeName=${foodTypeName}" style="border: 1px solid black;padding: 10px 10px;">上一页</a></li>
 			</c:if>
 			<c:if test="${pb.currentPage != 1}">
-				<li style="float: left;"><a class="page" href="/food?method=search&currentPage=${pb.currentPage - 1}&rows=6&foodName=${foodName}&foodTypeName=${foodTypeName}" style="border: 1px solid black;padding: 10px 10px;">上一页</a></li>
+				<li style="float: left;"><a class="page" href="/food?method=search&currentPage=${pb.currentPage - 1}&rows=5&foodName=${foodName}&foodTypeName=${foodTypeName}" style="border: 1px solid black;padding: 10px 10px;">上一页</a></li>
 			</c:if>
 
 
 			<c:forEach begin="1" end="${pb.totalPage}" var="i">
 				<%-- 如果页码和i相等，就要显示激活状态 --%>
 				<c:if test="${pb.currentPage == i}">
-					<li style="float: left"><a class="active page" href="/food?method=search&currentPage=${i}&rows=6&foodName=${foodName}&foodTypeName=${foodTypeName}"
+					<li style="float: left"><a class="active page" href="/food?method=search&currentPage=${i}&rows=5&foodName=${foodName}&foodTypeName=${foodTypeName}"
 											   style="border: 1px solid black;padding: 10px 15px;">${i}</a></li>
 				</c:if>
 				<c:if test="${pb.currentPage != i}">
-					<li style="float: left"><a class="page" href="/food?method=search&currentPage=${i}&rows=6&foodName=${foodName}&foodTypeName=${foodTypeName}"
+					<li style="float: left"><a class="page" href="/food?method=search&currentPage=${i}&rows=5&foodName=${foodName}&foodTypeName=${foodTypeName}"
 											   style="border: 1px solid black;padding: 10px 15px;">${i}</a></li>
 				</c:if>
 
@@ -131,10 +131,10 @@
 
 			<%-- 下一页边界逻辑判断 --%>
 			<c:if test="${pb.currentPage >= pb.totalPage}">
-				<li style="float: left;"><a class="page" href="/food?method=search&currentPage=${pb.totalPage}&rows=6&foodName=${foodName}&foodTypeName=${foodTypeName}" style="border: 1px solid black;padding: 10px 10px;">下一页</a></li>
+				<li style="float: left;"><a class="page" href="/food?method=search&currentPage=${pb.totalPage}&rows=5&foodName=${foodName}&foodTypeName=${foodTypeName}" style="border: 1px solid black;padding: 10px 10px;">下一页</a></li>
 			</c:if>
 			<c:if test="${pb.currentPage != pb.totalPage}">
-				<li style="float: left;"><a class="page" href="/food?method=search&currentPage=${pb.currentPage+1}&rows=6&foodName=${foodName}&foodTypeName=${foodTypeName}" style="border: 1px solid black;padding: 10px 10px;">下一页</a></li>
+				<li style="float: left;"><a class="page" href="/food?method=search&currentPage=${pb.currentPage+1}&rows=5&foodName=${foodName}&foodTypeName=${foodTypeName}" style="border: 1px solid black;padding: 10px 10px;">下一页</a></li>
 			</c:if>
 			<li style="float: left"><span style="padding-left: 20px;font-size: 20px">共${pb.totalCount}条数据</span></li>
 			<li><span style="padding-left: 20px;font-size: 20px">第${pb.totalPage}页</span></li>

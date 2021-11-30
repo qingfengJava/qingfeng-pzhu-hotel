@@ -1,11 +1,9 @@
 ﻿<%@page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html>
 <html>
 <head>
-	
 <title>攀大美味餐厅</title>
-
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="text/javascript" src="/backend/detail/style/js/page_common.js"></script>
 <link href="/backend/detail/style/css/common_style_blue.css" rel="stylesheet" type="text/css">

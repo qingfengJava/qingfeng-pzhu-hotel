@@ -27,8 +27,9 @@ public interface FoodDao {
     /**
      * 保存/添加菜品
      * @param food
+     * @return
      */
-    void save(Food food) throws SQLException;
+    int save(Food food) throws SQLException;
 
     /**
      * 根据菜品Id，查询菜品信息，用于更新时回显数据局

@@ -1,12 +1,9 @@
 ﻿<%@page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
-	<!-- 包含公共的JSP代码片段 -->
-	
 <title>攀大美味餐厅——菜系管理</title>
-
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="text/javascript" src="/backend/detail/style/js/jquery.js"></script>
 <script type="text/javascript" src="/backend/detail/style/js/page_common.js"></script>
@@ -54,7 +51,7 @@
 						<td>${type.typeName}</td>
 						<td>
 							<a href="/foodtype?method=findById&typeId=${type.typeId}" class="FunctionButton">更新</a>
-							<a href="javascript:deleteById(${type.typeId});" class="FunctionButton">删除</a>
+							<a href="javascript:deleteById(${type.typeId});" style="color: red" class="FunctionButton">删除</a>
 						</td>
 					</tr>
 				</c:forEach>

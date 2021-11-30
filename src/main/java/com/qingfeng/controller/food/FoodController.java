@@ -2,6 +2,7 @@ package com.qingfeng.controller.food;
 
 import com.google.gson.Gson;
 import com.qingfeng.constant.BeanFactoryConstant;
+import com.qingfeng.constant.ExceptionMessageConstant;
 import com.qingfeng.constant.MessageConstant;
 import com.qingfeng.controller.BaseServlet;
 import com.qingfeng.entity.PageBean;
@@ -59,7 +60,7 @@ public class FoodController extends BaseServlet {
             currentPage = "1";
         }
         if (rows == null || "".equals(rows)){
-            //默认显示6条数据
+            //默认显示5条数据
             rows = "5";
         }
 
@@ -94,13 +95,18 @@ public class FoodController extends BaseServlet {
             //创建Food对象，保存数据
             Food food = new Food(null,Long.parseLong(typeId),foodName,Double.parseDouble(foodPrice),Double.parseDouble(foodMprice),reslut,foodDesc,null);
             //调用业务层保存数据
-            foodService.save(food);
+            int status = foodService.save(food);
+            if (status == 0){
+                //说明菜品添加成功   请求转发出去
+                return MessageConstant.PREFIX_REDIRECT +request.getContextPath()+"/food?method=search";
+            }
 
-            //请求转发出去
-            return MessageConstant.PREFIX_REDIRECT +request.getContextPath()+"/food?method=search";
+            //否则，说明菜品重复，添加失败，给出异常信息
+            return ExceptionMessageConstant.FOOD_ADD_FAIL_MESSAGE;
+
         } catch (SQLException e) {
             e.printStackTrace();
-            return "添加菜品异常，请稍后再试！";
+            return ExceptionMessageConstant.FOOD_ADD_EXCEPTION_MESSAGE;
         }
     }
 
@@ -214,6 +220,22 @@ public class FoodController extends BaseServlet {
     public String deleteFood(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
         //获取前端传递过来菜品的id
         String foodId = req.getParameter("foodId");
+
+        //根据id查询对象
+        Food food = foodService.findFoodById(foodId);
+        //拿到图片
+        String image = food.getFoodImage();
+
+        //上传成功，删除原来的图片
+        String oldFileName = image.substring(image.lastIndexOf("/") + 1);
+        //得到上传文件的目标位置
+        String desPath = req.getSession().getServletContext().getRealPath("/files/images/");
+        File file = new File(desPath,oldFileName);
+        if (file.exists()){
+            //如果文件存在，就删除
+            file.delete();
+        }
+
         //调用业务层的方法删除id
         foodService.deleteFood(foodId);
         //删除成功，跳转到查询菜品的控制层方法

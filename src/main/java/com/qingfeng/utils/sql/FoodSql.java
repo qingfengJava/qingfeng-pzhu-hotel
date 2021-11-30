@@ -50,14 +50,13 @@ public class FoodSql {
                     //将数据封装到对象中
                     foods.add(new Food(foodId, typeId, foodName, foodPrice, foodMprice,foodImage,foodDesc,new FoodType(typeId,typeName)));
                 }
-                return foods;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             DbUtils.close(con, pst, rs);
         }
-        return null;
+        return foods;
     }
 
     /**

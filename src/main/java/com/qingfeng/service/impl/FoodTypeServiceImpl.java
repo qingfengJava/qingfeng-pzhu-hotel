@@ -72,16 +72,19 @@ public class FoodTypeServiceImpl implements FoodTypeService {
     /**
      * 添加菜系
      * @param typeName
+     * @return
      */
     @Override
-    public void save(String typeName) {
+    public int save(String typeName) {
         try {
             if (typeName !=null && typeName != ""){
-                foodTypeDao.save(typeName);
+                return foodTypeDao.save(typeName);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        //返回1 表示添加失败
+        return 1;
     }
 
     /**

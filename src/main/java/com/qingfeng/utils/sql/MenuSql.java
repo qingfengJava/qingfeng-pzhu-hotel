@@ -44,14 +44,13 @@ public class MenuSql {
 
                     menus.add(new Menu(menuId,menuName,menuUrl));
                 }
-                return menus;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
             DbUtils.close(con, pst,rs);
         }
-        return null;
+        return menus;
     }
 
 

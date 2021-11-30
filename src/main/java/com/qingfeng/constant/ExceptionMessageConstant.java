@@ -13,4 +13,19 @@ public interface ExceptionMessageConstant {
      * 菜系删除失败的提示信息
      */
     String FOODTYPE_DELETE_FAIL_MESSAGE = "当前菜系下有关联的菜品，无法删除！！！如果要删除，请先删除关联的菜品数据！！！";
+
+    /**
+     * 菜系添加失败的提示信息
+     */
+    String FOODTYPE_ADD_FAIL_MESSAGE = "菜系已存在，不允许添加！！！";
+
+    /**
+     * 菜品添加失败的提示信息
+     */
+    String FOOD_ADD_FAIL_MESSAGE = "菜品已存在，不允许添加！！！";
+
+    /**
+     * 菜品添加异常的提示信息
+     */
+    String FOOD_ADD_EXCEPTION_MESSAGE = "添加菜品异常，请稍后再试！";
 }

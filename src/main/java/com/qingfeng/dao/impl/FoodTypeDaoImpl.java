@@ -44,9 +44,10 @@ public class FoodTypeDaoImpl implements FoodTypeDao {
      * 添加菜系
      * @param typeName
      * @throws SQLException
+     * @return
      */
     @Override
-    public void save(String typeName) throws SQLException {
+    public int save(String typeName) throws SQLException {
         if (typeName != null && typeName != "") {
             //给程序做健壮性判断，不允许添加重复的菜系
             String sql = "select * from t_food_type where type_name = '"+typeName+"'";
@@ -55,8 +56,12 @@ public class FoodTypeDaoImpl implements FoodTypeDao {
                 //说明没有相同的菜系名，可以添加
                 String sql2 = "insert into t_food_type(type_name) values('"+typeName+"')";
                 DbSql.update(sql2);
+                //返回0表示添加成功
+                return 0;
             }
         }
+        //返回1 表示添加失败
+        return 1;
     }
 
     /**

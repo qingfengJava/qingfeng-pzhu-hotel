@@ -35,12 +35,23 @@ public class FoodDaoImpl implements FoodDao {
     /**
      * 保存或者添加菜品
      * @param food
+     * @return
      */
     @Override
-    public void save(Food food) throws SQLException {
-        String sql = "insert into t_food(type_id,food_name,food_price,food_mprice,food_image,food_desc)" +
-                " values("+food.getTypeId()+",'"+food.getFoodName()+"',"+food.getFoodPrice()+","+food.getFoodMprice()+",'"+food.getFoodImage()+"','"+food.getFoodDesc()+"')";
-        DbSql.update(sql);
+    public int save(Food food) throws SQLException {
+        //判断菜品名称是否已经存在
+        String sql = "select * from t_food where food_name = '"+food.getFoodName()+"' and type_id = "+food.getTypeId();
+        List<Food> condition = FoodSql.findCondition(sql);
+        if (condition == null){
+            //说明菜品不存在，可以添加
+            String sql2 = "insert into t_food(type_id,food_name,food_price,food_mprice,food_image,food_desc)" +
+                    " values("+food.getTypeId()+",'"+food.getFoodName()+"',"+food.getFoodPrice()+","+food.getFoodMprice()+",'"+food.getFoodImage()+"','"+food.getFoodDesc()+"')";
+            DbSql.update(sql2);
+            //返回0 说明添加成功
+            return 0;
+        }
+        //说明菜名重复，添加失败
+        return 1;
     }
 
     /**

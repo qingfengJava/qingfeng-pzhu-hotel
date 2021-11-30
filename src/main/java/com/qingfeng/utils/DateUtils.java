@@ -14,7 +14,7 @@ public class DateUtils {
     /**
      * 时间转字符串
      * @param date
-     * @param pattern 要转换的格式
+     * @param pattern 要转换的格式 如：yyyy-MM-dd HH:mm:ss
      * @return
      */
     public static String dateToStr(Date date, String pattern){

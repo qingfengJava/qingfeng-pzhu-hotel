@@ -88,11 +88,12 @@ public class FoodServiceImpl implements FoodService {
     /**
      * 添加菜品
      * @param food
+     * @return
      */
     @Override
-    public void save(Food food) throws SQLException {
+    public int save(Food food) throws SQLException {
         //添加、保存数据操作
-        foodDao.save(food);
+        return foodDao.save(food);
     }
 
     /**

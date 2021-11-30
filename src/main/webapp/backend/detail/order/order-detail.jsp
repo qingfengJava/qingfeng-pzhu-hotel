@@ -1,13 +1,8 @@
 <%@page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html>
 <html>
 <head>
-	<!-- 包含公共的JSP代码片段 -->
-	
 <title>攀大美味餐厅</title>
-
-
-
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="text/javascript" src="../style/js/jquery.js"></script>
 <script type="text/javascript" src="../style/js/page_common.js"></script>

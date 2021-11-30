@@ -15,4 +15,7 @@ public interface BeanFactoryConstant {
 
     String FOOD_DAO = "foodDao";
     String FOOD_SERVICE = "foodService";
+
+    String DINNERTABLE_DAO = "dinnerTableDao";
+    String DINNERTABLE_SERVICE = "dinnerTableService";
 }

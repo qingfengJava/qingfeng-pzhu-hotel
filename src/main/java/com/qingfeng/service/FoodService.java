@@ -26,8 +26,9 @@ public interface FoodService {
      * 添加菜品
      * @param food
      * @throws SQLException
+     * @return
      */
-    void save(Food food) throws SQLException;
+    int save(Food food) throws SQLException;
 
     /**
      * 根据菜品Id，查询菜品对象

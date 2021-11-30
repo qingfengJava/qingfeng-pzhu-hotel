@@ -1,6 +1,7 @@
 package com.qingfeng.controller.foodtype;
 
 import com.qingfeng.constant.BeanFactoryConstant;
+import com.qingfeng.constant.ExceptionMessageConstant;
 import com.qingfeng.constant.MessageConstant;
 import com.qingfeng.controller.BaseServlet;
 import com.qingfeng.entity.ResultVO;
@@ -61,10 +62,15 @@ public class FoodTypeController extends BaseServlet {
     public String save(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String typeName = req.getParameter("typeName");
         //2、调用业务层，添加菜系的方法
-        foodTypeService.save(typeName);
+        int status = foodTypeService.save(typeName);
 
-        //添加成功，返回重定向的路径，到菜系管理，展示所有的菜系
-        return MessageConstant.PREFIX_REDIRECT + req.getContextPath() + "/foodtype?method=search";
+        if (status == 0){
+            //添加成功，返回重定向的路径，到菜系管理，展示所有的菜系
+            return MessageConstant.PREFIX_REDIRECT + req.getContextPath() + "/foodtype?method=search";
+        }
+
+        //添加失败
+        return ExceptionMessageConstant.FOODTYPE_ADD_FAIL_MESSAGE;
     }
 
     /**
