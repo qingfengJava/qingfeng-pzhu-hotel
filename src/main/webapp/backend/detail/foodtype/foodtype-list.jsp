@@ -5,7 +5,7 @@
 <head>
 	<!-- 包含公共的JSP代码片段 -->
 	
-<title>攀大点餐系统——菜系管理</title>
+<title>攀大美味餐厅——菜系管理</title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="text/javascript" src="/backend/detail/style/js/jquery.js"></script>

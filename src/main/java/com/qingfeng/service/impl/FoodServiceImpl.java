@@ -75,4 +75,14 @@ public class FoodServiceImpl implements FoodService {
         //直接调用持久层修改菜品的信息
         foodDao.updateFoodById(food);
     }
+
+    /**
+     * 根据菜品Id删除菜品信息
+     * @param foodId
+     */
+    @Override
+    public void deleteFood(String foodId) throws SQLException {
+        //调用持久层删除菜品信息的方法
+        foodDao.deleteFood(Long.parseLong(foodId));
+    }
 }

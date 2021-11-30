@@ -4,7 +4,7 @@
 <html>
 <head>
 	
-<title>攀大餐馆平台</title>
+<title>攀大美味餐厅</title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="text/javascript" src="/backend/detail/style/js/jquery.js"></script>

@@ -48,6 +48,21 @@ public class FoodController extends BaseServlet {
         foodType.setTypeName(foodTypeName);
         food.setFoodType(foodType);
 
+        //当前页码
+        String currentPage = request.getParameter("currentPage");
+        //每页的记录数
+        String rows = request.getParameter("rows");
+
+        //给程序做健壮性判断
+        if (currentPage == null || "".equals(currentPage)){
+            currentPage = "1";
+        }
+        if (rows == null || "".equals(rows)){
+            //默认显示6条数据
+            rows = "6";
+        }
+
+
         //调用业务层查询的方法
         List<Food> foods = foodService.findByCondition(food);
         //将数据存放到request域中
@@ -128,6 +143,15 @@ public class FoodController extends BaseServlet {
         return MessageConstant.PREFIX_FORWAED+"/backend/detail/food/food-update.jsp";
     }
 
+    /**
+     * 更新菜品信息
+     * @param req
+     * @param resp
+     * @return
+     * @throws ServletException
+     * @throws IOException
+     * @throws SQLException
+     */
     public String updateFoodById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException {
         //获取各个参数信息
         String foodId = req.getParameter("foodId");
@@ -182,6 +206,19 @@ public class FoodController extends BaseServlet {
         foodService.updateFoodById(food);
 
         //更新成功，跳转到查询菜品的控制层方法
+        return MessageConstant.PREFIX_REDIRECT+"/food?method=search";
+    }
+
+    /**
+     * 根据id删除菜品信息
+     * @return
+     */
+    public String deleteFood(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
+        //获取前端传递过来菜品的id
+        String foodId = req.getParameter("foodId");
+        //调用业务层的方法删除id
+        foodService.deleteFood(foodId);
+        //删除成功，跳转到查询菜品的控制层方法
         return MessageConstant.PREFIX_REDIRECT+"/food?method=search";
     }
 

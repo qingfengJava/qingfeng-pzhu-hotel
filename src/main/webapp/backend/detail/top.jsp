@@ -112,7 +112,7 @@ margin-left: 10px;
 	<div id="Head_1">
 		<!-- 标题 -->
 		<div id="Head_1_Logo">
-			<b style="font-family: '华文行楷'">攀大餐馆后台信息管理平台</b>
+			<b style="font-family: '华文行楷'">攀大美味餐厅后台信息管理平台</b>
         </div>
 		<!-- 欢迎用户的文字 -->
 		<div id="Head_1_UserWelcome">

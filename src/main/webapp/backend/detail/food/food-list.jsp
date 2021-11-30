@@ -3,17 +3,25 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<!-- 包含公共的JSP代码片段 -->
-	
-<title>攀大餐馆平台</title>
-	
-	<a href="${pageContext.request.contextPath}"></a>
-
+<title>攀大美味餐厅</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="text/javascript" src="/backend/detail/style/js/jquery.js"></script>
 <script type="text/javascript" src="/backend/detail/style/js/page_common.js"></script>
 <link href="/backend/detail/style/css/common_style_blue.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="/backend/detail/style/css/index_1.css" />
+
+	<script type="text/javascript">
+		window.onload = function(){
+			/**
+			 * 删除前的确认提示
+			 */
+			function delConfirm(id){
+				return window.confirm("Are you sure you want to delete food information?\r\n您确定要删除id为"+id+"de菜品信息吗？");
+			}
+
+		}
+	</script>
+
 </head>
 <body>
 <!-- 页面标题 -->
@@ -80,12 +88,48 @@
 					<td>
 						<%-- 更新数据，要将数据的Id，一起传过去 --%>
 						<a href="/food?method=toSaveUI&foodId=${food.foodId}" class="FunctionButton">更新</a>
-						<a href="/food?method=deleteFood&foodId=${food.foodId}" onClick="return delConfirm();"class="FunctionButton">删除</a>
+						<a href="/food?method=deleteFood&foodId=${food.foodId}" onClick="return delConfirm(${food.foodId});"class="FunctionButton">删除</a>
 					</td>
 				</tr>
 			</c:forEach>
         </tbody>
     </table>
+
+	<div style="margin-top: 40px">
+		<ul style="list-style-type: none;">
+			<%-- 上一页边界逻辑判断 --%>
+			<c:if test="${pb.currentPage <= 1}">
+				<li style="float: left;"><a class="page" href="${pageContext.request.contextPath}/findBookByPageServlet?currentPage=1&rows=5&bookName=${bookName}&author=${author}" style="border: 1px solid black;padding: 5px 10px;">上一页</a></li>
+			</c:if>
+			<c:if test="${pb.currentPage != 1}">
+				<li style="float: left;"><a class="page" href="${pageContext.request.contextPath}/findBookByPageServlet?currentPage=${pb.currentPage - 1}&rows=5&bookName=${bookName}&author=${author}" style="border: 1px solid black;padding: 5px 10px;">上一页</a></li>
+			</c:if>
+
+
+			<c:forEach begin="1" end="${pb.totalPage}" var="i">
+				<%-- 如果页码和i相等，就要显示激活状态 --%>
+				<c:if test="${pb.currentPage == i}">
+					<li style="float: left"><a class="active page" href="${pageContext.request.contextPath}/findBookByPageServlet?currentPage=${i}&rows=5&bookName=${bookName}&author=${author}"
+											   style="border: 1px solid black;padding: 5px 10px;">${i}</a></li>
+				</c:if>
+				<c:if test="${pb.currentPage != i}">
+					<li style="float: left"><a class="page" href="${pageContext.request.contextPath}/findBookByPageServlet?currentPage=${i}&rows=5&bookName=${bookName}&author=${author}"
+											   style="border: 1px solid black;padding: 5px 10px;">${i}</a></li>
+				</c:if>
+
+			</c:forEach>
+
+			<%-- 下一页边界逻辑判断 --%>
+			<c:if test="${pb.currentPage >= pb.totalPage}">
+				<li style="float: left;"><a class="page" href="${pageContext.request.contextPath}/findBookByPageServlet?currentPage=${pb.totalPage}&rows=5&bookName=${bookName}&author=${author}" style="border: 1px solid black;padding: 5px 10px;">下一页</a></li>
+			</c:if>
+			<c:if test="${pb.currentPage != pb.totalPage}">
+				<li style="float: left;"><a class="page" href="${pageContext.request.contextPath}/findBookByPageServlet?currentPage=${pb.currentPage+1}&rows=5&bookName=${bookName}&author=${author}" style="border: 1px solid black;padding: 5px 10px;">下一页</a></li>
+			</c:if>
+			<li style="float: left"><span style="padding-left: 20px;font-size: 20px">共${pb.totalCount}条数据</span></li>
+			<li><span style="padding-left: 20px;font-size: 20px">第${pb.totalPage}页</span></li>
+		</ul>
+	</div>
 	
    <!-- 其他功能超链接 -->
 	<div id="TableTail" align="center">

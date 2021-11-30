@@ -4,7 +4,7 @@
 <head>
 	<!-- 包含公共的JSP代码片段 -->
 	
-<title>餐馆王平台</title>
+<title>攀大美味餐厅</title>
 
 
 

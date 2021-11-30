@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>攀大点餐系统后台管理</title>
+<title>攀大美味餐厅点餐系统后台管理</title>
 </head>
 
 	<frameset rows="100px,*,19px" framespacing="0" border="0" frameborder="0">

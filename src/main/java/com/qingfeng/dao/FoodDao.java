@@ -38,6 +38,13 @@ public interface FoodDao {
     /**
      * 根据菜品id，修改菜品信息
      * @param food
+     * @throws SQLException
      */
     void updateFoodById(Food food) throws SQLException;
+
+    /**
+     * 根据菜品id删除菜品信息
+     * @param parseLong
+     */
+    void deleteFood(long parseLong) throws SQLException;
 }

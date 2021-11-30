@@ -2,7 +2,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>攀大点餐系统——更新菜系</title>
+<title>攀大美味餐厅——更新菜系</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="text/javascript" src="/backend/detail/style/js/jquery.js"></script>
 <script type="text/javascript" src="/backend/detail/style/js/page_common.js"></script>

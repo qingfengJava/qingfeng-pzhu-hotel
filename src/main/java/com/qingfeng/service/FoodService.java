@@ -39,6 +39,13 @@ public interface FoodService {
     /**
      * 根据菜品id，修改菜品信息
      * @param food
+     * @throws SQLException
      */
     void updateFoodById(Food food) throws SQLException;
+
+    /**
+     * 根据菜品Id删除菜品信息
+     * @param foodId
+     */
+    void deleteFood(String foodId) throws SQLException;
 }

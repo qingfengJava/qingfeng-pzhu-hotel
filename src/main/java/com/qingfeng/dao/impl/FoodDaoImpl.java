@@ -25,7 +25,7 @@ public class FoodDaoImpl implements FoodDao {
      */
     @Override
     public List<Food> findFoodCondition(Food food) {
-        String sql = "select f.*,ft.type_name from t_food f,t_food_type ft where f.type_id = ft.type_id and ft.type_name like '%"+food.getFoodType().getTypeName()+"%' and f.food_name like '%"+food.getFoodName()+"%'";
+        String sql = "select f.*,ft.type_name from t_food f,t_food_type ft where f.type_id = ft.type_id and ft.type_name like '%"+food.getFoodType().getTypeName()+"%' and f.food_name like '%"+food.getFoodName()+"%' order by f.food_id desc";
         //调用封装的查询的方法，进行查询
         return FoodSql.findCondition(sql);
     }
@@ -62,6 +62,12 @@ public class FoodDaoImpl implements FoodDao {
         String sql = "update t_food set type_id="+food.getTypeId()+",food_name='"+food.getFoodName()+"'," +
                 "food_price="+food.getFoodPrice()+",food_mprice="+food.getFoodMprice()+",food_image='"+food.getFoodImage()+"'," +
                 "food_desc='"+food.getFoodDesc()+"' where food_id = "+food.getFoodId();
+        DbSql.update(sql);
+    }
+
+    @Override
+    public void deleteFood(long foodId) throws SQLException {
+        String sql = "delete from t_food where food_id = "+foodId;
         DbSql.update(sql);
     }
 }
