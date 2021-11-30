@@ -49,6 +49,19 @@ public class FoodDaoImpl implements FoodDao {
     @Override
     public Food findFoodById(long foodId) {
         String sql = "select f.*,ft.type_name from t_food f,t_food_type ft where f.food_id = "+foodId+" and f.type_id = ft.type_id";
-        return null;
+        //复用之前按条件查询的SQL代码
+        return FoodSql.findCondition(sql).get(0);
+    }
+
+    /**
+     * 根据菜品id，修改菜品信息
+     * @param food
+     */
+    @Override
+    public void updateFoodById(Food food) throws SQLException {
+        String sql = "update t_food set type_id="+food.getTypeId()+",food_name='"+food.getFoodName()+"'," +
+                "food_price="+food.getFoodPrice()+",food_mprice="+food.getFoodMprice()+",food_image='"+food.getFoodImage()+"'," +
+                "food_desc='"+food.getFoodDesc()+"' where food_id = "+food.getFoodId();
+        DbSql.update(sql);
     }
 }

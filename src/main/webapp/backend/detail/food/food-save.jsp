@@ -55,7 +55,12 @@
 				let file = document.getElementById("file");
 
 				if (foodName.value != "" && price.value != "" && mprice.value != "" && introduce.text != "" && file.value != ""){
-					return confirm("Are you sure you want to add food?\r\n你确定要添加菜品吗？");
+					if (mprice.value < price.value){
+						return confirm("Are you sure you want to add food?\r\n你确定要添加菜品吗？");
+					}else {
+						alert("会员定价不符合常理！");
+						return false;
+					}
 				}else {
 					alert("提交信息不能为空！");
 					return false;

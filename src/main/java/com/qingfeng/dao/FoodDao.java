@@ -34,4 +34,10 @@ public interface FoodDao {
      * @return
      */
     Food findFoodById(long foodId);
+
+    /**
+     * 根据菜品id，修改菜品信息
+     * @param food
+     */
+    void updateFoodById(Food food) throws SQLException;
 }

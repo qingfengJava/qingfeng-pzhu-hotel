@@ -16,6 +16,8 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -113,11 +115,74 @@ public class FoodController extends BaseServlet {
 
         //调用业务层的方法，查询所有菜系的集合
         List<FoodType> foodTypes = foodTypeService.findCondition(new FoodType());
-        //获取前端穿过来的菜品的Id
+        System.out.println(foodTypes);
+        //获取前端传过来的菜品的Id
         String foodId = req.getParameter("foodId");
         //根据菜品Id查询菜品信息
         Food food = foodService.findFoodById(foodId);
-        return "";
+
+        //将查到的信息保存到request域中，用做前端的数据回显
+        req.setAttribute("foodTypes",foodTypes);
+        req.setAttribute("food",food);
+        //请求转发到更新页面
+        return MessageConstant.PREFIX_FORWAED+"/backend/detail/food/food-update.jsp";
+    }
+
+    public String updateFoodById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException {
+        //获取各个参数信息
+        String foodId = req.getParameter("foodId");
+        String foodTypeId = req.getParameter("foodTypeId");
+        String foodName = req.getParameter("foodName");
+        String foodPrice = req.getParameter("foodPrice");
+        String foodMprice = req.getParameter("foodMprice");
+        String foodDesc = req.getParameter("foodDesc");
+        String oldImage = req.getParameter("oldImage");
+        String newImage = null;
+
+        //创建一个food对象，用于存放要更新的food信息
+        Food food = null;
+
+        //获取上传的图片对象，判断图片是否为空
+        //获取上传的文件对象
+        Part part = req.getPart("imageUrl");
+        //获取提交的图片文件的名字
+        String filename = part.getSubmittedFileName();
+
+        //容错判断，防止空文件（没有选择上传的文件）如果为空，说明没有更新图片
+        if (filename == null || filename == "") {
+            //说明没有更新图片，直接获取原图片信息保存
+            food = new Food(Long.parseLong(foodId),Long.parseLong(foodTypeId),foodName,Double.parseDouble(foodPrice),Double.parseDouble(foodMprice),oldImage,foodDesc,null);
+        }else{
+            //更新图片信息
+            //调用工具类，实现文件上传的方法  返回文件的真实路径  /images/文件名
+            newImage = FileUploadUtils.uploadFile(req, "imageUrl", "/files/images/");
+            //判断文件上传是否出错
+            if (MessageConstant.FILEUPLOAD_ERROR.equals(newImage)){
+                return MessageConstant.FILEUPLOAD_ERROR;
+            }
+
+            //上传成功，删除原来的图片
+            String oldFileName = oldImage.substring(oldImage.lastIndexOf("/") + 1);
+            System.out.println(oldFileName);
+            //得到上传文件的目标位置
+            String desPath = req.getSession().getServletContext().getRealPath("/files/images/");
+            File file = new File(desPath,oldFileName);
+            if (file.exists()){
+                //如果文件存在，就删除
+                file.delete();
+            }
+
+            //将信息保存到food对象中
+            food = new Food(Long.parseLong(foodId),Long.parseLong(foodTypeId),foodName,Double.parseDouble(foodPrice),Double.parseDouble(foodMprice),newImage,foodDesc,null);
+        }
+
+        System.out.println("---------------food="+food);
+
+        //调用业务层更新菜品信息的操作
+        foodService.updateFoodById(food);
+
+        //更新成功，跳转到查询菜品的控制层方法
+        return MessageConstant.PREFIX_REDIRECT+"/food?method=search";
     }
 
 

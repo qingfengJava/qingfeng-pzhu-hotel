@@ -60,6 +60,7 @@
 				<td>图片</td>
 				<td>价格</td>
                 <td>会员价格</td>
+				<td>描述信息</td>
 				<td>操作</td>
 			</tr>
 		</thead>	
@@ -75,10 +76,11 @@
 					<td><img src="${food.foodImage}" style="width: 120px"></td>
 					<td>${food.foodPrice}</td>
 					<td>${food.foodMprice}</td>
+					<td>${food.foodDesc}</td>
 					<td>
 						<%-- 更新数据，要将数据的Id，一起传过去 --%>
 						<a href="/food?method=toSaveUI&foodId=${food.foodId}" class="FunctionButton">更新</a>
-						<a href="/wirelessplatform/food.html?method=delete&id=1" onClick="return delConfirm();"class="FunctionButton">删除</a>
+						<a href="/food?method=deleteFood&foodId=${food.foodId}" onClick="return delConfirm();"class="FunctionButton">删除</a>
 					</td>
 				</tr>
 			</c:forEach>

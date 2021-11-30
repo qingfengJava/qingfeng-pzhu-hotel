@@ -25,6 +25,7 @@ public interface FoodService {
     /**
      * 添加菜品
      * @param food
+     * @throws SQLException
      */
     void save(Food food) throws SQLException;
 
@@ -34,4 +35,10 @@ public interface FoodService {
      * @return 返回一个菜品对象
      */
     Food findFoodById(String foodId);
+
+    /**
+     * 根据菜品id，修改菜品信息
+     * @param food
+     */
+    void updateFoodById(Food food) throws SQLException;
 }

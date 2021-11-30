@@ -65,4 +65,14 @@ public class FoodServiceImpl implements FoodService {
     public Food findFoodById(String foodId) {
         return foodDao.findFoodById(Long.parseLong(foodId));
     }
+
+    /**
+     * 根据菜品id，修改菜品信息
+     * @param food
+     */
+    @Override
+    public void updateFoodById(Food food) throws SQLException {
+        //直接调用持久层修改菜品的信息
+        foodDao.updateFoodById(food);
+    }
 }
