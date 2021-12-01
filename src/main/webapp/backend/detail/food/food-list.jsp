@@ -24,10 +24,10 @@
 			/**
 			 * 删除前的确认提示
 			 */
-			function deleteById(id){
+			function deleteById(id,currentPage){
 
 				if(confirm("Are you sure you want to delete food information?\r\n您确定要删除id为"+id+"的菜品信息吗？")){
-					location.href = "/food?method=deleteFood&foodId="+id;
+					location.href = "/food?method=deleteFood&foodId="+id+"&currentPage="+currentPage;
 				}
 			}
 	</script>
@@ -97,8 +97,8 @@
 					<td>${food.foodDesc}</td>
 					<td>
 						<%-- 更新数据，要将数据的Id，一起传过去 --%>
-						<a href="/food?method=toSaveUI&foodId=${food.foodId}" class="FunctionButton">更新</a>
-						<a href="javascript:deleteById(${food.foodId});" style="color: red" class="FunctionButton">删除</a>
+						<a href="/food?method=toSaveUI&foodId=${food.foodId}&currentPage=${pb.currentPage}" class="FunctionButton">更新</a>
+						<a href="javascript:deleteById(${food.foodId},${pb.currentPage});" style="color: red" class="FunctionButton">删除</a>
 					</td>
 				</tr>
 			</c:forEach>

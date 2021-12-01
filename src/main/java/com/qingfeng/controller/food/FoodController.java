@@ -137,7 +137,6 @@ public class FoodController extends BaseServlet {
 
         //调用业务层的方法，查询所有菜系的集合
         List<FoodType> foodTypes = foodTypeService.findCondition(new FoodType());
-        System.out.println(foodTypes);
         //获取前端传过来的菜品的Id
         String foodId = req.getParameter("foodId");
         //根据菜品Id查询菜品信息
@@ -146,6 +145,7 @@ public class FoodController extends BaseServlet {
         //将查到的信息保存到request域中，用做前端的数据回显
         req.setAttribute("foodTypes",foodTypes);
         req.setAttribute("food",food);
+        req.setAttribute("currentPage",req.getParameter("currentPage"));
         //请求转发到更新页面
         return MessageConstant.PREFIX_FORWAED+"/backend/detail/food/food-update.jsp";
     }
@@ -210,7 +210,7 @@ public class FoodController extends BaseServlet {
         foodService.updateFoodById(food);
 
         //更新成功，跳转到查询菜品的控制层方法
-        return MessageConstant.PREFIX_REDIRECT+"/food?method=search";
+        return MessageConstant.PREFIX_REDIRECT+"/food?method=search&currentPage="+req.getParameter("currentPage");
     }
 
     /**
@@ -239,7 +239,7 @@ public class FoodController extends BaseServlet {
         //调用业务层的方法删除id
         foodService.deleteFood(foodId);
         //删除成功，跳转到查询菜品的控制层方法
-        return MessageConstant.PREFIX_REDIRECT+"/food?method=search";
+        return MessageConstant.PREFIX_REDIRECT+"/food?method=search&currentPage="+req.getParameter("currentPage");
     }
 
 

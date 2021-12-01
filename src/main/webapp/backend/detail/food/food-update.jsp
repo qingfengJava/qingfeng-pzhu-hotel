@@ -69,6 +69,7 @@
                     <tr>
 						<%-- 定义一个隐藏域，提交菜品对应的Id --%>
 						<input type="hidden" name="foodId" value="${food.foodId}" />
+						<input type="hidden" name="currentPage" value="${currentPage}"/>
 						<td width="80px">菜系</td><td>
 						<select name="foodTypeId" style="width:80px">
 							<c:forEach items="${foodTypes}" var="foodType">

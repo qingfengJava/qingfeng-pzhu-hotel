@@ -42,7 +42,7 @@ public class FoodDaoImpl implements FoodDao {
         //判断菜品名称是否已经存在
         String sql = "select * from t_food where food_name = '"+food.getFoodName()+"' and type_id = "+food.getTypeId();
         List<Food> condition = FoodSql.findCondition(sql);
-        if (condition == null){
+        if (condition.size() == 0){
             //说明菜品不存在，可以添加
             String sql2 = "insert into t_food(type_id,food_name,food_price,food_mprice,food_image,food_desc)" +
                     " values("+food.getTypeId()+",'"+food.getFoodName()+"',"+food.getFoodPrice()+","+food.getFoodMprice()+",'"+food.getFoodImage()+"','"+food.getFoodDesc()+"')";

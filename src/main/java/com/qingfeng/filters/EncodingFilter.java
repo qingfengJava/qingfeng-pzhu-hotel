@@ -23,7 +23,7 @@ public class EncodingFilter implements Filter {
 
         String uri = req.getRequestURI();
         //对HTML，css，js放行，对Servlet加上编码
-        if (!uri.endsWith("html") && !uri.endsWith("css") && !uri.endsWith("js")){
+        if (!uri.endsWith("html") && !uri.endsWith("css") && !uri.endsWith("js") && !uri.endsWith("jpeg")){
             //不是HTML结尾，就拦截
             req.setCharacterEncoding("UTF-8");
             resp.setContentType("text/html;charset=UTF-8");
