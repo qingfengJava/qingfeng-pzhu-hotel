@@ -15,7 +15,7 @@ public class DbUtils {
     /**
      * 数据库连接地址
      */
-    private static String dbUrl="jdbc:mysql://localhost:3306/pzhu-hotel?useSSL=true&serverTimezone=GMT%2B8";
+    private static String dbUrl="jdbc:mysql://localhost:3306/pzhu-hotel?useSSL=true&serverTimezone=GMT%2B8&characterEncoding=utf8&useUnicode=true&useOldAliasMetadataBehavior=true";
     /**
      * 用户名
      */

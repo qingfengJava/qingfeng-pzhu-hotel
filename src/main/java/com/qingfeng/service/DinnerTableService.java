@@ -17,4 +17,10 @@ public interface DinnerTableService {
      * @return
      */
     List<DinnerTable> findByCondition(DinnerTable dinnerTable);
+
+    /**
+     * 修改餐桌状态信息
+     * @param tableId
+     */
+    void updateStatus(String tableId) throws Exception;
 }

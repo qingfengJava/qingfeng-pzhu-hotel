@@ -57,7 +57,7 @@
 					<td>${table.reservationTimeStr}</td>
 					<td>
 						<div style="margin-left: 100px;">
-							<a href="/dinnertable?method=update&tableStatus=${table.tableStatus}" class="FunctionButton">
+							<a href="/dinnertable?method=update&tableId=${table.tableId}" class="FunctionButton">
 								${table.tableStatus == 0 ? "预定":"退桌"}</a>
 							<c:if test="${table.tableStatus == 0}">
 								<a href="/wirelessplatform/board.html?method=delete&id=1" style="color: red" onClick="return delConfirm();"class="FunctionButton">删除</a>

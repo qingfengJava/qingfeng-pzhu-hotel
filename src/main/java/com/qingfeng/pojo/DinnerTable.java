@@ -83,7 +83,7 @@ public class DinnerTable implements Serializable {
      */
     public String getReservationTimeStr() {
         //使用封装好的工具类，将日期转换为字符串
-        return this.reservationTime !=null ? DateUtils.dateToStr(reservationTime,"yyyy-MM-dd HH:mm:ss"):null;
+        return this.reservationTime !=null ? DateUtils.dateToStr(reservationTime,"yyyy-MM-dd  HH:mm:ss"):null;
     }
 
     public void setReservationTimeStr(String reservationTimeStr) {

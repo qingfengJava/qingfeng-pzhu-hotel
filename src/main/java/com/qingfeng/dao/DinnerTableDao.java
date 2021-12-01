@@ -19,4 +19,17 @@ public interface DinnerTableDao {
      * @return
      */
     List<DinnerTable> findByCondition(DinnerTable dinnerTable);
+
+    /**
+     * 查找餐桌信息
+     * @param tableId
+     * @return
+     */
+    DinnerTable findById(long tableId);
+
+    /**
+     * 修改餐桌状态信息
+     * @param table
+     */
+    void updateStatus(DinnerTable table) throws Exception;
 }

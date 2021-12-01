@@ -30,10 +30,15 @@ public class DinnerTableController extends BaseServlet {
         //将数据保存到request域中
         request.setAttribute("tables",tableList);
 
-        System.out.println(tableList);
-
         //请求转发到对应的页面
         return MessageConstant.PREFIX_FORWAED+"/backend/detail/table/table-list.jsp";
+    }
+
+    public String update(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        dinnerTableService.updateStatus(request.getParameter("tableId"));
+
+        //成功，重定向到展示页面
+        return MessageConstant.PREFIX_REDIRECT+"/dinnertable?method=search";
     }
 }
 

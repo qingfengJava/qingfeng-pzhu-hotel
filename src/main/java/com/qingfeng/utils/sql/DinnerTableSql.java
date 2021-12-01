@@ -5,6 +5,7 @@ import com.qingfeng.utils.DbUtils;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -36,7 +37,7 @@ public class DinnerTableSql {
                     long tableId = rs.getLong("table_id");
                     String tableName = rs.getString("table_name");
                     int tableStatus = rs.getInt("table_status");
-                    Date reservationTime = rs.getDate("reservation_time");
+                    Date reservationTime = rs.getTimestamp("reservation_time");
                     //将数据封装到对象中
                     dinnerTables.add(new DinnerTable(tableId,tableName,tableStatus,reservationTime));
                 }
