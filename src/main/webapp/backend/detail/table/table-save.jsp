@@ -9,7 +9,6 @@
 
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="text/javascript" src="../style/js/jquery.js"></script>
 <script type="text/javascript" src="../style/js/page_common.js"></script>
 <link href="../style/css/common_style_blue.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="../style/css/index_1.css" />

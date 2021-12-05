@@ -4,6 +4,7 @@ import com.qingfeng.constant.BeanFactoryConstant;
 import com.qingfeng.dao.UserDao;
 import com.qingfeng.factory.BeanFactory;
 import com.qingfeng.pojo.User;
+import com.qingfeng.utils.GetDayForWeek;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -44,17 +45,20 @@ public class LoginFilter implements Filter {
                 //调用数据库查询用户是否存在
                 User user = userDao.findByUsername(name);
                 if (user != null && user.getPassword().equals(password)){
-                    //用户存在，将用户信息存储到session
-                    session.setAttribute("loginUser",user);
+                    //将年月日，星期几存入session域中，并要保证每跳转一个界面，就要重新存入，保证时间实时刷新
+                    session.setAttribute("day", GetDayForWeek.getDateDayForWeek());
 
                     //用户登录要进行判断 是普通用户，还是管理员
                     if (user.getIsAdmin().intValue() == 0){
                         //普通用户，直接去点餐页面
+                        //用户存在，将用户信息存储到session
+                        session.setAttribute("loginUser",user);
                         resp.sendRedirect(req.getContextPath()+"/front/index.jsp");
                         return;
                     }else{
                         //管理员去后台
-                        System.out.println("执行了....");
+                        //用户存在，将用户信息存储到session
+                        session.setAttribute("adminUser",user);
                         resp.sendRedirect(req.getContextPath()+"/backend/index.jsp");
                         return;
                     }

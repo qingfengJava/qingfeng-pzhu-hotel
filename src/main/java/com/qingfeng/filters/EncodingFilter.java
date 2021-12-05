@@ -1,5 +1,7 @@
 package com.qingfeng.filters;
 
+import com.qingfeng.utils.GetDayForWeek;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +30,9 @@ public class EncodingFilter implements Filter {
             req.setCharacterEncoding("UTF-8");
             resp.setContentType("text/html;charset=UTF-8");
         }
+
+        //将年月日，星期几存入session域中，并要保证每跳转一个界面，就要重新存入，保证时间实时刷新
+        req.getSession().setAttribute("day", GetDayForWeek.getDateDayForWeek());
 
         chain.doFilter(request, response);
     }

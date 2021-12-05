@@ -1,7 +1,7 @@
 ﻿<%@page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
     <title>Frame top</title>
@@ -117,7 +117,7 @@ margin-left: 10px;
 		<!-- 欢迎用户的文字 -->
 		<div id="Head_1_UserWelcome">
 			<img border="0" width="13" height="14" src="/backend/detail/style/images/user.gif" />
-			您好，<b>管理员</b>
+			<span style="font-size: 15px;">您好，<b>${adminUser.username}</b></span> &nbsp;<span style="font-size: 15px">${day}</span>
 		</div>
 		<!-- 一些链接按钮 -->
 		<div id="Head_1_FunctionButton">

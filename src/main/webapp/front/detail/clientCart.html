@@ -1,7 +1,11 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+﻿
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="style/css/index.css" />
+	<link rel="stylesheet" type="text/css" href="style/css/index_1.css" />
 	<script type="text/javascript">
 		/** // 删除菜品项
 		function removeSorder(node) {
@@ -23,7 +27,23 @@
 	</script>
 </head>
 
-<body style="text-align: center">
+<body style="text-align: center;background-color: goldenrod;">
+<div class="nav" style="text-align: left;font-family: 楷体;">
+	菜单
+	<span style="float: right;padding-right: 20px">
+			<div>
+				<span>
+					欢迎：<span style="color: red">朱洪贤</span>  光临攀大美味餐厅
+				</span>
+				<span>
+					当前就餐人数：<span style="color: red">5</span>人
+				</span>
+				<span>
+					时间：2021年12月2日  星期一
+				</span>
+			</div>
+		</span>
+</div>
 	<div id="all">
 		<div id="menu">
 			<!-- 餐车div -->
@@ -58,12 +78,7 @@
 					<tr>
 						<td colspan="6" style="margin-left: 100px; text-align: center;"align="right">
 							<input type="hidden" name="bId" value="">
-							
-								
-								
 									<input type="button" value="下单" class="btn_next" onclick="genernateOrder()" />
-								
-							
 						</td>
 					</tr>
 				</table>
@@ -72,62 +87,60 @@
 
 		<!-- 右边菜系列表，菜品搜索框  -->
 		<div id="dish_class">
-			<div id="dish_top">
-				<ul>
-				<li class="dish_num"></li>
-					<li>
-						<a href="clientOrderList.html">
-							<img src="style/images/call2.gif" />
-						</a>
-					</li>
-				</ul>
-			</div>
 
 			<div id="dish_2">
 				<ul>
-					
-						<li>
-							<a href="caidan.html">粤菜</a>
-						</li>
-					
-						<li>
-							<a href="chuancai.html">川菜</a>
-						</li>
-					
-						<li>
-							<a href="chuancai.html">湘菜</a>
-						</li>
-					
-						<li>
-							<a href="chuancai.html">东北菜</a>
-						</li>
-					
+
+					<li>
+						<a href="caidan.html">粤菜</a>
+					</li>
+
+					<li>
+						<a href="chuancai.html">川菜</a>
+					</li>
+
+					<li>
+						<a href="xiangcai.html">湘菜</a>
+					</li>
+
+					<li>
+						<a href="dongbeicai.html">东北菜</a>
+					</li>
+
 				</ul>
 			</div>
-			<div id="dish_3">
-				<!-- 搜索菜品表单  -->
-				<form action="#" method="post">
-					<table width="166px">
-						<tr>
-							<td>
-								<input type="text" id="dish_name" name="foodName" class="select_value" /> 
-								<input type="hidden" value="selectFood" name="method">
-							</td>
-						</tr>
-						<tr>
-							<td><input type="submit" id="sub" value="" /></td>
-						</tr>
-						<tr>
-							<td>
-								<a href="#">
-									<img src="style/images/look.gif" />
-								</a>
-							</td>
-						</tr>
-					</table>
-				</form>
-			</div>
+			<!-- 搜索菜品表单  -->
+				<div id="dish_3">
+					<a href="#"><input type="button" value="我的餐单" class="select_value" /></a>
+				</div>
 		</div>
 	</div>
+<!-- footer -->
+<table class="footer-table">
+	<tr>
+		<td align="center">
+			<div class="row">
+				<ul class="list-inline">
+					<li><a href="#">关于我们</a></li>
+					<li><a href="#">联系我们</a></li>
+					<li><a href="#">招贤纳士</a></li>
+					<li><a href="#">法律声明</a></li>
+					<li><a href="#">友情连接</a></li>
+					<li><a href="#">支付方式</a></li>
+					<li><a href="#">配送方式</a></li>
+					<li><a href="#">服务声明</a></li>
+					<li><a href="#">广告声明</a></li>
+				</ul>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<div class="buttom">
+				<span>Copyriht &copy; 2021-2022 攀枝花学院&nbsp;&nbsp;&nbsp;&nbsp; 版权归属：Web应用开发专业团队</span>
+			</div>
+		</td>
+	</tr>
+</table>
 </body>
 </html>

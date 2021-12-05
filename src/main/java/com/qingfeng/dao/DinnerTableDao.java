@@ -2,6 +2,7 @@ package com.qingfeng.dao;
 
 import com.qingfeng.pojo.DinnerTable;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -29,7 +30,16 @@ public interface DinnerTableDao {
 
     /**
      * 修改餐桌状态信息
-     * @param table
+     * @param table table实体
+     * @throws Exception
      */
     void updateStatus(DinnerTable table) throws Exception;
+
+    /**
+     * 根据餐桌状态查询餐桌信息
+     * @param tableStatus
+     * @return
+     * @throws SQLException
+     */
+    List<DinnerTable> findTablesByStatus(int tableStatus) throws SQLException;
 }

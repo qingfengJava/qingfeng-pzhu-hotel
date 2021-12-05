@@ -71,7 +71,8 @@ function gotoPage( pageNum ){
 	}
 	
 	// 处理pageSize
-	var pageSize =  $("#PaginationBar_PageSizeSelector").val();	
+	var pageSize =  $("#PaginationBar_PageSizeSelector").val();
+	// var pageSize=document.getElements(PageTransitionEvent)
 	
 	// 如果找不到名为"pageSize"的字段，就增加一个。
 	if(	paginationForm.pageSize == null ){

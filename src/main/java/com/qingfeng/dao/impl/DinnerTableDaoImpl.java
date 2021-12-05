@@ -5,6 +5,7 @@ import com.qingfeng.pojo.DinnerTable;
 import com.qingfeng.utils.sql.DbSql;
 import com.qingfeng.utils.sql.DinnerTableSql;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -49,5 +50,17 @@ public class DinnerTableDaoImpl implements DinnerTableDao {
             sql = "update t_dinner_table set table_status = " + table.getTableStatus() + ",reservation_time= " + table.getReservationTimeStr() + " where table_id = " + table.getTableId();
         }
         DbSql.update(sql);
+    }
+
+    /**
+     * 根据餐桌状态查询餐桌信息
+     * @param tableStatus
+     * @return
+     * @throws SQLException
+     */
+    @Override
+    public List<DinnerTable> findTablesByStatus(int tableStatus) throws SQLException {
+        String sql = "select * from t_dinner_table where table_status ="+tableStatus;
+        return DinnerTableSql.findCondition(sql);
     }
 }

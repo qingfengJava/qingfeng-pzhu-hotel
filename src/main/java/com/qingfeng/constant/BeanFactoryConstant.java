@@ -21,4 +21,7 @@ public interface BeanFactoryConstant {
 
     String USER_USERDAO = "userDao";
     String USER_USERSERVICE = "userService";
+
+    String FRONT_DAO = "frontDao";
+    String FRONT_SERVICE = "frontService";
 }

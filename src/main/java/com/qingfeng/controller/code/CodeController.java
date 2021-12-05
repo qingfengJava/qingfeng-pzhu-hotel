@@ -32,7 +32,7 @@ public class CodeController extends HttpServlet {
         //3、根据随机数生成图片 && 4、通过response响应图片 && 5、设置响应类型
         response.setContentType("image/png");
         ServletOutputStream outputStream = response.getOutputStream();
-        VerifyCodeUtils.outputImage(100,37,outputStream,code);
+        VerifyCodeUtils.outputImage(110,40,outputStream,code);
     }
 
     @Override

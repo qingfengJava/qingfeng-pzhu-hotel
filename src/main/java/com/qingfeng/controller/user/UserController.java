@@ -7,6 +7,7 @@ import com.qingfeng.entity.ResultVO;
 import com.qingfeng.factory.BeanFactory;
 import com.qingfeng.pojo.User;
 import com.qingfeng.service.UserService;
+import com.qingfeng.utils.GetDayForWeek;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -46,7 +47,8 @@ public class UserController extends BaseServlet {
             ResultVO resultVO = userService.login(username, password);
             if (resultVO.getSuccess()){
                 User loginUser = (User) resultVO.getData();
-                request.getSession().setAttribute("loginUser",loginUser);
+                //将年月日，星期几存入session域中，并要保证每跳转一个界面，就要重新存入，保证时间实时刷新
+                session.setAttribute("day", GetDayForWeek.getDateDayForWeek());
 
                 //登录成功，设置cookie的存活时间
                 //创建Cookie
@@ -61,10 +63,12 @@ public class UserController extends BaseServlet {
 
                 //用户登录要进行判断 是普通用户，还是管理员
                 if (loginUser.getIsAdmin().intValue() == 0){
+                    request.getSession().setAttribute("loginUser",loginUser);
                     //普通用户，直接去点餐页面
                     return MessageConstant.PREFIX_REDIRECT + "/front/index.jsp";
                 }
                 //管理员去后台
+                request.getSession().setAttribute("adminUser",loginUser);
                 return MessageConstant.PREFIX_REDIRECT+"/backend/index.jsp";
             }else{
                 //验证码错误，请求转发回本页面
