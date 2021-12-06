@@ -82,7 +82,7 @@
 			//1、我们首先要创建XMLHttpRequest
 			let xmlhttprequest = new XMLHttpRequest();
 			//2、调用open方法设置请求参数，将请求发送给服务器  将要查询的餐桌的状态一起传过去
-			xmlhttprequest.open("GET", "http://localhost:8080/front?method=findTablesByStatus&tableStatus=0", true);
+			xmlhttprequest.open("GET", "http://localhost:8088/front?method=findTablesByStatus&tableStatus=0", true);
 
 			//4、在send方法前绑定onreadystatechange事件，处理请求完成后的操作。
 			xmlhttprequest.onreadystatechange = function () {
@@ -97,7 +97,7 @@
 					for (let i = 0; i < jsonObj.data.length; i++) {
 						console.log(jsonObj.data[i].tableName); /* 测试代码 */
 
-						if ((i+1)%5 == 0){
+						if ((i+1)%7 == 0){
 							count++;
 							document.getElementById("tableId").innerHTML +=
 									'<tr><td><ul id="ul_table'+count+'"></ul></td></tr>';
@@ -125,17 +125,18 @@
 <div class="index_all" style="text-align:center;">
 
 	<div id="index_center">
-		<div class="shortcut" style="text-align: left;font-family: '华文行楷';">
-			攀大美味餐厅——欢迎您！
+		<div class="shortcut" >
+			<span style="text-align: left;font-family: '华文行楷';">攀大美味餐厅——欢迎您！</span>
 			<span style="float: right;padding-right: 20px;font-size: 22px;color: black;padding-top: 20px;font-family: '楷体'">
 				<div>
 					<span>
-						欢迎：<span style="color: red;">${loginUser.nickName}</span>光临就餐
+						欢迎：<span style="color: red">${loginUser.username}</span>光临就餐
 					</span>
 					<span>
 						&nbsp;&nbsp;当前就餐人数：<span style="color: red">5</span>人<br/>
 					</span>
-					<span>
+					<br>
+					<span style="position: relative;top: -70px;">
 						时间：${day}
 					</span>
 				</div>
@@ -145,7 +146,7 @@
 		<img src="/front/detail/style/images/1.jpg"  id="datu"/>
 		<!--放桌子的层-->
 		<div id="center_bottom">
-			<table id="tableId" style="width:550px">
+			<table id="tableId" style="width:700px;position: relative;transform: translate(-400px,-350px);">
 				<tr>
 					<td>
 						<ul id="ul_table1">

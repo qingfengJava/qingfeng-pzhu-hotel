@@ -86,27 +86,28 @@ body,html{
 	margin:0 auto;
 }
 #index_center{
-	width:1024px;
+    width: 1024px;
+	/*width: 1500px;*/
 }
 
-/*顶部快捷导航*/
+/*顶部标题栏*/
 .shortcut {
 	position: absolute;
 	float: left;
-	width:1250px;
+	width:1530px;
 	height: auto;
-	margin-left: 0;
 	background-color:rgba(170, 85, 0, 0.2);
 	color:ghostwhite;
 	font-size: 70px;
 	font-weight: 700;
 	list-style: none;
+	transform: translateX(-250px);
 }
 .nav{
 	position: absolute;
 	float: left;
 	height: 100px;
-	width: 1535px;
+	width: 100%;
 	background-color: rgba(170,85,0,0.2);
 	font-size: 50px;
 	font-weight: 700;
@@ -127,6 +128,8 @@ body,html{
 }
 #center_bottom ul li{
 	float: left;
+	/*position: relative;*/
+	/*transform: translate(-200px,100px);*/
 	background:url(img/table.gif);
 	width: 88px;
 	height:60px;
