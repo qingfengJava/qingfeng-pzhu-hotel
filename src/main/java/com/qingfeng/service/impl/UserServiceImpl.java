@@ -20,6 +20,11 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao = (UserDao) BeanFactory.getBean(BeanFactoryConstant.USER_USERDAO);
 
     @Override
+    public User findByUsername(String username) {
+        return userDao.findByUsername(username);
+    }
+
+    @Override
     public ResultVO login(String username, String password) {
         //1、根据用户名查询用户信息，不能删除
         User user = userDao.findByUsername(username);
@@ -65,6 +70,21 @@ public class UserServiceImpl implements UserService {
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("注册用户出现未知的异常");
+        }
+    }
+
+    /**
+     * 根据用户名，更新密码
+     * @param username
+     * @param password
+     */
+    @Override
+    public void updateByUserName(String username, String password) {
+        try {
+            userDao.updateByUserName(username, password);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("更新/找回密码时出现未知的异常！");
         }
     }
 }

@@ -24,4 +24,11 @@ public interface UserDao {
      * @return 返回1-表示注册成功  返回0-表示注册失败
      */
     int register(User user);
+
+    /**
+     * 根据用户名，更新密码
+     * @param username
+     * @param password
+     */
+    void updateByUserName(String username, String password);
 }

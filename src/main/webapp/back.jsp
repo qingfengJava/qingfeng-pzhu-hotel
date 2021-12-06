@@ -75,10 +75,12 @@
 <div class="jq22-container" style="padding-top:10px">
 	<div class="login-wrap">
 		<div class="login-html">
-
 			<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">登录</label>
 			<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">找回密码</label>
 			<div class="login-form">
+				<div style="margin-top: 10px;text-align: right">
+					<span style="font-size:15px;color: red;">${login_msg}</span>
+				</div>
 				<form action="${pageContext.request.contextPath}/user" method="post" onsubmit="return login()">
 					<input type="hidden" name="method" value="login" />
 					<div class="sign-in-htm">

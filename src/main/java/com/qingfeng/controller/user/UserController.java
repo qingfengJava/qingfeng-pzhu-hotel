@@ -88,13 +88,12 @@ public class UserController extends BaseServlet {
             }else{
                 //验证码错误，请求转发回本页面
                 request.setAttribute("login_msg",resultVO.getMessage());
-                return MessageConstant.PREFIX_FORWAED+"/index.jsp";
             }
         }else{
             //验证码错误，请求转发回本页面
             request.setAttribute("login_msg","验证码输入错误！");
-            return MessageConstant.PREFIX_FORWAED+"/index.jsp";
         }
+        return MessageConstant.PREFIX_FORWAED+"/index.jsp";
     }
 
     /**
@@ -156,17 +155,16 @@ public class UserController extends BaseServlet {
                 if(index == 1){
                     //注册成功，回到登录界面
                     request.setAttribute("login_msg","恭喜你，注册成功，马上登录吧！");
-                    return MessageConstant.PREFIX_FORWAED+"/index.jsp";
                 }else {
                     //注册失败，请求转发回本页面
                     request.setAttribute("login_msg","用户已存在，注册失败！");
-                    return MessageConstant.PREFIX_FORWAED+"/index.jsp";
                 }
             }else{
                 //验证码错误，请求转发回本页面
                 request.setAttribute("login_msg","验证码输入错误！");
-                return MessageConstant.PREFIX_FORWAED+"/index.jsp";
             }
+            //最终返回本页面
+            return MessageConstant.PREFIX_FORWAED+"/index.jsp";
         } catch (NumberFormatException e) {
             return e.getMessage();
         }
@@ -179,10 +177,43 @@ public class UserController extends BaseServlet {
      * @return
      */
     public String update(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            //获取前端传过来的数据
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            String code = request.getParameter("code");
 
+            HttpSession session = request.getSession();
 
-        //更新/找回密码成功，回到登录界面
-        request.setAttribute("login_msg","恭喜你，密码更细/找回成功，马上登录吧！");
-        return MessageConstant.PREFIX_FORWAED+"/index.jsp";
+            //从session域中获取验证码
+            String checkCode = (String) request.getSession().getAttribute("checkCode");
+            //获取之后就要清除，防止重复利用
+            session.removeAttribute("checkCode");
+
+            //先判断验证码是否输入正确
+            if (code.equalsIgnoreCase(checkCode)){
+                //验证码正确，先判断用户名是否存在
+                User user = userService.findByUsername(username);
+                if (user != null){
+                    //说明用户存在，可以修改/找回密码
+                    String newPassword = Md5Utils.md5(password);
+                    userService.updateByUserName(username,newPassword);
+
+                    //更新/找回密码成功，回到登录界面
+                    request.setAttribute("login_msg","恭喜你，密码更新/找回成功，马上登录吧！");
+                }else{
+                    //说明用户不存在，不能修改或找回密码
+                    request.setAttribute("login_msg","用户不存在，不能修改/找回密码！");
+                }
+            }else {
+                //验证码错误
+                request.setAttribute("login_msg","验证错误，请重新输入！");
+            }
+            //最终返回本页面
+            return MessageConstant.PREFIX_FORWAED+"/back.jsp";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return e.getMessage();
+        }
     }
 }

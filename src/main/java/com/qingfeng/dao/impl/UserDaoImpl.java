@@ -2,7 +2,10 @@ package com.qingfeng.dao.impl;
 
 import com.qingfeng.dao.UserDao;
 import com.qingfeng.pojo.User;
+import com.qingfeng.utils.sql.DbSql;
 import com.qingfeng.utils.sql.UserSql;
+
+import java.sql.SQLException;
 
 /**
  * 用户持久层接口的实现
@@ -33,6 +36,17 @@ public class UserDaoImpl implements UserDao {
             return UserSql.insert(sql);
         } catch (Exception e) {
             throw new RuntimeException("注册用户出现未知的异常");
+        }
+    }
+
+    @Override
+    public void updateByUserName(String username, String password) {
+        try {
+            String sql = "update t_user set password ='"+password+"' where username = '"+username+"'";
+            DbSql.update(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("更新/找回密码时出现未知的异常！");
         }
     }
 }

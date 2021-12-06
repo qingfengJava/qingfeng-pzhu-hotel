@@ -13,6 +13,13 @@ import com.qingfeng.pojo.User;
 public interface UserService {
 
     /**
+     * 根据用户名查询用户
+     * @param username
+     * @return
+     */
+    User findByUsername(String username);
+
+    /**
      * 用户登录的方法
      * @param username
      * @param password
@@ -26,4 +33,11 @@ public interface UserService {
      * @return 返回1-表示注册成功  返回0-表示注册失败
      */
     int register(User user);
+
+    /**
+     * 根据用户名，更新密码
+     * @param username
+     * @param password
+     */
+    void updateByUserName(String username, String password);
 }
