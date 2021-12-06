@@ -1,7 +1,6 @@
-﻿
-
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+﻿<%@page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>攀大美味餐厅欢迎您！</title>
@@ -11,7 +10,7 @@
 		// 通知服务员结账
 		function callPay(node) {
 			var orderId = node.lang;
-			window.location.href = "jiezhang.html";
+			window.location.href = "jiezhang.jsp";
 		}
 	</script>
 </head>
@@ -20,19 +19,20 @@
 <div class="nav" style="text-align: left;font-family: 楷体;">
 	结账
 	<span style="float: right;padding-right: 20px">
-			<div style="position: relative;top: -15px;">
-				<span>
-					欢迎：<span style="color: red">朱洪贤</span>  光临攀大美味餐厅
-				</span>
-				<span>
-					当前就餐人数：<span style="color: red">5</span>人
-				</span>
-				<br>
-				<span style="position: relative;top: -70px;">
-					时间：2021年12月2日  星期一
-				</span>
-			</div>
-		</span>
+		<div style="position: relative;top: -15px;">
+			<span>
+				欢迎：<span style="color: red">${loginUser.nickName}</span>  光临攀大美味餐厅
+			</span>
+			<span>
+				当前就餐人数：<span style="color: red">5</span>人
+			</span>
+			<br>
+			<span style="position: relative;top: -70px;">
+				时间：${day}
+				<a href="#" style="border: 1px solid darkgrey;border-radius: 10px;padding: 6px 5px;background-color: darkgrey;font-size: 15px;margin-left: 100px;">退出登录</a>
+			</span>
+		</div>
+	</span>
 </div>
 	<div id="all">
 		<div id="menu">
@@ -74,25 +74,30 @@
 		<div id="dish_class">
 	<div id="dish_2">
 				<ul>
+
+					<li>
+						<a href="/front/detail/menu.jsp">全部菜品</a>
+					</li>
 					
-						<li>
-							<a href="caidan.html">粤菜</a>
-						</li>
-					
-						<li>
-							<a href="chuancai.html">川菜</a>
-						</li>
-					
-						<li>
-							<a href="chuancai.html">湘菜</a>
-						</li>
-					
-						<li>
-							<a href="chuancai.html">东北菜</a>
-						</li>
+					<li>
+						<a href="menu.jsp">粤菜</a>
+					</li>
+
+					<li>
+						<a href="chuancai.jsp">川菜</a>
+					</li>
+
+					<li>
+						<a href="chuancai.jsp">湘菜</a>
+					</li>
+
+					<li>
+						<a href="chuancai.jsp">东北菜</a>
+					</li>
+
 					<li><a href=""></a></li>
 					<li style="background-color: whitesmoke;">
-						<a href="clientCart.html" style="color:goldenrod;font-weight: 700;">我的餐单</a>
+						<a href="clientCart.jsp" style="color:goldenrod;font-weight: 700;">我的餐单</a>
 					</li>
 				</ul>
 			</div>

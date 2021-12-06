@@ -117,7 +117,7 @@ margin-left: 10px;
 		<!-- 欢迎用户的文字 -->
 		<div id="Head_1_UserWelcome">
 			<img border="0" width="13" height="14" src="/backend/detail/style/images/user.gif" />
-			<span style="font-size: 15px;">您好，<b>${adminUser.username}</b></span> &nbsp;<span style="font-size: 15px">${day}</span>
+			<span style="font-size: 15px;">您好，<b>${adminUser.nickName}</b></span> &nbsp;<span style="font-size: 15px">${day}</span>
 		</div>
 		<!-- 一些链接按钮 -->
 		<div id="Head_1_FunctionButton">

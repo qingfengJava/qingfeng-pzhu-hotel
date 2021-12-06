@@ -1,9 +1,9 @@
 package com.qingfeng.filters;
 
 import com.qingfeng.constant.BeanFactoryConstant;
-import com.qingfeng.dao.UserDao;
 import com.qingfeng.factory.BeanFactory;
 import com.qingfeng.pojo.User;
+import com.qingfeng.service.UserService;
 import com.qingfeng.utils.GetDayForWeek;
 
 import javax.servlet.*;
@@ -24,7 +24,7 @@ import java.io.IOException;
 @WebFilter(dispatcherTypes = {DispatcherType.REQUEST},urlPatterns = {"/index.jsp"})
 public class LoginFilter implements Filter {
 
-    private UserDao userDao = (UserDao) BeanFactory.getBean(BeanFactoryConstant.USER_USERDAO);
+    private UserService userService = (UserService) BeanFactory.getBean(BeanFactoryConstant.USER_USERSERVICE);
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
@@ -43,7 +43,7 @@ public class LoginFilter implements Filter {
                 //得到密码
                 String password = cookie.getValue();
                 //调用数据库查询用户是否存在
-                User user = userDao.findByUsername(name);
+                User user = userService.findByUsername(name);
                 if (user != null && user.getPassword().equals(password)){
                     //将年月日，星期几存入session域中，并要保证每跳转一个界面，就要重新存入，保证时间实时刷新
                     session.setAttribute("day", GetDayForWeek.getDateDayForWeek());
@@ -70,7 +70,7 @@ public class LoginFilter implements Filter {
             return;
 
         }else {
-            //用户不存在，说明是第一次，请求转发到PageServlet
+            //用户不存在，说明是第一次，请求转发到登录页面
             req.getRequestDispatcher("/index.jsp").forward(req,resp);
         }
 

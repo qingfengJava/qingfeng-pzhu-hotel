@@ -1,6 +1,8 @@
 package com.qingfeng.service;
 
+import com.qingfeng.entity.PageBean;
 import com.qingfeng.entity.ResultVO;
+import com.qingfeng.pojo.Food;
 
 /**
  * 前台数据的业务层接口
@@ -18,4 +20,12 @@ public interface FrontService {
      * @throws Exception
      */
     ResultVO findTablesByStatus(String tableStatus) throws Exception;
+
+    /**
+     * 根据页码和每页显示的总数，进行分页查询
+     * @param _currentPage
+     * @param _rows
+     * @return
+     */
+    PageBean<Food> findByPage(String _currentPage, String _rows);
 }

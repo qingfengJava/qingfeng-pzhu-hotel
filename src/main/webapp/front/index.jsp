@@ -82,7 +82,7 @@
 			//1、我们首先要创建XMLHttpRequest
 			let xmlhttprequest = new XMLHttpRequest();
 			//2、调用open方法设置请求参数，将请求发送给服务器  将要查询的餐桌的状态一起传过去
-			xmlhttprequest.open("GET", "http://localhost:8088/front?method=findTablesByStatus&tableStatus=0", true);
+			xmlhttprequest.open("GET", "http://localhost:8080/front?method=findTablesByStatus&tableStatus=0", true);
 
 			//4、在send方法前绑定onreadystatechange事件，处理请求完成后的操作。
 			xmlhttprequest.onreadystatechange = function () {
@@ -105,9 +105,8 @@
 
 						//把服务器响应的数据显示在页面上
 						document.getElementById("ul_table"+count).innerHTML +=
-								'<li><a href="/front/detail/caidan.html">'+jsonObj.data[i].tableName+'</a></li><br/>';
+								'<li><a href="/front?method=findByPage">'+jsonObj.data[i].tableName+'</a></li><br/>';
 					}
-
 				}
 			}
 
@@ -130,13 +129,13 @@
 			<span style="float: right;padding-right: 20px;font-size: 22px;color: black;padding-top: 20px;font-family: '楷体'">
 				<div>
 					<span>
-						欢迎：<span style="color: red">${loginUser.username}</span>光临就餐
+						欢迎：<span style="color: red">${loginUser.nickName}</span>光临就餐
 					</span>
 					<span>
 						&nbsp;&nbsp;当前就餐人数：<span style="color: red">5</span>人<br/>
 					</span>
 					<br>
-					<span style="position: relative;top: -70px;">
+					<span style="position: relative;top: -10px;">
 						时间：${day}
 					</span>
 				</div>

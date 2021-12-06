@@ -27,7 +27,14 @@ public class FoodDaoImpl implements FoodDao {
      */
     @Override
     public List<Food> findFoodCondition(Food food,int start,int rows) {
-        String sql = "select f.*,ft.type_name from t_food f,t_food_type ft where f.type_id = ft.type_id and ft.type_name like '%"+food.getFoodType().getTypeName()+"%' and f.food_name like '%"+food.getFoodName()+"%' order by f.food_id desc limit "+start+","+rows;
+        String sql = null;
+        if (food != null){
+            //后台的分页条件查询
+            sql = "select f.*,ft.type_name from t_food f,t_food_type ft where f.type_id = ft.type_id and ft.type_name like '%"+food.getFoodType().getTypeName()+"%' and f.food_name like '%"+food.getFoodName()+"%' order by f.food_id desc limit "+start+","+rows;
+        }else{
+            //前台直接查询所有记录
+            sql = "select f.*,ft.type_name from t_food f,t_food_type ft where f.type_id = ft.type_id limit "+start+","+rows;
+        }
         //调用封装的查询的方法，进行查询
         return FoodSql.findCondition(sql);
     }
