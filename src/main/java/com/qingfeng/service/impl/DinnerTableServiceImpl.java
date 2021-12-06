@@ -1,6 +1,7 @@
 package com.qingfeng.service.impl;
 
 import com.qingfeng.constant.BeanFactoryConstant;
+import com.qingfeng.constant.ExceptionMessageConstant;
 import com.qingfeng.dao.DinnerTableDao;
 import com.qingfeng.factory.BeanFactory;
 import com.qingfeng.pojo.DinnerTable;
@@ -52,5 +53,40 @@ public class DinnerTableServiceImpl implements DinnerTableService {
         table.setReservationTime(tableStatus == 0 ? new Date() :null);
         dinnerTableDao.updateStatus(table);
 
+    }
+
+    /**
+     * 根据餐桌名，保存餐桌信息
+     * @param tableName
+     */
+    @Override
+    public void save(String tableName) {
+        //判断餐桌名是否重复
+        DinnerTable dinnerTable = new DinnerTable();
+        dinnerTable.setTableName(tableName);
+        List<DinnerTable> list = dinnerTableDao.findByCondition(dinnerTable);
+        //测试代码
+        System.out.println(list);
+        //如果list的长度是0，说明没哟查到数据，可以添加
+        if (list.size() == 0) {
+            //调用持久层添加餐桌的方法
+            dinnerTableDao.save(tableName);
+        }else{
+            //重复，抛出一个不可添加的异常
+            throw new RuntimeException(ExceptionMessageConstant.DINNERTABLE_ADD_FAIL_MESSAGE);
+        }
+    }
+
+    /**
+     * 根据餐桌Id删除餐桌信息
+     * @param tableId
+     */
+    @Override
+    public void deleteById(int tableId) {
+        try {
+            dinnerTableDao.deleteById(tableId);
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 }

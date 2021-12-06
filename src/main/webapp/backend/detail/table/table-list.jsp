@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>攀大美味餐厅</title>
+<title>攀大美味餐厅——餐桌管理</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="text/javascript" src="/backend/detail/style/js/page_common.js"></script>
 <link href="/backend/detail/style/css/common_style_blue.css" rel="stylesheet" type="text/css">
@@ -59,7 +59,7 @@
 							<a href="/dinnertable?method=update&tableId=${table.tableId}" class="FunctionButton">
 								${table.tableStatus == 0 ? "预定":"退桌"}</a>
 							<c:if test="${table.tableStatus == 0}">
-								<a href="/wirelessplatform/board.html?method=delete&id=1" style="color: red" onClick="return delConfirm();"class="FunctionButton">删除</a>
+								<a href="/dinnertable?method=delete&tableId=${table.tableId}" style="color: red" onClick="return delConfirm(${table.tableId});"class="FunctionButton">删除</a>
 							</c:if>
 						</div>
 					</td>
@@ -70,7 +70,7 @@
 	
    <!-- 其他功能超链接 -->
 	<div id="TableTail" align="center">
-		<div class="FunctionButton"><a href="saveBoard.html">添加</a></div>
+		<div class="FunctionButton"><a href="/backend/detail/table/table-save.jsp">添加</a></div>
     </div> 
 </div>
 </body>

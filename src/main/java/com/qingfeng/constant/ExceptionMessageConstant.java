@@ -28,4 +28,19 @@ public interface ExceptionMessageConstant {
      * 菜品添加异常的提示信息
      */
     String FOOD_ADD_EXCEPTION_MESSAGE = "添加菜品异常，请稍后再试！";
+
+    /**
+     * 添加餐桌异常的提示信息
+     */
+    String DINNERTABLE_ADD_FAIL_MESSAGE = "不允许添加重复的餐桌！";
+
+    /**
+     * 添加餐桌出现未知的异常
+     */
+    String DINNERTABLE_ADD_UNKONE_MESSAGE = "添加餐桌出现未知的异常！！！";
+
+    /**
+     * 删除餐桌出现未知的异常！！！
+     */
+    String DINNERTABLE_DELETE_FAIL_MESSAGE = "删除餐桌出现未知的异常！！！";
 }

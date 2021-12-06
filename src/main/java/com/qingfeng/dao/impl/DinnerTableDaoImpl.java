@@ -1,5 +1,6 @@
 package com.qingfeng.dao.impl;
 
+import com.qingfeng.constant.ExceptionMessageConstant;
 import com.qingfeng.dao.DinnerTableDao;
 import com.qingfeng.pojo.DinnerTable;
 import com.qingfeng.utils.sql.DbSql;
@@ -62,5 +63,28 @@ public class DinnerTableDaoImpl implements DinnerTableDao {
     public List<DinnerTable> findTablesByStatus(int tableStatus) throws SQLException {
         String sql = "select * from t_dinner_table where table_status ="+tableStatus;
         return DinnerTableSql.findCondition(sql);
+    }
+
+    @Override
+    public void save(String tableName) {
+        //添加餐桌，默认都是空闲，时间为空
+        String sql = "insert into t_dinner_table(table_name,table_status,reservation_time) values('"+tableName+"',0,null)";
+        try {
+            DbSql.update(sql);
+        } catch (SQLException e) {
+            //"添加餐桌出现未知的异常！！！"
+            throw new RuntimeException(ExceptionMessageConstant.DINNERTABLE_ADD_UNKONE_MESSAGE);
+        }
+    }
+
+    @Override
+    public void deleteById(int tableId) {
+        try {
+            String sql = "delete from t_dinner_table where table_id = "+tableId;
+            DbSql.update(sql);
+        } catch (SQLException e) {
+            //"删除餐桌出现未知的异常"
+            throw new RuntimeException(ExceptionMessageConstant.DINNERTABLE_DELETE_FAIL_MESSAGE);
+        }
     }
 }

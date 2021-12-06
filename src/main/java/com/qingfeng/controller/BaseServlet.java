@@ -60,6 +60,7 @@ public class BaseServlet extends HttpServlet {
                     resp.sendRedirect(url);
                 }else{
                     //都不是，响应错误信息
+                    /*resp.getWriter().write("<script type=\"text/javascript\">alert('"+result+"');</script>");*/
                     resp.getWriter().write(result);
                 }
                 return;

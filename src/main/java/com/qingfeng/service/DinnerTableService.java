@@ -23,4 +23,16 @@ public interface DinnerTableService {
      * @param tableId
      */
     void updateStatus(String tableId) throws Exception;
+
+    /**
+     * 根据餐桌名，保存餐桌信息
+     * @param tableName
+     */
+    void save(String tableName);
+
+    /**
+     * 根据餐桌id删除餐桌信息
+     * @param tableId
+     */
+    void deleteById(int tableId);
 }

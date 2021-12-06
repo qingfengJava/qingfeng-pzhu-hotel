@@ -42,4 +42,16 @@ public interface DinnerTableDao {
      * @throws SQLException
      */
     List<DinnerTable> findTablesByStatus(int tableStatus) throws SQLException;
+
+    /**
+     * 根据餐桌的名称添加餐桌
+     * @param tableName
+     */
+    void save(String tableName);
+
+    /**
+     * 根据餐桌id删除餐桌信息
+     * @param tableId
+     */
+    void deleteById(int tableId);
 }
