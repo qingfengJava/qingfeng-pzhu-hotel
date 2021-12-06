@@ -1,5 +1,7 @@
 package com.qingfeng.pojo;
 
+import com.qingfeng.utils.DateUtils;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -49,9 +51,18 @@ public class User implements Serializable {
      */
     private Date userCreateTime;
     /**
+     * 创建时间的字符串格式
+     */
+    private String userCreateTimeStr;
+    /**
      * 更新时间
      */
     private Date userUpdateTime;
+    /**
+     * 修改时间的字符串格式
+     */
+    private String userUpdateTimeStr;
+
     /**
      * 是否删除  0：否  1：是
      */
@@ -82,6 +93,24 @@ public class User implements Serializable {
         this.isDelete = isDelete;
         this.isMember = isMember;
         this.balance = balance;
+    }
+
+    public String getUserCreateTimeStr() {
+        //使用封装好的工具类，将日期转换为字符串
+        return this.userCreateTimeStr =DateUtils.dateToStr(userCreateTime,"yyyy-MM-dd  HH:mm:ss");
+    }
+
+    public void setUserCreateTimeStr(String userCreateTimeStr) {
+        this.userCreateTimeStr = userCreateTimeStr;
+    }
+
+    public String getUserUpdateTimeStr() {
+        //使用封装好的工具类，将日期转换为字符串
+        return this.userUpdateTimeStr =DateUtils.dateToStr(userUpdateTime,"yyyy-MM-dd  HH:mm:ss");
+    }
+
+    public void setUserUpdateTimeStr(String userUpdateTimeStr) {
+        this.userUpdateTimeStr = userUpdateTimeStr;
     }
 
     public Long getUserId() {

@@ -130,7 +130,7 @@
 			<span style="float: right;padding-right: 20px;font-size: 22px;color: black;padding-top: 20px;font-family: '楷体'">
 				<div>
 					<span>
-						欢迎：<span style="color: red">${loginUser.username}</span>光临就餐
+						欢迎：<span style="color: red;">${loginUser.nickName}</span>光临就餐
 					</span>
 					<span>
 						&nbsp;&nbsp;当前就餐人数：<span style="color: red">5</span>人<br/>

@@ -60,6 +60,15 @@
 			margin-bottom: 10px;
 		}
 
+		#labelCode:hover{
+			color: grey;
+		}
+
+		.checked:hover{
+			color: white;
+		}
+
+
 	</style>
 
 </head>
@@ -86,14 +95,14 @@
 							<input id="password" name="password" type="password" class="input" data-type="password">
 						</div>
 						<div class="group">
-							<label for="pass" class="label">验证码</label>
+							<label for="code" class="label">验证码</label>
 							<input width=50% type="text" id="code" name="code" style="position: relative;top: 40px; width: 150px;height: 46px;
 								font-size: 16px;color: #fff;background: rgba(255,255,255,.1);padding-left: 20px;">
 							<a href="javascript:refreshCode()">
 								<img src="${pageContext.request.contextPath}/codeServlet" title="看不清点击刷新" id="img_code"
 									 style="position: relative;top: 39px; vertical-align: middle"/>
 							</a>
-							<a href="javascript:refreshCode()" class="label" style="transform: translate(270px,-20px);font-size: 15px;">看不清？换一张</a>
+							<a id="labelCode" href="javascript:refreshCode()" class="label" style="transform: translate(270px,-20px);font-size: 15px;">看不清？换一张</a>
 							<script>
 								function refreshCode() {
 									document.getElementById("img_code").src = "${pageContext.request.contextPath}/codeServlet?" + (new Date()).getTime();
@@ -102,7 +111,7 @@
 						</div>
 						 <div class="group">
 							<input id="check" type="checkbox" name="check" value="1" class="check"/>
-							<label for="check" style="position: relative;top: 40px;"><span class="icon"></span>记住密码</label>
+							<label class="checked" for="check" style="position: relative;top: 40px;"><span class="icon"></span>记住密码</label>
 						</div>
 						<div class="group">
 							<input type="submit" class="button" value="登录" onclick="return index()" style="width: 48%">
@@ -110,12 +119,13 @@
 						</div>
 						<div class="hr"></div>
 						<div class="foot-lnk">
-							<a href="back.html">忘记密码 ?</a>
+							<a href="/back.jsp">忘记密码 ?</a>
 						</div>
 					</div>
 				</form>
 				
-				<form action="Register" method="post" onsubmit="return register()">
+				<form action="${pageContext.request.contextPath}/user" method="post" onsubmit="return register()">
+					<input type="hidden" name="method" value="register" />
 					<div class="sign-up-htm">
 						<div class="group">
 							<label for="user" class="label">用户名</label>
@@ -151,7 +161,7 @@
 								<img src="${pageContext.request.contextPath}/codeServlet" title="看不清点击刷新" id="img_code2"
 									 style="position: relative;top: 10px; vertical-align: middle"/>
 							</a>
-							<a href="javascript:refreshCode()" class="label" style="transform: translate(270px,-50px);font-size: 15px;">看不清？换一张</a>
+							<a id="labelCode" href="javascript:refCode()" class="label" style="transform: translate(270px,-50px);font-size: 15px;">看不清？换一张</a>
 							<script>
 								function refCode() {
 									document.getElementById("img_code2").src = "${pageContext.request.contextPath}/codeServlet?" + (new Date()).getTime();
@@ -162,7 +172,6 @@
 						<div class="group">
 							<input type="submit" class="button" value="注册" style="position: relative;top: 10px;">
 						</div>
-						<div class="hr"></div>
 						<div class="foot-lnk">
 							<label for="tab-1" style="position: relative;top: -40px;">已是成员?</label>
 						</div>
@@ -200,9 +209,8 @@
 		</td>
 	</tr>
 </table>
-
-
 </body>
+
 <script>
     //登录合理性检查
     function login() {

@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -59,6 +60,14 @@
 			margin-bottom: 10px;
 		}
 
+		#labelCode:hover{
+			color: grey;
+		}
+
+		.checked:hover{
+			color: white;
+		}
+
 	</style>
 
 </head>
@@ -70,7 +79,8 @@
 			<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">登录</label>
 			<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">找回密码</label>
 			<div class="login-form">
-				<form action="LoginServlet" method="post" onsubmit="return login()">
+				<form action="${pageContext.request.contextPath}/user" method="post" onsubmit="return login()">
+					<input type="hidden" name="method" value="login" />
 					<div class="sign-in-htm">
 						<div class="group">
 							<label for="username" class="label">用户名</label>
@@ -81,13 +91,14 @@
 							<input id="password" name="password" type="password" class="input" data-type="password">
 						</div>
 						<div class="group">
-							<label for="pass" class="label">验证码</label>
-							<input width=50% type="text" id="code" style="position: relative;top: 40px; width: 200px;height: 46px;
+							<label for="code" class="label">验证码</label>
+							<input width=50% type="text" id="code" name="code" style="position: relative;top: 40px; width: 150px;height: 46px;
 								font-size: 16px;color: #fff;background: rgba(255,255,255,.1);padding-left: 20px;">
 							<a href="javascript:refreshCode()">
 								<img src="${pageContext.request.contextPath}/codeServlet" title="看不清点击刷新" id="img_code"
-									 style="position: relative;top: 45px; vertical-align: middle"/>
+									 style="position: relative;top: 39px; vertical-align: middle"/>
 							</a>
+							<a href="javascript:refreshCode()" id="labelCode" class="label" style="transform: translate(270px,-20px);font-size: 15px;">看不清？换一张</a>
 							<script>
 								function refreshCode() {
 									document.getElementById("img_code").src = "${pageContext.request.contextPath}/codeServlet?" + (new Date()).getTime();
@@ -95,8 +106,8 @@
 							</script>
 						</div>
 						<div class="group">
-							<input id="check" type="checkbox" class="check"/>
-							<label for="check" style="position: relative;top: 40px;"><span class="icon"></span>记住密码</label>
+							<input id="check" type="checkbox" name="check" value="1" class="check"/>
+							<label class="checked" for="check" style="position: relative;top: 40px;"><span class="icon"></span>记住密码</label>
 						</div>
 						<div class="group">
 							<input type="submit" class="button" value="登录" onclick="return login()" style="width: 48%">
@@ -106,7 +117,8 @@
 					</div>
 				</form>
 				
-				<form action="Back" method="post" onsubmit="return register()">
+				<form action="${pageContext.request.contextPath}/user" method="post" onsubmit="return register()">
+					<input type="hidden" name="method" value="update" />
 					<div class="sign-up-htm">
 						<div class="group">
 							<label for="user" class="label">用户名</label>
@@ -118,15 +130,16 @@
 						</div>
 						<div class="group">
 							<label for="pass" class="label">验证码</label>
-							<input width=50% type="text" id="inputCode" style="position: relative;top: 40px; width: 200px;height: 46px;
+							<input width=50% type="text" id="inputCode" name="code" style="position: relative;top: 40px; width: 150px;height: 46px;
 								font-size: 16px;color: #fff;background: rgba(255,255,255,.1);padding-left: 20px;">
-							<a href="javascript:refreshCode()">
-								<img src="${pageContext.request.contextPath}/codeServlet" title="看不清点击刷新" id="img_code"
-									 style="position: relative;top: 45px; vertical-align: middle"/>
+							<a href="javascript:refCode()">
+								<img src="${pageContext.request.contextPath}/codeServlet" title="看不清点击刷新" id="img_code2"
+									 style="position: relative;top: 39px; vertical-align: middle"/>
 							</a>
+							<a href="javascript:refreshCode()" id="labelCode" class="label" style="transform: translate(270px,-20px);font-size: 15px;">看不清？换一张</a>
 							<script>
-								function refreshCode() {
-									document.getElementById("img_code").src = "${pageContext.request.contextPath}/codeServlet?" + (new Date()).getTime();
+								function refCode() {
+									document.getElementById("img_code2").src ="${pageContext.request.contextPath}/codeServlet?" + (new Date()).getTime();
 								}
 							</script>
 						</div>						
@@ -136,7 +149,7 @@
 						
 						<div class="hr"></div>
 						<div class="foot-lnk">
-							<a href="index.jsp">重新注册?</a>
+							<a href="/index.jsp">重新注册?</a>
 						</div>
 					</div>
 				</form>

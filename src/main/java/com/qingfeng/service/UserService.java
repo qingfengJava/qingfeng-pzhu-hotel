@@ -1,6 +1,7 @@
 package com.qingfeng.service;
 
 import com.qingfeng.entity.ResultVO;
+import com.qingfeng.pojo.User;
 
 /**
  * 用户的业务层接口
@@ -18,4 +19,11 @@ public interface UserService {
      * @return
      */
     ResultVO login(String username, String password);
+
+    /**
+     * 注册用户
+     * @param user
+     * @return 返回1-表示注册成功  返回0-表示注册失败
+     */
+    int register(User user);
 }

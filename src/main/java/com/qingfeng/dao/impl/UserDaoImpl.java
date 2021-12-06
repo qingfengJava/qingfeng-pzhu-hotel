@@ -23,4 +23,16 @@ public class UserDaoImpl implements UserDao {
         String sql = "select * from t_user where username = '"+username+"'";
         return UserSql.findUserByName(sql);
     }
+
+    @Override
+    public int register(User user) {
+        try {
+            String sql = "insert into t_user(username,password,nick_name,is_admin,phone,gender,user_status,user_create_time,user_update_time,is_delete,is_member,balance) " +
+                    "values('"+user.getUsername()+"','"+user.getPassword()+"','"+user.getNickName()+"',"+user.getIsAdmin()+",'"+user.getPhone()+"'," +
+                    user.getGender()+","+user.getUserStatus()+",'"+user.getUserCreateTimeStr()+"','"+user.getUserUpdateTimeStr()+"',"+user.getIsDelete()+","+user.getIsMember()+","+user.getBalance()+")";
+            return UserSql.insert(sql);
+        } catch (Exception e) {
+            throw new RuntimeException("注册用户出现未知的异常");
+        }
+    }
 }

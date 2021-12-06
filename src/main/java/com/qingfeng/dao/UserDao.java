@@ -17,4 +17,11 @@ public interface UserDao {
      * @return
      */
     User findByUsername(String username);
+
+    /**
+     * 注册用户
+     * @param user
+     * @return 返回1-表示注册成功  返回0-表示注册失败
+     */
+    int register(User user);
 }

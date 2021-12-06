@@ -45,4 +45,26 @@ public class UserServiceImpl implements UserService {
         //3、返回用户信息
         return new ResultVO("登录成功",user);
     }
+
+    /**
+     * 注册用户
+     * @param user
+     * @return 返回1-表示注册成功  返回0-表示注册失败
+     */
+    @Override
+    public int register(User user) {
+        try {
+            //根据用户名查询用户信息
+            User daoByUser = userDao.findByUsername(user.getUsername());
+            if (daoByUser == null){
+                //说明用户不存在，可以注册
+                return userDao.register(user);
+            }
+            //用户存在，直接返回0
+            return 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("注册用户出现未知的异常");
+        }
+    }
 }
