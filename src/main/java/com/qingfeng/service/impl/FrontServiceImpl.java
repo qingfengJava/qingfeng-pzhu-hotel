@@ -1,6 +1,7 @@
 package com.qingfeng.service.impl;
 
 import com.qingfeng.constant.BeanFactoryConstant;
+import com.qingfeng.constant.MessageConstant;
 import com.qingfeng.dao.DinnerTableDao;
 import com.qingfeng.entity.ResultVO;
 import com.qingfeng.factory.BeanFactory;
@@ -25,13 +26,13 @@ public class FrontServiceImpl implements FrontService {
     public ResultVO findTablesByStatus(String tableStatus) throws Exception {
         try {
             List<DinnerTable> tables = dinnerTableDao.findTablesByStatus(Integer.parseInt(tableStatus));
-            return new ResultVO("可用餐桌查询成功！", tables);
+            return new ResultVO(MessageConstant.USEABLE_TABLE, tables);
         } catch (NumberFormatException e) {
             e.printStackTrace();
-            return new ResultVO(false,"可用餐桌查询失败！", "餐桌状态不对");
+            return new ResultVO(false,MessageConstant.USERABLE_TABLE_FIND_FAIL, MessageConstant.TABLE_STATUS_ERRO);
         }catch (SQLException e){
             e.printStackTrace();
-            return new ResultVO(false,"可用餐桌查询失败！", "SQL出异常了");
+            return new ResultVO(false,MessageConstant.USEABLE_TABLE_FAIL,MessageConstant.SQL_EX );
         }
     }
 }

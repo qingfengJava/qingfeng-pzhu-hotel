@@ -15,6 +15,7 @@ public interface FrontService {
      * 根据状态查询符合的餐桌的集合
      * @param tableStatus
      * @return
+     * @throws Exception
      */
     ResultVO findTablesByStatus(String tableStatus) throws Exception;
 }

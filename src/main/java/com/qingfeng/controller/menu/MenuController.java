@@ -6,6 +6,7 @@ package com.qingfeng.controller.menu; /**
 
 import com.google.gson.Gson;
 import com.qingfeng.constant.BeanFactoryConstant;
+import com.qingfeng.constant.MessageConstant;
 import com.qingfeng.entity.ResultVO;
 import com.qingfeng.factory.BeanFactory;
 import com.qingfeng.pojo.Menu;
@@ -41,14 +42,14 @@ public class MenuController extends HttpServlet {
 
             //json格式的字符串
             Gson gson = new Gson();
-            ResultVO vo = new ResultVO("菜单查询成功", list.toArray());
+            ResultVO vo = new ResultVO(MessageConstant.MENU_FIND_SUCCESS, list.toArray());
             String listJsonString = gson.toJson(vo);
 
             //响应数据
             response.getWriter().write(listJsonString);
         } catch (IOException e) {
             e.printStackTrace();
-            response.getWriter().write("服务器正忙，请稍后重试... ...");
+            response.getWriter().write(MessageConstant.COMMON_ERROR_MESSAGE);
         }
     }
 

@@ -72,7 +72,7 @@ public class DinnerTableServiceImpl implements DinnerTableService {
             //调用持久层添加餐桌的方法
             dinnerTableDao.save(tableName);
         }else{
-            //重复，抛出一个不可添加的异常
+            //重复，抛出一个不可添加的异常  "不允许添加重复餐桌"
             throw new RuntimeException(ExceptionMessageConstant.DINNERTABLE_ADD_FAIL_MESSAGE);
         }
     }

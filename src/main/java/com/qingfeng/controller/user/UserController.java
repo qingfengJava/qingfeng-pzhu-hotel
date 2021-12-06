@@ -91,7 +91,7 @@ public class UserController extends BaseServlet {
             }
         }else{
             //验证码错误，请求转发回本页面
-            request.setAttribute("login_msg","验证码输入错误！");
+            request.setAttribute("login_msg",MessageConstant.CODE_ERROR);
         }
         return MessageConstant.PREFIX_FORWAED+"/index.jsp";
     }
@@ -154,14 +154,14 @@ public class UserController extends BaseServlet {
                 //根据返回的值来判断用户是否注册成功
                 if(index == 1){
                     //注册成功，回到登录界面
-                    request.setAttribute("login_msg","恭喜你，注册成功，马上登录吧！");
+                    request.setAttribute("login_msg",MessageConstant.REGISTER_SUCCESS);
                 }else {
-                    //注册失败，请求转发回本页面
-                    request.setAttribute("login_msg","用户已存在，注册失败！");
+                    //注册失败，请求转发回本页面 "用户已存在，注册失败！"
+                    request.setAttribute("login_msg",MessageConstant.REGISTER_FAIL);
                 }
             }else{
                 //验证码错误，请求转发回本页面
-                request.setAttribute("login_msg","验证码输入错误！");
+                request.setAttribute("login_msg",MessageConstant.CODE_ERROR);
             }
             //最终返回本页面
             return MessageConstant.PREFIX_FORWAED+"/index.jsp";
@@ -200,14 +200,14 @@ public class UserController extends BaseServlet {
                     userService.updateByUserName(username,newPassword);
 
                     //更新/找回密码成功，回到登录界面
-                    request.setAttribute("login_msg","恭喜你，密码更新/找回成功，马上登录吧！");
+                    request.setAttribute("login_msg",MessageConstant.UPDATE_PASSWORD_SUCCESS);
                 }else{
                     //说明用户不存在，不能修改或找回密码
-                    request.setAttribute("login_msg","用户不存在，不能修改/找回密码！");
+                    request.setAttribute("login_msg",MessageConstant.UPDATE_USER_FAIL);
                 }
             }else {
                 //验证码错误
-                request.setAttribute("login_msg","验证错误，请重新输入！");
+                request.setAttribute("login_msg",MessageConstant.CODE_ERROR);
             }
             //最终返回本页面
             return MessageConstant.PREFIX_FORWAED+"/back.jsp";

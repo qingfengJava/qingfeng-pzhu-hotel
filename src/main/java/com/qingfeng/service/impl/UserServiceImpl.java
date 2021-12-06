@@ -1,6 +1,8 @@
 package com.qingfeng.service.impl;
 
 import com.qingfeng.constant.BeanFactoryConstant;
+import com.qingfeng.constant.ExceptionMessageConstant;
+import com.qingfeng.constant.MessageConstant;
 import com.qingfeng.dao.UserDao;
 import com.qingfeng.entity.ResultVO;
 import com.qingfeng.factory.BeanFactory;
@@ -48,7 +50,7 @@ public class UserServiceImpl implements UserService {
 
 
         //3、返回用户信息
-        return new ResultVO("登录成功",user);
+        return new ResultVO(MessageConstant.LOGIN_SUCCESS,user);
     }
 
     /**
@@ -69,7 +71,7 @@ public class UserServiceImpl implements UserService {
             return 0;
         } catch (Exception e) {
             e.printStackTrace();
-            throw new RuntimeException("注册用户出现未知的异常");
+            throw new RuntimeException(ExceptionMessageConstant.REGISTRE_EX);
         }
     }
 
@@ -84,7 +86,7 @@ public class UserServiceImpl implements UserService {
             userDao.updateByUserName(username, password);
         } catch (Exception e) {
             e.printStackTrace();
-            throw new RuntimeException("更新/找回密码时出现未知的异常！");
+            throw new RuntimeException(ExceptionMessageConstant.USER_UPDATE_EX);
         }
     }
 }

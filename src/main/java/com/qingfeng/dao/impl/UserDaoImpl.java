@@ -1,5 +1,6 @@
 package com.qingfeng.dao.impl;
 
+import com.qingfeng.constant.ExceptionMessageConstant;
 import com.qingfeng.dao.UserDao;
 import com.qingfeng.pojo.User;
 import com.qingfeng.utils.sql.DbSql;
@@ -35,7 +36,7 @@ public class UserDaoImpl implements UserDao {
                     user.getGender()+","+user.getUserStatus()+",'"+user.getUserCreateTimeStr()+"','"+user.getUserUpdateTimeStr()+"',"+user.getIsDelete()+","+user.getIsMember()+","+user.getBalance()+")";
             return UserSql.insert(sql);
         } catch (Exception e) {
-            throw new RuntimeException("注册用户出现未知的异常");
+            throw new RuntimeException(ExceptionMessageConstant.REGISTRE_EX);
         }
     }
 
@@ -46,7 +47,7 @@ public class UserDaoImpl implements UserDao {
             DbSql.update(sql);
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("更新/找回密码时出现未知的异常！");
+            throw new RuntimeException(ExceptionMessageConstant.USER_UPDATE_EX);
         }
     }
 }

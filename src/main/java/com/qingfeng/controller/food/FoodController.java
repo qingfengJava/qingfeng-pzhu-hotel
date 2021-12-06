@@ -82,6 +82,7 @@ public class FoodController extends BaseServlet {
             String reslut = FileUploadUtils.uploadFile(request, "imageUrl", "/files/images/");
             //判断文件上传是否出错
             if (MessageConstant.FILEUPLOAD_ERROR.equals(reslut)){
+                // "上传文件不能为空"
                 return MessageConstant.FILEUPLOAD_ERROR;
             }
 
@@ -101,11 +102,12 @@ public class FoodController extends BaseServlet {
                 return MessageConstant.PREFIX_REDIRECT +request.getContextPath()+"/food?method=search";
             }
 
-            //否则，说明菜品重复，添加失败，给出异常信息
+            //否则，说明菜品重复，添加失败，给出异常信息   "菜品已经存在，不允许添加"
             return ExceptionMessageConstant.FOOD_ADD_FAIL_MESSAGE;
 
         } catch (SQLException e) {
             e.printStackTrace();
+            //"添加菜品异常，请稍后再试！"
             return ExceptionMessageConstant.FOOD_ADD_EXCEPTION_MESSAGE;
         }
     }
@@ -189,6 +191,7 @@ public class FoodController extends BaseServlet {
             newImage = FileUploadUtils.uploadFile(req, "imageUrl", "/files/images/");
             //判断文件上传是否出错
             if (MessageConstant.FILEUPLOAD_ERROR.equals(newImage)){
+                //"上午文件不能为空"
                 return MessageConstant.FILEUPLOAD_ERROR;
             }
 
