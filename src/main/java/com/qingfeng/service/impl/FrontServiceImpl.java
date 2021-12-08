@@ -41,7 +41,7 @@ public class FrontServiceImpl implements FrontService {
     }
 
     @Override
-    public PageBean<Food> findByPage(String _currentPage, String _rows) {
+    public PageBean<Food> findByPage(String typeId,String _currentPage, String _rows) {
         //封装一个完整的pageBean并返回
         //根据当前页码和每页的记录数，查询封装相关的数据
         int currentPage = Integer.parseInt(_currentPage);
@@ -58,7 +58,7 @@ public class FrontServiceImpl implements FrontService {
         pb.setRows(rows);
 
         //3、调用dao查询总记录数，要根据模糊查询的条件来查询  查询所有，因此传两个空值
-        int totalCount = foodDao.findTotalCount("","");
+        int totalCount = foodDao.findTotalCount(typeId);
         pb.setTotalCount(totalCount);
 
         //4、计算总页码  总的记录数 除以 每页显示的记录数来判断
@@ -76,7 +76,12 @@ public class FrontServiceImpl implements FrontService {
         int start = (currentPage-1)*rows;
 
         //5、调用dao分页查询，查询每页显示的记录数，要根据模糊查询的条件来查询
-        List<Food> foodList =  foodDao.findFoodCondition(null,start,rows);
+        Food food = null;
+        if (typeId != "") {
+            food = new Food();
+            food.setTypeId(Long.parseLong(typeId));
+        }
+        List<Food> foodList =  foodDao.findFoodCondition(food,start,rows);
         //将查询到的每页的记录数据设置到page对象中
         pb.setList(foodList);
 

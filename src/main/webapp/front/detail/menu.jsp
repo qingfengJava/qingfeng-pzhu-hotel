@@ -24,21 +24,35 @@
 </head>
 <body style="text-align: center;background-color: goldenrod;">
 <div class="nav" style="text-align: left;font-family: 楷体;">
-	全部菜品
+	${foodType_name}
 	<span style="float: right;padding-right: 20px">
-		<div style="position: relative;top: -15px;">
-			<span>
-				欢迎：<span style="color: red">${loginUser.nickName}</span>  光临攀大美味餐厅
-			</span>
-			<span>
-				当前就餐人数：<span style="color: red">5</span>人
-			</span>
-			<br>
-			<span style="position: relative;top: -70px;">
-				时间：${day}
-				<a href="/index.jsp" style="border: 1px solid darkgrey;border-radius: 10px;padding: 6px 5px;background-color: darkgrey;font-size: 15px;margin-left: 100px;">退出登录</a>
-			</span>
-		</div>
+		<c:if test="${loginUser != null}">
+			<div style="position: relative;top: -15px;">
+				<span>
+					欢迎：<span style="color: red">${loginUser.nickName}</span>  光临攀大美味餐厅
+				</span>
+				<span>
+					&nbsp;&nbsp;&nbsp;累计成功登录次数：<span style="color: red">5</span>次
+				</span>
+				<br>
+				<span style="position: relative;top: -70px;">
+					当前就餐人数：<span style="color: red">5</span>人&nbsp;&nbsp;
+					时间：${day}
+					<a href="/index.jsp" style="border: 1px solid darkgrey;border-radius: 10px;padding: 6px 5px;background-color: darkgrey;font-size: 15px;margin-left: 20px;">退出登录</a>
+				</span>
+			</div>
+		</c:if>
+		<c:if test="${loginUser == null}">
+			<div style="position: relative;top: -15px;">
+				<span>
+					亲：<span style="color: red">登录才能点餐哟！！！</span>
+				</span>
+				<span style="position: relative;top: 0px;">
+					时间：${day}
+				</span>
+			</div>
+		</c:if>
+
 	</span>
 </div>
 <div id="all">
@@ -49,19 +63,19 @@
 				<!-- 循环列出餐品 -->
 				<c:forEach items="${pb.list}" var="food">
 					<li>
+						<a href="/front?method=findFoodById&foodId=${food.foodId}">
 						<dl>
 							<dt>
-								<a href="/front/detail/caixiangxi.jsp">
-									<img src="${food.foodImage}" width="214px" height="145px" />
-								</a>
+								<img src="${food.foodImage}" width="214px" height="145px" />
 							</dt>
 							<dd class="f1">
-								<a href="/front/detail/caixiangxi.jsp">${food.foodName}</a>
+								${food.foodName}
 							</dd>
 							<dd class="f2">
-								<a href="/front/detail/caixiangxi.jsp"><span>原价：${food.foodPrice}</span> <span style="color:red;font-size: 15px;">会员价：${food.foodMprice}</span></a>
+								<span>原价：${food.foodPrice}</span> <span style="color:red;font-size: 15px;">会员价：${food.foodMprice}</span>
 							</dd>
 						</dl>
+						</a>
 					</li>
 				</c:forEach>
 			</ul>
@@ -77,18 +91,18 @@
 					<li style="float: left;"><a href="javascript:void(0)" style="border: 1px solid black;padding: 10px 10px;font-size: 15px;">上一页</a></li>
 				</c:if>
 				<c:if test="${pb.currentPage != 1}">
-					<li style="float: left;"><a class="page" href="/front?method=findByPage&currentPage=${pb.currentPage - 1}&rows=8&foodTypeName=${foodTypeName}" style="border: 1px solid black;padding: 10px 10px;font-size: 15px;">上一页</a></li>
+					<li style="float: left;"><a class="page" href="/front?method=findByPage&currentPage=${pb.currentPage - 1}&rows=8&typeId=${typeNum}" style="border: 1px solid black;padding: 10px 10px;font-size: 15px;">上一页</a></li>
 				</c:if>
 
 
 				<c:forEach begin="1" end="${pb.totalPage}" var="i">
 					<%-- 如果页码和i相等，就要显示激活状态 --%>
 					<c:if test="${pb.currentPage == i}">
-						<li style="float: left"><a class="active page" href="/front?method=findByPage&currentPage=${i}&rows=8&foodTypeName=${foodTypeName}"
+						<li style="float: left"><a class="active page" href="/front?method=findByPage&currentPage=${i}&rows=8&typeId=${typeNum}"
 												   style="border: 1px solid black;padding: 10px 15px;font-size: 15px;">${i}</a></li>
 					</c:if>
 					<c:if test="${pb.currentPage != i}">
-						<li style="float: left"><a class="page" href="/front?method=findByPage&currentPage=${i}&rows=8&foodTypeName=${foodTypeName}"
+						<li style="float: left"><a class="page" href="/front?method=findByPage&currentPage=${i}&rows=8&typeId=${typeNum}"
 												   style="border: 1px solid black;padding: 10px 15px;font-size: 15px;">${i}</a></li>
 					</c:if>
 
@@ -99,7 +113,7 @@
 					<li style="float: left;"><a href="javascript:void(0)" style="border: 1px solid black;padding: 10px 10px;font-size: 15px;">下一页</a></li>
 				</c:if>
 				<c:if test="${pb.currentPage != pb.totalPage}">
-					<li style="float: left;"><a class="page" href="/front?method=findByPage&currentPage=${pb.currentPage+1}&rows=8&foodTypeName=${foodTypeName}" style="border: 1px solid black;padding: 10px 10px;font-size: 15px;">下一页</a></li>
+					<li style="float: left;"><a class="page" href="/front?method=findByPage&currentPage=${pb.currentPage+1}&rows=8&typeId=${typeNum}" style="border: 1px solid black;padding: 10px 10px;font-size: 15px;">下一页</a></li>
 				</c:if>
 				<li style="float: left"><span style="padding-left: 20px;font-size: 20px">
 					共<span style="font-weight: 700;font-size: 20px;color: black;">${pb.totalCount}</span>条数据
@@ -114,29 +128,32 @@
 
 		<div id="dish_2">
 			<ul>
+				<c:if test="${typeNum == 0}">
+					<li style="background-color: whitesmoke;">
+						<a href="/front?method=findByPage" style="color:goldenrod;font-weight: 700;">全部菜品</a>
+					</li>
+				</c:if>
+				<c:if test="${typeNum != 0}">
+					<li>
+						<a href="/front?method=findByPage">全部菜品</a>
+					</li>
+				</c:if>
 
-				<li>
-					<a href="/front?method=findByPage">全部菜品</a>
-				</li>
-
-				<li>
-					<a href="/front/detail/yuecai.jsp">粤菜</a>
-				</li>
-
-				<li>
-					<a href="/front/detail/chuancai.jsp">川菜</a>
-				</li>
-
-				<li>
-					<a href="/front/detail/xiangcai.jsp">湘菜</a>
-				</li>
-
-				<li>
-					<a href="/front/detail/dongbeicai.jsp">东北菜</a>
-				</li>
+				<c:forEach items="${sessionScope.foodTypes}" var="type">
+					<c:if test="${typeNum == type.typeId}">
+						<li style="background-color: whitesmoke;">
+							<a href="/front?method=findByPage&typeId=${type.typeId}" style="color:goldenrod;font-weight: 700;">${type.typeName}</a>
+						</li>
+					</c:if>
+					<c:if test="${typeNum != type.typeId}">
+						<li>
+							<a href="/front?method=findByPage&typeId=${type.typeId}">${type.typeName}</a>
+						</li>
+					</c:if>
+				</c:forEach>
 				<li><a href=""></a></li>
-				<li style="background-color: whitesmoke;">
-					<a href="/front/detail/clientCart.jsp" style="color:goldenrod;font-weight: 700;">我的餐单</a>
+				<li>
+					<a href="/front/detail/clientCart.jsp">我的餐单</a>
 				</li>
 			</ul>
 		</div>

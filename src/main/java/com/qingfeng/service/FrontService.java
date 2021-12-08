@@ -23,9 +23,11 @@ public interface FrontService {
 
     /**
      * 根据页码和每页显示的总数，进行分页查询
+     *
+     * @param typeId
      * @param _currentPage
      * @param _rows
      * @return
      */
-    PageBean<Food> findByPage(String _currentPage, String _rows);
+    PageBean<Food> findByPage(String typeId, String _currentPage, String _rows);
 }

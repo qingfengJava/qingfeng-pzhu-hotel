@@ -127,18 +127,30 @@
 		<div class="shortcut" >
 			<span style="text-align: left;font-family: '华文行楷';">攀大美味餐厅——欢迎您！</span>
 			<span style="float: right;padding-right: 20px;font-size: 22px;color: black;padding-top: 20px;font-family: '楷体'">
-				<div>
+				<c:if test="${loginUser != null}">
+					<div>
+						<span>
+							欢迎：<span style="color: red">${loginUser.nickName}</span>光临就餐
+						</span>
+						<span>
+							&nbsp;&nbsp;&nbsp;累计成功登录次数：<span style="color: red">5</span>次
+						</span>
+						<br>
+						<span style="position: relative;top: 0px;">
+							当前就餐人数：<span style="color: red">5</span>人&nbsp;&nbsp;
+							时间：${day}
+							<a href="/index.jsp" style="border: 1px solid darkgrey;border-radius: 10px;padding: 6px 5px;background-color: darkgrey;font-size: 15px;margin-left: 20px;">退出登录</a>
+						</span>
+					</div>
+				</c:if>
+				<c:if test="${loginUser == null}">
 					<span>
-						欢迎：<span style="color: red">${loginUser.nickName}</span>光临就餐
+						亲：<span style="color: red">登录才能点餐哟！！！</span>
 					</span>
-					<span>
-						&nbsp;&nbsp;当前就餐人数：<span style="color: red">5</span>人<br/>
-					</span>
-					<br>
-					<span style="position: relative;top: -10px;">
+					<span style="position: relative;top: 0px;">
 						时间：${day}
 					</span>
-				</div>
+				</c:if>
 			</span>
 		</div>
 

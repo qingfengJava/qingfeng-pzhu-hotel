@@ -28,12 +28,18 @@ public class FoodDaoImpl implements FoodDao {
     @Override
     public List<Food> findFoodCondition(Food food,int start,int rows) {
         String sql = null;
-        if (food != null){
+        if (food != null && food.getFoodType() != null){
             //后台的分页条件查询
             sql = "select f.*,ft.type_name from t_food f,t_food_type ft where f.type_id = ft.type_id and ft.type_name like '%"+food.getFoodType().getTypeName()+"%' and f.food_name like '%"+food.getFoodName()+"%' order by f.food_id desc limit "+start+","+rows;
         }else{
-            //前台直接查询所有记录
-            sql = "select f.*,ft.type_name from t_food f,t_food_type ft where f.type_id = ft.type_id limit "+start+","+rows;
+            //前台直接查询所有记录  注意：这里还要对typeId做判断，防止空值出现
+            if (food == null){
+                //查询所有
+                sql = "select f.*,ft.type_name from t_food f,t_food_type ft where f.type_id = ft.type_id limit "+start+","+rows;
+            }else{
+                //条件查询
+                sql = "select f.*,ft.type_name from t_food f,t_food_type ft where f.type_id = ft.type_id and f.type_id = "+food.getTypeId()+" limit "+start+","+rows;
+            }
         }
         //调用封装的查询的方法，进行查询
         return FoodSql.findCondition(sql);
@@ -94,6 +100,22 @@ public class FoodDaoImpl implements FoodDao {
     @Override
     public int findTotalCount(String foodName, String typeName) {
         String sql = "select count(*) from t_food f,t_food_type ft where f.type_id = ft.type_id and ft.type_name like '%"+typeName+"%' and f.food_name like '%"+foodName+"%'";
+        return FoodSql.findTotalCount(sql);
+    }
+
+    /**
+     * 重载一个根据菜品id查询总条数的方法
+     * @param typeId
+     * @return
+     */
+    @Override
+    public int findTotalCount(String typeId) {
+        String sql = null;
+        if (typeId == "") {
+            sql = "select count(*) from t_food";
+        }else {
+            sql = "select count(*) from t_food where type_id = "+Long.parseLong(typeId);
+        }
         return FoodSql.findTotalCount(sql);
     }
 

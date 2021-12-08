@@ -108,7 +108,7 @@
 		<ul style="list-style-type: none;">
 			<%-- 上一页边界逻辑判断 --%>
 			<c:if test="${pb.currentPage <= 1}">
-				<li style="float: left;"><a class="page" href="/food?method=search&currentPage=1&rows=5&foodName=${foodName}&foodTypeName=${foodTypeName}" style="border: 1px solid black;padding: 10px 10px;">上一页</a></li>
+				<li style="float: left;"><a class="page" href="javascript:void(0)" style="border: 1px solid black;padding: 10px 10px;">上一页</a></li>
 			</c:if>
 			<c:if test="${pb.currentPage != 1}">
 				<li style="float: left;"><a class="page" href="/food?method=search&currentPage=${pb.currentPage - 1}&rows=5&foodName=${foodName}&foodTypeName=${foodTypeName}" style="border: 1px solid black;padding: 10px 10px;">上一页</a></li>
@@ -130,7 +130,7 @@
 
 			<%-- 下一页边界逻辑判断 --%>
 			<c:if test="${pb.currentPage >= pb.totalPage}">
-				<li style="float: left;"><a class="page" href="/food?method=search&currentPage=${pb.totalPage}&rows=5&foodName=${foodName}&foodTypeName=${foodTypeName}" style="border: 1px solid black;padding: 10px 10px;">下一页</a></li>
+				<li style="float: left;"><a class="page" href="javascript:void(0)" style="border: 1px solid black;padding: 10px 10px;">下一页</a></li>
 			</c:if>
 			<c:if test="${pb.currentPage != pb.totalPage}">
 				<li style="float: left;"><a class="page" href="/food?method=search&currentPage=${pb.currentPage+1}&rows=5&foodName=${foodName}&foodTypeName=${foodTypeName}" style="border: 1px solid black;padding: 10px 10px;">下一页</a></li>
