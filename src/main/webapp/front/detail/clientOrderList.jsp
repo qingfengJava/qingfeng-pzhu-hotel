@@ -8,10 +8,10 @@
     <link rel="stylesheet" type="text/css" href="/front/detail/style/css/index_1.css"/>
     <script type="text/javascript">
         // 通知服务员结账
-        function callPay(money) {
+        function callPay(money,orderId) {
             if (confirm("您总共消费"+money+"！确认结账吗?")){
                 /* 结账业务 */
-                window.location.href = "/front/?method=callPay";
+                window.location.href = "/front/?method=callPay&money="+money+"&orderId="+orderId;
             }
         }
     </script>
@@ -67,7 +67,7 @@
                 </tr>
                 <tr>
                     <td colspan="6" style="margin-left: 100px; text-align: center;" align="right">
-                        <input type="button" value="结账" class="btn_next" lang="" onclick="callPay(${orderTotalPrice})"/>
+                        <input type="button" value="结账" class="btn_next" lang="" onclick="callPay(${orderTotalPrice},${orderId})"/>
                     </td>
                 </tr>
             </table>

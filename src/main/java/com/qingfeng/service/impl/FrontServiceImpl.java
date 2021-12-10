@@ -4,11 +4,15 @@ import com.qingfeng.constant.BeanFactoryConstant;
 import com.qingfeng.constant.MessageConstant;
 import com.qingfeng.dao.DinnerTableDao;
 import com.qingfeng.dao.FoodDao;
+import com.qingfeng.dao.OrderDao;
+import com.qingfeng.dao.UserDao;
 import com.qingfeng.entity.PageBean;
 import com.qingfeng.entity.ResultVO;
 import com.qingfeng.factory.BeanFactory;
 import com.qingfeng.pojo.DinnerTable;
 import com.qingfeng.pojo.Food;
+import com.qingfeng.pojo.Orders;
+import com.qingfeng.pojo.User;
 import com.qingfeng.service.FrontService;
 
 import java.sql.SQLException;
@@ -23,8 +27,10 @@ import java.util.List;
  */
 public class FrontServiceImpl implements FrontService {
 
-    DinnerTableDao dinnerTableDao = (DinnerTableDao) BeanFactory.getBean(BeanFactoryConstant.DINNERTABLE_DAO);
+    private DinnerTableDao dinnerTableDao = (DinnerTableDao) BeanFactory.getBean(BeanFactoryConstant.DINNERTABLE_DAO);
     private FoodDao foodDao = (FoodDao) BeanFactory.getBean(BeanFactoryConstant.FOOD_DAO);
+    private UserDao userDao = (UserDao) BeanFactory.getBean(BeanFactoryConstant.USER_USERDAO);
+    private OrderDao orderDao = (OrderDao) BeanFactory.getBean(BeanFactoryConstant.ORDER_DAO);
 
     @Override
     public ResultVO findTablesByStatus(String tableStatus) throws Exception {
@@ -86,5 +92,56 @@ public class FrontServiceImpl implements FrontService {
         pb.setList(foodList);
 
         return pb;
+    }
+
+    /**
+     * 结账处理
+     * @param money
+     * @param user
+     * @param tableId
+     * @param orderId
+     */
+    @Override
+    public ResultVO callPay(Double money, User user, Long tableId, String orderId) {
+        //扣钱
+        if (money > user.getBalance()){
+            return new ResultVO(false,"对不起，余额不足，请充值！","没钱还吃饭，快去充钱吧！！！");
+        }
+        //先查询订单状态
+        Orders orders = orderDao.findById(orderId);
+        if (orders.getOrderStatus() == 1){
+            //说明已经支付过了，要退桌
+            //修改餐桌的状态为空闲
+            DinnerTable table = dinnerTableDao.findById(tableId);
+            //预定时间设置为空
+            table.setReservationTime(null);
+            //状态设置为空闲
+            table.setTableStatus(0);
+            try {
+                dinnerTableDao.updateStatus(table);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return new ResultVO("订单支付失败，请重新支付！！！",null);
+            }
+
+            return new ResultVO(true,"订单已支付","你有一个不错的朋友！！！");
+        }
+        //用户付钱
+        userDao.updateBalance(user.getBalance() - money,user.getUserId());
+        //订单状态修改为已支付 设置为1
+        orderDao.updateStatus(1,orderId);
+        //修改餐桌的状态为空闲
+        DinnerTable table = dinnerTableDao.findById(tableId);
+        //预定时间设置为空
+        table.setReservationTime(null);
+        //状态设置为空闲
+        table.setTableStatus(0);
+        try {
+            dinnerTableDao.updateStatus(table);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultVO("订单支付失败，请重新支付！！！",null);
+        }
+        return new ResultVO("订单支付成功！！！",null);
     }
 }

@@ -16,4 +16,18 @@ public interface OrderDao {
      * @param order
      */
     void save(Orders order);
+
+    /**
+     * 查询订单
+     * @param orderId
+     * @return
+     */
+    Orders findById(String orderId);
+
+    /**
+     * 修改订单状态为已支付
+     * @param orderStatus
+     * @param orderId
+     */
+    void updateStatus(Integer orderStatus,String orderId);
 }

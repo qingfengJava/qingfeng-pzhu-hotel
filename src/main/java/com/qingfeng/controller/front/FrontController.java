@@ -10,6 +10,7 @@ import com.qingfeng.entity.ResultVO;
 import com.qingfeng.factory.BeanFactory;
 import com.qingfeng.pojo.Food;
 import com.qingfeng.pojo.FoodType;
+import com.qingfeng.pojo.Orders;
 import com.qingfeng.pojo.User;
 import com.qingfeng.service.*;
 
@@ -260,12 +261,17 @@ public class FrontController extends BaseServlet {
         //要判断是否为空，不为空才有意义
         if (cartList != null) {
             //生成订单
-            orderService.genernateOrder(cartList, totalPrice, totalNum, loginUser, Long.valueOf(dinner_table_id));
+            ResultVO resultVO = orderService.genernateOrder(cartList, totalPrice, totalNum, loginUser, Long.valueOf(dinner_table_id));
 
             //设置订单详情数据
             session.setAttribute("orderDetailList", cartList);
-            session.setAttribute("orderTotalPrice", totalPrice);
-            session.setAttribute("orderTotalNum", totalNum);
+            //订单总金额
+            Orders orders = (Orders) resultVO.getData();
+            session.setAttribute("orderTotalPrice",orders.getOrderTotalPrice() );
+            //订单菜品总数量
+            session.setAttribute("orderTotalNum", orders.getTotalNum());
+            //订单号
+            session.setAttribute("orderId",orders.getOrderId());
             //清空餐车中的数据
             session.removeAttribute("cartList");
             session.removeAttribute("totalPrice");
@@ -273,5 +279,31 @@ public class FrontController extends BaseServlet {
         }
 
         return MessageConstant.PREFIX_REDIRECT+"/front/detail/clientOrderList.jsp";
+    }
+
+    /**
+     * 结账处理
+     * @param request
+     * @param response
+     * @return
+     */
+    public String callPay(HttpServletRequest request, HttpServletResponse response){
+        HttpSession session = request.getSession();
+        User loginUser = (User) session.getAttribute("loginUser");
+        String dinner_table_id = (String)session.getAttribute("dinner_table_id");
+        //支付金额
+        String moneyStr = request.getParameter("money");
+        String orderId = request.getParameter("orderId");
+
+        //支付
+        ResultVO resultVO = frontService.callPay(Double.valueOf(moneyStr), loginUser, Long.valueOf(dinner_table_id), orderId);
+
+        if (resultVO.getSuccess()){
+            //订单支付成功，清空所有数据
+            session.invalidate();
+        }
+
+        //回去登录
+        return "<script>alert('欢迎下次光临！！！');location.href='/';</script>";
     }
 }

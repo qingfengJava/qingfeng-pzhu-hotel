@@ -31,4 +31,11 @@ public interface UserDao {
      * @param password
      */
     void updateByUserName(String username, String password);
+
+    /**
+     * 用户支付
+     * @param money
+     * @param userId
+     */
+    void updateBalance(double money, Long userId);
 }

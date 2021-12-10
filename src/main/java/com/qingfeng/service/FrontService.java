@@ -3,6 +3,7 @@ package com.qingfeng.service;
 import com.qingfeng.entity.PageBean;
 import com.qingfeng.entity.ResultVO;
 import com.qingfeng.pojo.Food;
+import com.qingfeng.pojo.User;
 
 /**
  * 前台数据的业务层接口
@@ -30,4 +31,14 @@ public interface FrontService {
      * @return
      */
     PageBean<Food> findByPage(String typeId, String _currentPage, String _rows);
+
+    /**
+     * 结账处理
+     * @param valueOf
+     * @param user
+     * @param valueOf1
+     * @param orderId
+     * @return
+     */
+    ResultVO callPay(Double valueOf, User user, Long valueOf1, String orderId);
 }

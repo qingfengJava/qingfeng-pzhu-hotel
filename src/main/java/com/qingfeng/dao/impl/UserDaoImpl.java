@@ -50,4 +50,14 @@ public class UserDaoImpl implements UserDao {
             throw new RuntimeException(ExceptionMessageConstant.USER_UPDATE_EX);
         }
     }
+
+    @Override
+    public void updateBalance(double money, Long userId) {
+        String sql = "update t_user set balance = " + money + " where user_id = " + userId;
+        try {
+            DbSql.update(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

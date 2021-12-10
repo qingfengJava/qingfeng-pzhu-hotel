@@ -1,6 +1,7 @@
 package com.qingfeng.service;
 
 import com.qingfeng.entity.CartItem;
+import com.qingfeng.entity.ResultVO;
 import com.qingfeng.pojo.User;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public interface OrderService {
      * @param totalNum
      * @param loginUser
      * @param dinner_table_id
+     * @return
      */
-    void genernateOrder(List<CartItem> cartList, Double totalPrice, Integer totalNum, User loginUser, Long dinner_table_id);
+    ResultVO genernateOrder(List<CartItem> cartList, Double totalPrice, Integer totalNum, User loginUser, Long dinner_table_id);
 }
