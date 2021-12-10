@@ -237,6 +237,7 @@ public class FrontController extends BaseServlet {
 
         //得到详细的数据 cartList  并存到session中进行保存
         session.setAttribute("cartList",map.get("list"));
+        System.out.println(map.get("list"));
         session.setAttribute("totalPrice",map.get("totalPrice"));
         session.setAttribute("totalNum",map.get("totalNum"));
 

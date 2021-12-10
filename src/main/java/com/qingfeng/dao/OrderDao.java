@@ -1,6 +1,10 @@
 package com.qingfeng.dao;
 
+import com.qingfeng.entity.OrderDetailList;
+import com.qingfeng.entity.OrderList;
 import com.qingfeng.pojo.Orders;
+
+import java.util.List;
 
 /**
  * 订单的持久层接口
@@ -30,4 +34,17 @@ public interface OrderDao {
      * @param orderId
      */
     void updateStatus(Integer orderStatus,String orderId);
+
+    /**
+     * 查询所有的订单
+     * @return
+     */
+    List<OrderList> findAllOrders();
+
+    /**
+     * 根据订单id查询详情
+     * @param orderListId
+     * @return
+     */
+    List<OrderDetailList> findOrderById(String orderListId);
 }

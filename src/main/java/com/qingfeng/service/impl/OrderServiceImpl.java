@@ -4,6 +4,8 @@ import com.qingfeng.constant.BeanFactoryConstant;
 import com.qingfeng.dao.OrderDao;
 import com.qingfeng.dao.OrderDetailDao;
 import com.qingfeng.entity.CartItem;
+import com.qingfeng.entity.OrderDetailList;
+import com.qingfeng.entity.OrderList;
 import com.qingfeng.entity.ResultVO;
 import com.qingfeng.factory.BeanFactory;
 import com.qingfeng.pojo.OrderDetail;
@@ -87,5 +89,34 @@ public class OrderServiceImpl implements OrderService {
             e.printStackTrace();
         }
         return new ResultVO(true,"生成订单失败",null);
+    }
+
+    /**
+     * 查询所有的订单信息
+     * @return
+     */
+    @Override
+    public List<OrderList> findAllOrder() {
+        return orderDao.findAllOrders();
+    }
+
+    /**
+     * 根据订单Id查询详情
+     * @param orderListId
+     * @return
+     */
+    @Override
+    public List<OrderDetailList> findOrderById(String orderListId) {
+        return orderDao.findOrderById(orderListId);
+    }
+
+    @Override
+    public Orders findById(String orderId) {
+        return orderDao.findById(orderId);
+    }
+
+    @Override
+    public void updateOrderStatus( int status,String orderId) {
+        orderDao.updateStatus(status,orderId);
     }
 }

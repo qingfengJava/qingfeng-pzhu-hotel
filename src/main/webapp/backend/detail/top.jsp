@@ -148,21 +148,13 @@ margin-left: 10px;
 				<b>前进</b>		
 			</a>
         </div>
-        
+
 		<div id="Head2_FunctionList">
-			<!-- 
-				如果使用 window.parent.right.location.reload(true); 则IE与FF都可以使用，Chrome不可以。
-				在Chrome中 alert(window.parent.right.document); 显示的值是 undefined！为什么？
-				使用 window.parent.right.history.go(0) 实现刷新，在IE、Chrome中都可以运行，但在FF中不可以！（但没有测试什么时候会使用缓存）。
-			 -->
 			<a href="javascript: window.parent.right.history.go(0);">
 				<img src="/backend/detail/style/images/Header_refresh.gif" width="24" height="24" style="margin-top: -8px;"/>
-				<b>刷新(IE、Chrome)</b>		
+				<b>刷新)</b>
 			</a>
-			<a href="javascript: window.parent.right.location.reload(true);">
-				<img src="/backend/detail/style/images/Header_refresh.gif" width="24" height="24" style="margin-top: -8px;"/>
-				<b>刷新(Firefox)</b>		
-			</a>
+
 		</div>
 	</div>
 </body>

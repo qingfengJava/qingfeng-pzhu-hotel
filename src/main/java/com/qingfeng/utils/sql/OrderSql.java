@@ -1,5 +1,7 @@
 package com.qingfeng.utils.sql;
 
+import com.qingfeng.entity.OrderDetailList;
+import com.qingfeng.entity.OrderList;
 import com.qingfeng.pojo.Food;
 import com.qingfeng.pojo.Orders;
 import com.qingfeng.utils.DbUtils;
@@ -86,5 +88,66 @@ public class OrderSql {
     }
 
 
+    public static List<OrderList> findAllOrders(String sql) {
+        //获取连接
+        Connection con = DbUtils.getCon();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        List<OrderList> ordersList = new ArrayList<>();
+        try {
+            if (con != null) {
+                //利用con(连接)建立查询语句
+                pst = con.prepareStatement(sql);
+                //利用SQL语句做查询
+                rs = pst.executeQuery();
+                while (rs.next()) {
+                    //将数据进行封装
+                    String orderId = rs.getString("order_id");
+                    String tableName = rs.getString("table_name");
+                    String username = rs.getString("username");
+                    int totalNum = rs.getInt("total_num");
+                    double orderTotalPrice = rs.getDouble("order_total_price");
+                    Date orderCreateTime = rs.getDate("order_create_time");
+                    int orderStatus = rs.getInt("order_status");
+                    //将数据封装到对象中
+                    ordersList.add(new OrderList(orderId,tableName,username,totalNum,orderCreateTime,orderTotalPrice,orderStatus));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DbUtils.close(con, pst, rs);
+        }
+        return ordersList;
+    }
 
+    public static List<OrderDetailList> findAllById(String sql) {
+        //获取连接
+        Connection con = DbUtils.getCon();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        List<OrderDetailList> ordersList = new ArrayList<>();
+        try {
+            if (con != null) {
+                //利用con(连接)建立查询语句
+                pst = con.prepareStatement(sql);
+                //利用SQL语句做查询
+                rs = pst.executeQuery();
+                while (rs.next()) {
+                    //将数据进行封装
+                    String foodName = rs.getString("food_name");
+                    int num = rs.getInt("num");
+                    Double foodTotalPrice = rs.getDouble("food_total_price");
+                    Date orderDetailCreateTime = rs.getDate("order_detail_create_time");
+                    //将数据封装到对象中
+                    ordersList.add(new OrderDetailList(foodName,num,foodTotalPrice,orderDetailCreateTime));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DbUtils.close(con, pst, rs);
+        }
+        return ordersList;
+    }
 }

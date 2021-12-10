@@ -60,4 +60,11 @@ public class UserDaoImpl implements UserDao {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public User findByUserId(Long userId) {
+        String sql = "select * from t_user where user_id = "+userId;
+        //复用方法
+        return UserSql.findUserByName(sql);
+    }
 }

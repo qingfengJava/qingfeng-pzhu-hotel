@@ -1,7 +1,10 @@
 package com.qingfeng.service;
 
 import com.qingfeng.entity.CartItem;
+import com.qingfeng.entity.OrderDetailList;
+import com.qingfeng.entity.OrderList;
 import com.qingfeng.entity.ResultVO;
+import com.qingfeng.pojo.Orders;
 import com.qingfeng.pojo.User;
 
 import java.util.List;
@@ -25,4 +28,31 @@ public interface OrderService {
      * @return
      */
     ResultVO genernateOrder(List<CartItem> cartList, Double totalPrice, Integer totalNum, User loginUser, Long dinner_table_id);
+
+    /**
+     * 查询所有的订单信息
+     * @return
+     */
+    List<OrderList> findAllOrder();
+
+    /**
+     * 根据订单Id查询详情
+     * @param orderListId
+     * @return
+     */
+    List<OrderDetailList> findOrderById(String orderListId);
+
+    /**
+     * 根据Id查询order信息
+     * @param orderId
+     * @return
+     */
+    Orders findById(String orderId);
+
+    /**
+     * 根据id将订单状态设置为1
+     * @param orderId
+     * @param status
+     */
+    void updateOrderStatus(int status,String orderId);
 }

@@ -89,4 +89,14 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException(ExceptionMessageConstant.USER_UPDATE_EX);
         }
     }
+
+    @Override
+    public User findByUserId(Long userId) {
+        return userDao.findByUserId(userId);
+    }
+
+    @Override
+    public void updatePrice(Long userId, double price) {
+        userDao.updateBalance(price,userId);
+    }
 }

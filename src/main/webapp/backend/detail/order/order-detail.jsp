@@ -1,12 +1,13 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
 <title>攀大美味餐厅</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="text/javascript" src="../style/js/page_common.js"></script>
-<link href="../style/css/common_style_blue.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="../style/css/index_1.css" />
+<script type="text/javascript" src="/backend/detail/style/js/page_common.js"></script>
+<link href="/backend/detail/style/css/common_style_blue.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="/backend/detail/style/css/index_1.css" />
 </head>
 <body>
 	<!-- 页面标题 -->
@@ -15,7 +16,7 @@
 		<div id="TitleArea_Title">
 			<div id="TitleArea_Title_Content">
 				<img border="0" width="13" height="13"
-					src="style/css/images/title_arrow.gif" /> 订单菜品列表
+					src="/backend/detail/style/css/images/title_arrow.gif" /> 订单菜品列表
 			</div>
 		</div>
 		<div id="TitleArea_End"></div>
@@ -35,27 +36,14 @@
 			</thead>
 			<!--显示数据列表 -->
 			<tbody id="TableData" align="center">
-				
-			 		<tr height="30">
-				 		<td>烤乳猪</td>
-				 		<td>68.0</td>
-				 		<td>1</td>
-						<td>68.0</td>
-			 		</tr>
-			 	
-			 		<tr height="30">
-				 		<td>爆炒牛肚</td>
-				 		<td>50.0</td>
-				 		<td>2</td>
-						<td>100.0</td>
-			 		</tr>
-			 	
-			 		<tr height="30">
-				 		<td>白切鸡</td>
-				 		<td>28.0</td>
-				 		<td>1</td>
-						<td>28.0</td>
-			 		</tr>
+				<c:forEach items="${orderDetailLists}" var="list">
+					<tr height="30">
+						<td>${list.menuName}</td>
+						<td>${list.totalPrice / list.num}</td>
+						<td>${list.num}</td>
+						<td>${list.totalPrice}</td>
+					</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 		<!-- 其他功能超链接 -->

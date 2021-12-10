@@ -38,4 +38,11 @@ public interface UserDao {
      * @param userId
      */
     void updateBalance(double money, Long userId);
+
+    /**
+     * 根据用户id查询用户信息
+     * @param userId
+     * @return
+     */
+    User findByUserId(Long userId);
 }

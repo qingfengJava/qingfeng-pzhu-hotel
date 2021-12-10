@@ -89,4 +89,16 @@ public class DinnerTableServiceImpl implements DinnerTableService {
             throw new RuntimeException(e.getMessage());
         }
     }
+
+    @Override
+    public void updateStatusByTableId(Long tableId) throws Exception {
+        //1、根据tableId查询餐桌状态
+        DinnerTable table = dinnerTableDao.findById(tableId);
+        Integer tableStatus = table.getTableStatus();
+        if (tableStatus == 1){
+            //餐桌状态是1，才进行修改
+            table.setReservationTime(null);
+            dinnerTableDao.updateStatus(table);
+        }
+    }
 }

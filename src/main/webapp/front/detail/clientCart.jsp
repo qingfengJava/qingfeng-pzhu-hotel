@@ -55,7 +55,7 @@
 						<td align="center" width="20%">${cartItem.food.foodName}</td>
 						<td align="center" width="20%">￥${cartItem.price}</td>
 						<td align="center" width="20%">
-							<input type="text" value="${cartItem.num}" size="3" lang="3" onblur="alterSorder(this)"/>
+							<input type="text" value="${cartItem.num}" size="3" lang="3"/>
 						</td>
 						<td align="center" width="20%">${cartItem.foodTotalPrice}</td>
 						<td align="center" width="20%">

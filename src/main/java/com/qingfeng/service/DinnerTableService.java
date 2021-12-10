@@ -35,4 +35,10 @@ public interface DinnerTableService {
      * @param tableId
      */
     void deleteById(int tableId);
+
+    /**
+     * 根据餐桌状态修改餐桌信息
+     * @param tableId
+     */
+    void updateStatusByTableId(Long tableId) throws Exception;
 }

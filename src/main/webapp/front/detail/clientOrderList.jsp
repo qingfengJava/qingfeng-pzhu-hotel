@@ -11,7 +11,7 @@
         function callPay(money,orderId) {
             if (confirm("您总共消费"+money+"！确认结账吗?")){
                 /* 结账业务 */
-                window.location.href = "/front/?method=callPay&money="+money+"&orderId="+orderId;
+                window.location.href = "/front?method=callPay&money="+money+"&orderId="+orderId;
             }
         }
     </script>

@@ -1,11 +1,14 @@
 package com.qingfeng.dao.impl;
 
 import com.qingfeng.dao.OrderDao;
+import com.qingfeng.entity.OrderDetailList;
+import com.qingfeng.entity.OrderList;
 import com.qingfeng.pojo.Orders;
 import com.qingfeng.utils.sql.DbSql;
 import com.qingfeng.utils.sql.OrderSql;
 
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * @author 清风学Java
@@ -43,5 +46,17 @@ public class OrderDaoImpl implements OrderDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public List<OrderList> findAllOrders() {
+        String sql = "select order_id,table_name,username,total_num,order_total_price,order_create_time,order_status from t_order td,t_dinner_table tdt,t_user tu where td.table_id = tdt.table_id and td.user_id = tu.user_id";
+        return OrderSql.findAllOrders(sql);
+    }
+
+    @Override
+    public List<OrderDetailList> findOrderById(String orderListId) {
+        String sql = "select food_name,num,food_total_price,order_detail_create_time from t_order_detail tod,t_food tf where tod.food_id = tf.food_id and order_id = " + orderListId;
+        return OrderSql.findAllById(sql);
     }
 }

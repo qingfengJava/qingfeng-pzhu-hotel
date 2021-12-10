@@ -40,4 +40,18 @@ public interface UserService {
      * @param password
      */
     void updateByUserName(String username, String password);
+
+    /**
+     * 根据用户Id，查询用户信息
+     * @param userId
+     * @return
+     */
+    User findByUserId(Long userId);
+
+    /**
+     * 根据用户id，修改用户余额
+     * @param userId
+     * @param price
+     */
+    void updatePrice(Long userId, double price);
 }
