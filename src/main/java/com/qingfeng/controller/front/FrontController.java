@@ -305,6 +305,6 @@ public class FrontController extends BaseServlet {
         }
 
         //回去登录
-        return "<script>alert('欢迎下次光临！！！');location.href='/';</script>";
+        return MessageConstant.PREFIX_REDIRECT+"/front/detail/checkOut.jsp";
     }
 }

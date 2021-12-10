@@ -50,7 +50,7 @@ public class UserController extends BaseServlet {
         HttpSession session = request.getSession();
 
         //从session域中获取验证码
-        String checkCode = (String) request.getSession().getAttribute("checkCode");
+        String checkCode = (String) session.getAttribute("checkCode");
         //获取之后就要清除，防止重复利用
         session.removeAttribute("checkCode");
 
@@ -79,11 +79,16 @@ public class UserController extends BaseServlet {
                 //用户登录要进行判断 是普通用户，还是管理员
                 if (loginUser.getIsAdmin().intValue() == 0){
                     request.getSession().setAttribute("loginUser",loginUser);
+
+                    //登录成功，数据库里的登录次数加一
+                    userService.addLoginNum(loginUser);
+
                     //普通用户，直接去点餐页面
                     return MessageConstant.PREFIX_REDIRECT + "/front/index.jsp";
                 }
                 //管理员去后台
-                request.getSession().setAttribute("adminUser",loginUser);
+                session.setAttribute("adminUser",loginUser);
+                userService.addLoginNum(loginUser);
                 return MessageConstant.PREFIX_REDIRECT+"/backend/index.jsp";
             }else{
                 //验证码错误，请求转发回本页面
@@ -215,5 +220,21 @@ public class UserController extends BaseServlet {
             e.printStackTrace();
             return e.getMessage();
         }
+    }
+
+    /**
+     * 用户退出
+     * @param request
+     * @param response
+     * @return
+     */
+    public String quit(HttpServletRequest request, HttpServletResponse response) {
+        //用户退出，清空所有的session
+        request.getSession().invalidate();
+        //在给session赋值一个退出的标志
+        request.getSession().setAttribute("quit","false");
+
+        //最终返回登录界面
+        return MessageConstant.PREFIX_FORWAED+"/";
     }
 }

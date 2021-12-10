@@ -44,6 +44,7 @@ public class UserSql {
                     user.setIsDelete(rs.getInt("is_delete"));
                     user.setIsMember(rs.getInt("is_member"));
                     user.setBalance(rs.getDouble("balance"));
+                    user.setLoginNum(rs.getInt("loginNum"));
                 }
             }
         } catch (SQLException e) {

@@ -104,7 +104,7 @@ public class OrderSql {
                     //将数据进行封装
                     String orderId = rs.getString("order_id");
                     String tableName = rs.getString("table_name");
-                    String username = rs.getString("username");
+                    String username = rs.getString("nick_name");
                     int totalNum = rs.getInt("total_num");
                     double orderTotalPrice = rs.getDouble("order_total_price");
                     Date orderCreateTime = rs.getDate("order_create_time");

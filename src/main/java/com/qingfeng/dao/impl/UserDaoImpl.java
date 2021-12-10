@@ -67,4 +67,14 @@ public class UserDaoImpl implements UserDao {
         //复用方法
         return UserSql.findUserByName(sql);
     }
+
+    @Override
+    public void addLoginNum(User loginUser) {
+        String sql = "update t_user set loginNum = "+(loginUser.getLoginNum()+1)+" where user_id = "+loginUser.getUserId();
+        try {
+            DbSql.update(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

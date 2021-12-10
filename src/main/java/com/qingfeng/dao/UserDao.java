@@ -45,4 +45,10 @@ public interface UserDao {
      * @return
      */
     User findByUserId(Long userId);
+
+    /**
+     * 登录成功，次数加一
+     * @param loginUser
+     */
+    void addLoginNum(User loginUser);
 }

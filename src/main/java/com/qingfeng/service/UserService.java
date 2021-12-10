@@ -54,4 +54,10 @@ public interface UserService {
      * @param price
      */
     void updatePrice(Long userId, double price);
+
+    /**
+     * 给登录成功的次数加一
+     * @param loginUser
+     */
+    void addLoginNum(User loginUser);
 }

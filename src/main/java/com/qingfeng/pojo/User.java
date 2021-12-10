@@ -76,11 +76,15 @@ public class User implements Serializable {
      * 账户余额
      */
     private Double balance;
+    /**
+     * 登录成功次数
+     */
+    private int loginNum;
 
     public User() {
     }
 
-    public User(Long userId, String username, String password, String nickName, Integer isAdmin, String phone, Integer gender, Integer userStatus, Date userCreateTime, Date userUpdateTime, Integer isDelete, Integer isMember, Double balance) {
+    public User(Long userId, String username, String password, String nickName, Integer isAdmin, String phone, Integer gender, Integer userStatus, Date userCreateTime, Date userUpdateTime, Integer isDelete, Integer isMember, Double balance,int loginNum) {
         this.userId = userId;
         this.username = username;
         this.password = password;
@@ -94,6 +98,15 @@ public class User implements Serializable {
         this.isDelete = isDelete;
         this.isMember = isMember;
         this.balance = balance;
+        this.loginNum = loginNum;
+    }
+
+    public int getLoginNum() {
+        return loginNum;
+    }
+
+    public void setLoginNum(int loginNum) {
+        this.loginNum = loginNum;
     }
 
     public String getUserCreateTimeStr() {

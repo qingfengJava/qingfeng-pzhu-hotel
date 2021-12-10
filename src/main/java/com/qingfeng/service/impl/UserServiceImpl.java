@@ -99,4 +99,9 @@ public class UserServiceImpl implements UserService {
     public void updatePrice(Long userId, double price) {
         userDao.updateBalance(price,userId);
     }
+
+    @Override
+    public void addLoginNum(User loginUser) {
+        userDao.addLoginNum(loginUser);
+    }
 }
