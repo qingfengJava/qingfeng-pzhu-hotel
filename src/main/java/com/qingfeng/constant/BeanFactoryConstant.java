@@ -24,4 +24,11 @@ public interface BeanFactoryConstant {
 
     String FRONT_DAO = "frontDao";
     String FRONT_SERVICE = "frontService";
+
+    String CART_DAO = "cartDao";
+    String CART_SERVICE = "cartService";
+
+    String ORDER_DAO = "orderDao";
+    String ODER_SERVICE = "orderService";
+    String ORDERDETAIL_DAO = "orderDetailDao";
 }

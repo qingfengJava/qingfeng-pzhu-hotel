@@ -11,17 +11,10 @@
 			var gid = node.lang;
 			window.location.href = "/wirelessplatform/sorder.html?method=removeSorder&gid="+gid;
 		}
-		
-		// 修改菜品项数量
-		function alterSorder(node) {
-			var snumber = node.value;
-			var gid = node.lang;
-			window.location.href = "/wirelessplatform/sorder.html?method=alterSorder&gid="+gid+"&snumber="+snumber;
-		}
 		*/
 		// 下单
 		function genernateOrder() {
-			window.location.href = "clientOrderList.jsp";
+			window.location.href = "/front?method=genernateOrder";
 		}
 	</script>
 </head>
@@ -57,29 +50,28 @@
 				 		<td align="center" width="20%">小计</td>
 				 		<td align="center" width="20%">操作</td>
 				 	</tr>
-					<tr height="60">
-					 		<td align="center" width="20%">烤乳猪</td>
-					 		<td align="center" width="20%">￥68.0</td>
-					 		<td align="center" width="20%">
-					 			<input type="text" value="1" size="3" lang="3" onblur="alterSorder(this)"/>
-					 		</td>
-					 		<td align="center" width="20%">68.0</td>
-					 		<td align="center" width="20%">
-					 			<input type="button" value="删除" class="btn_next" lang="3" onclick="removeSorder(this)" />
-					 		</td>
-				 	</tr>
-
+					<c:forEach items="${cartList}" var="cartItem">
+						<tr height="60">
+						<td align="center" width="20%">${cartItem.food.foodName}</td>
+						<td align="center" width="20%">￥${cartItem.price}</td>
+						<td align="center" width="20%">
+							<input type="text" value="${cartItem.num}" size="3" lang="3" onblur="alterSorder(this)"/>
+						</td>
+						<td align="center" width="20%">${cartItem.foodTotalPrice}</td>
+						<td align="center" width="20%">
+							<input type="button" value="删除" class="btn_next" lang="3" onclick="removeSorder(this)" />
+						</td>
+					</tr>
+					</c:forEach>
 					<tr>
 						<td colspan="6" align="right">总计:
-							<span style="font-size:36px;">&yen;&nbsp;68.0</span>
-							<label
-								id="counter" style="font-size:36px"></label>
+							<span style="font-size:36px;">&yen;&nbsp;${totalPrice}</span>
+							<label id="counter" style="font-size:36px"></label>
 						</td>
 					</tr>
 					<tr>
 						<td colspan="6" style="margin-left: 100px; text-align: center;"align="right">
-							<input type="hidden" name="bId" value="">
-									<input type="button" value="下单" class="btn_next" onclick="genernateOrder()" />
+							<input type="button" value="下单" class="btn_next" onclick="genernateOrder()" />
 						</td>
 					</tr>
 				</table>
@@ -91,32 +83,36 @@
 
 			<div id="dish_2">
 				<ul>
+					<c:if test="${typeNum == 0}">
+						<li style="background-color: whitesmoke;">
+							<a href="/front?method=findByPage" style="color:goldenrod;font-weight: 700;">全部菜品</a>
+						</li>
+					</c:if>
+					<c:if test="${typeNum != 0}">
+						<li>
+							<a href="/front?method=findByPage">全部菜品</a>
+						</li>
+					</c:if>
 
-					<li>
-						<a href="/front/detail/menu.jsp">全部菜品</a>
-					</li>
-
-					<li>
-						<a href="menu.jsp">粤菜</a>
-					</li>
-
-					<li>
-						<a href="chuancai.jsp">川菜</a>
-					</li>
-
-					<li>
-						<a href="xiangcai.jsp">湘菜</a>
-					</li>
-
-					<li>
-						<a href="dongbeicai.jsp">东北菜</a>
-					</li>
+					<c:forEach items="${sessionScope.foodTypes}" var="type">
+						<c:if test="${typeNum == type.typeId}">
+							<li style="background-color: whitesmoke;">
+								<a href="/front?method=findByPage&typeId=${type.typeId}" style="color:goldenrod;font-weight: 700;">${type.typeName}</a>
+							</li>
+						</c:if>
+						<c:if test="${typeNum != type.typeId}">
+							<li>
+								<a href="/front?method=findByPage&typeId=${type.typeId}">${type.typeName}</a>
+							</li>
+						</c:if>
+					</c:forEach>
 					<li><a href=""></a></li>
-					<li style="background-color: whitesmoke;">
-						<a href="clientCart.jsp" style="color:goldenrod;font-weight: 700;">我的餐单</a>
+					<li>
+						<a href="/front/detail/clientCart.jsp">我的餐单</a>
 					</li>
 				</ul>
 			</div>
+
 		</div>
 	</div>
 <!-- footer -->

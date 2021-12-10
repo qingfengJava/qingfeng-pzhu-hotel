@@ -105,7 +105,8 @@
 
 						//把服务器响应的数据显示在页面上
 						document.getElementById("ul_table"+count).innerHTML +=
-								'<li><a href="/front?method=findByPage">'+jsonObj.data[i].tableName+'</a></li><br/>';
+								/* 将餐桌的id，一并传入后面，因为，每个餐桌对应这个点餐的信息 */
+								'<li><a href="/front?method=findByPage&tableId='+jsonObj.data[i].tableId+'">'+jsonObj.data[i].tableName+'</a></li><br/>';
 					}
 				}
 			}

@@ -72,7 +72,7 @@
 			</div>
 			<div class="menu4">
 				
-				<a href="clientCart.jsp" style="background:url(style/images/img/order_left_corner_bg.png);">放入餐车</a>
+				<a href="/front?method=addCart&foodId=${food.foodId}&num=1" style="background:url(style/images/img/order_left_corner_bg.png);">放入餐车</a>
 				<a href="#" onclick="javascript:history.go(-1);" style="background:url(style/images/img/order_right_corner_bg.png);">返回</a>
 			</div>
 		</div>

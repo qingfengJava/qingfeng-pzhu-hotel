@@ -153,7 +153,7 @@
 				</c:forEach>
 				<li><a href=""></a></li>
 				<li>
-					<a href="/front/detail/clientCart.jsp">我的餐单</a>
+					<a href="/front?method=genernateOrder">我的餐单</a>
 				</li>
 			</ul>
 		</div>

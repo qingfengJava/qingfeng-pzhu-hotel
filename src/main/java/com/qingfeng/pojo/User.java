@@ -7,6 +7,7 @@ import java.util.Date;
 
 /**
  * 用户实体类
+ * 对应数据库表t_user
  *
  * @author 清风学Java
  * @version 1.0.0

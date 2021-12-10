@@ -58,4 +58,9 @@ public interface MessageConstant {
     String UPDATE_PASSWORD_SUCCESS = "恭喜你，密码更新/找回成功，马上登录吧！";
     String UPDATE_USER_FAIL = "用户不存在，不能修改/找回密码！";
     String LOGIN_SUCCESS = "登录成功";
+
+    String UNLOGIN_USER = "未登录，无法加入餐车，请先登录！！！";
+    String NO_CHOOSE_TABLE = "您还没有选择餐桌，不能下单！！！";
+
+    String USER_NOT_CANCHE = "当前用于没有对应的餐车！！！";
 }

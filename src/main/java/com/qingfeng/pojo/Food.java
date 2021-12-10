@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 /**
  * 菜品实体类
+ * 对应数据库表t_food
  *
  * 关联菜系类
  *

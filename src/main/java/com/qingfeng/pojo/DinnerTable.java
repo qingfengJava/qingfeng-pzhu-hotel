@@ -7,6 +7,7 @@ import java.util.Date;
 
 /**
  * 餐桌的实体类
+ * 对应数据库表t_dinner_table
  *
  * @author 清风学Java
  * @version 1.0.0
