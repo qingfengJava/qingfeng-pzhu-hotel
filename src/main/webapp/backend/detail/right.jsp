@@ -6,7 +6,7 @@
     <title>攀大美味餐厅</title>
     <style type="text/css">
         body {
-            background-image: url("/backend/detail/style/images/1.jpg");
+            background-image: url("/backend-style/images/1.jpg");
             background-repeat: no-repeat;
             background-position: center top;
             background-size: 100% 100%;

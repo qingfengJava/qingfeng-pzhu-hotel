@@ -55,4 +55,11 @@ public interface OrderService {
      * @param status
      */
     void updateOrderStatus(int status,String orderId);
+
+    /**
+     * 根据用户Id，查询历史订单记录
+     * @param userId
+     * @return
+     */
+    List<OrderList> findAllOrderByUserId(String userId);
 }

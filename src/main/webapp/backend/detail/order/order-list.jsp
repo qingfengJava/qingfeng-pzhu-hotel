@@ -5,9 +5,9 @@
 <head>
 <title>攀大美味餐厅</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="text/javascript" src="/backend/detail/style/js/page_common.js"></script>
-<link href="/backend/detail/style/css/common_style_blue.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="/backend/detail/style/css/index_1.css" />
+<script type="text/javascript" src="/backend-style/js/page_common.js"></script>
+<link href="/backend-style/css/common_style_blue.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="/backend-style/css/index_1.css" />
 	<script>
 		function callPay(orderId,totalPrice) {
 			if (confirm("你确定要支付"+totalPrice+"元吗？")){
@@ -23,7 +23,7 @@
 		<div id="TitleArea_Title">
 			<div id="TitleArea_Title_Content">
 				<img border="0" width="13" height="13"
-					src="/backend/detail/style/images/title_arrow.gif" /> 餐厅订单列表
+					src="/backend-style/images/title_arrow.gif" /> 餐厅订单列表
 			</div>
 		</div>
 		<div id="TitleArea_End"></div>
@@ -55,8 +55,13 @@
 						<td>${list.userName}</td>
 						<td>${list.num}</td>
 						<td>${list.orderCreateDateStr}</td>
-						<td>${list.totalPrice}</td>
-						<td>${list.status == 1 ? 已结账:未结账}</td>
+						<td>￥${list.totalPrice}</td>
+						<c:if test="${list.status == 0}">
+							<td>未结账</td>
+						</c:if>
+						<c:if test="${list.status == 1}">
+							<td>已结账</td>
+						</c:if>
 						<td>
 							<a href="/order?method=orderDetail&orderListId=${list.orderId}" class="FunctionButton">详细</a>
 							<c:if test="${list.status == 0}">

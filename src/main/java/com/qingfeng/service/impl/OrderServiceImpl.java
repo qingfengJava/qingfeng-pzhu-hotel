@@ -119,4 +119,9 @@ public class OrderServiceImpl implements OrderService {
     public void updateOrderStatus( int status,String orderId) {
         orderDao.updateStatus(status,orderId);
     }
+
+    @Override
+    public List<OrderList> findAllOrderByUserId(String userId) {
+        return orderDao.findAllOrderByUserId(Long.valueOf(userId));
+    }
 }

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>用户登录注册</title>
 
-<link rel="stylesheet" type="text/css" href="css/index.css">
+<link rel="stylesheet" type="text/css" href="/css/index.css">
 
 	<style type="text/css">
 
@@ -72,7 +72,7 @@
 	</style>
 
 </head>
-<body style="background: url(image/1.jpg);background-size:100% 100%;background-attachment: fixed">
+<body style="background: url(/image/1.jpg);background-size:100% 100%;background-attachment: fixed">
 <div class="jq22-container" style="padding-top:10px">
 	<div class="login-wrap">
 		<div class="login-html">

@@ -5,9 +5,9 @@
 <head>
 	<title>欢迎来攀大美味餐厅！</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<script type="text/javascript" src="/front/detail/style/js/page_common.js"></script>
-	<link href="/front/detail/style/css/common_style_blue.css" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" type="text/css" href="/front/detail/style/css/index_1.css" />
+	<script type="text/javascript" src="/front-style/js/page_common.js"></script>
+	<link href="/front-style/css/common_style_blue.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="/front-style/css/index_1.css" />
 	<style type="text/css">
 		* {
 			margin: 0px;
@@ -155,7 +155,7 @@
 			</span>
 		</div>
 
-		<img src="/front/detail/style/images/1.jpg"  id="datu"/>
+		<img src="/front-style/images/1.jpg"  id="datu"/>
 		<!--放桌子的层-->
 		<div id="center_bottom">
 			<table id="tableId" style="width:700px;position: relative;transform: translate(-400px,-350px);">

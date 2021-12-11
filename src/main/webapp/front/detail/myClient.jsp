@@ -3,88 +3,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="style/css/index.css" />
-	<link rel="stylesheet" type="text/css" href="style/css/index_1.css" />
-	<script type="text/javascript">
-		/** // 删除菜品项
-		function removeSorder(node) {
-			var gid = node.lang;
-			window.location.href = "/wirelessplatform/sorder.html?method=removeSorder&gid="+gid;
-		}
-		*/
-		// 下单
-		function genernateOrder() {
-			window.location.href = "/front?method=genernateOrder";
-		}
-	</script>
+	<link rel="stylesheet" type="text/css" href="/front-style/css/index.css" />
+	<link rel="stylesheet" type="text/css" href="/front-style/css/index_1.css" />
 </head>
 
 <body style="text-align: center;background-color: goldenrod;">
 <div class="nav" style="text-align: left;font-family: 楷体;">
 	我的历史餐单
-	<span style="float: right;padding-right: 20px;font-size: 22px;color: black;padding-top: 20px;font-family: '楷体'">
-        <c:if test="${loginUser != null}">
-            <div>
-                <span>
-                    欢迎：<span style="color: red">${loginUser.nickName}</span>光临就餐
-                </span>
-                <span>
-                    &nbsp;&nbsp;&nbsp;累计成功登录次数：<span style="color: red">${loginUser.loginNum+1}</span>次
-                </span>
-                <br>
-                <span style="position: relative;top: 0px;">
-                    当前就餐人数：<span style="color: red">${onlineCount}</span>人&nbsp;&nbsp;
-                    时间：${day}
-                    <a href="/user?method=quit" style="border: 1px solid darkgrey;border-radius: 10px;padding: 6px 5px;background-color: darkgrey;font-size: 15px;margin-left: 20px;">退出登录</a>
-                </span>
-            </div>
-        </c:if>
-        <c:if test="${loginUser == null}">
-            <span>
-                亲：<a href="/"><span style="color: red;font-size: 25px">登录才能点餐哟！！！</span></a>
-            </span>
-            <span style="position: relative;top: 0px;">
-                时间：${day}
-            </span>
-        </c:if>
-    </span>
+	<span style="float: right;padding-right: 20px">
+		<c:if test="${loginUser != null}">
+			<div style="position: relative;top: -15px;">
+				<span>
+					欢迎：<span style="color: red">${loginUser.nickName}</span>光临就餐
+				</span>
+				<span>
+					&nbsp;&nbsp;&nbsp;累计成功登录次数：<span style="color: red">${loginUser.loginNum+1}</span>次
+				</span>
+				<br>
+				<span style="position: relative;top: -70px;">
+					当前就餐人数：<span style="color: red">${onlineCount}</span>人&nbsp;&nbsp;
+					时间：${day}
+					<a href="/user?method=quit" style="border: 1px solid darkgrey;border-radius: 10px;padding: 6px 5px;background-color: darkgrey;font-size: 15px;margin-left: 20px;">退出登录</a>
+				</span>
+			</div>
+		</c:if>
+		<c:if test="${loginUser == null}">
+			<span>
+				亲：<a href="/"><span style="color: red;font-size: 25px">登录才能点餐哟！！！</span></a>
+			</span>
+			<span style="position: relative;top: 0px;">
+				时间：${day}
+			</span>
+		</c:if>
+	</span>
 </div>
 	<div id="all">
 		<div id="menu">
 			<!-- 餐车div -->
 			<div id="count">
-				<table align="center" width="100%">
+				<table align="left" width="140%">
 					<tr height="40">
-				 		<td align="center" width="20%">菜名</td>
-				 		<td align="center" width="20%">单价</td>
-				 		<td align="center" width="20%">数量</td>
-				 		<td align="center" width="20%">小计</td>
-				 		<td align="center" width="20%">操作</td>
+						<td align="center">订单编号</td>
+						<td align="center">餐桌名</td>
+						<td align="center">用户</td>
+						<td align="center">菜品数量</td>
+						<td align="center">下单日期</td>
+						<td align="center">总金额</td>
+						<td align="center">状态</td>
 				 	</tr>
-					<c:forEach items="${cartList}" var="cartItem">
+					<c:forEach items="${orderList}" var="list">
 						<tr height="60">
-						<td align="center" width="20%">${cartItem.food.foodName}</td>
-						<td align="center" width="20%">￥${cartItem.price}</td>
-						<td align="center" width="20%">
-							<input type="text" value="${cartItem.num}" size="3" lang="3"/>
-						</td>
-						<td align="center" width="20%">${cartItem.foodTotalPrice}</td>
-						<td align="center" width="20%">
-							<input type="button" value="删除" class="btn_next" lang="3" onclick="removeSorder(this)" />
-						</td>
-					</tr>
+							<td align="center">${list.orderId}</td>
+							<td align="center">${list.tableName}</td>
+							<td align="center">${list.userName}</td>
+							<td align="center">${list.num}</td>
+							<td align="center">${list.orderCreateDateStr}</td>
+							<td align="center">￥${list.totalPrice}</td>
+							<c:if test="${list.status == 0}">
+								<td>未结账</td>
+							</c:if>
+							<c:if test="${list.status == 1}">
+								<td>已结账</td>
+							</c:if>
+						</tr>
 					</c:forEach>
-					<tr>
-						<td colspan="6" align="right">总计:
-							<span style="font-size:36px;">&yen;&nbsp;${totalPrice}</span>
-							<label id="counter" style="font-size:36px"></label>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="6" style="margin-left: 100px; text-align: center;"align="right">
-							<input type="button" value="下单" class="btn_next" onclick="genernateOrder()" />
-						</td>
-					</tr>
 				</table>
 			</div>
 		</div>
@@ -118,8 +100,8 @@
 						</c:if>
 					</c:forEach>
 					<li><a href=""></a></li>
-					<li>
-						<a href="/front/detail/myClient.jsp">我的历史餐单</a>
+					<li style="background-color: whitesmoke;">
+						<a href="/front?method=myClient&userId=${loginUser.userId}" style="color:goldenrod;font-weight: 700;">我的历史餐单</a>
 					</li>
 				</ul>
 			</div>

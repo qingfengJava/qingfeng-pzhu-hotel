@@ -4,7 +4,7 @@
 <head>
 	<title>Frame bottom</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link href="style/css/common_style_blue.css" rel="stylesheet" type="text/css" />
+	<link href="/backend-style/css/common_style_blue.css" rel="stylesheet" type="text/css" />
 	<style type="text/css">
 		body{
 			margin: 0;
@@ -53,8 +53,8 @@
     <div id="StatusBar_Right">
 		<!-- 版本 -->
 		<a href="javascript:void(0)">
-			<img border="0" width="11" height="11" src="style/images/info.gif" /> 
-			<img border="0" width="40" height="11" src="style/images/version.gif" />
+			<img border="0" width="11" height="11" src="/backend-style/images/info.gif" />
+			<img border="0" width="40" height="11" src="/backend-style/images/version.gif" />
 		</a>
     </div>
 </div>

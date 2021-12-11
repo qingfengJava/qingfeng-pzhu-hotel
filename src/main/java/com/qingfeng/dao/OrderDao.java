@@ -47,4 +47,11 @@ public interface OrderDao {
      * @return
      */
     List<OrderDetailList> findOrderById(String orderListId);
+
+    /**
+     * 查询用户历史订单记录
+     * @param userId
+     * @return
+     */
+    List<OrderList> findAllOrderByUserId(Long userId);
 }

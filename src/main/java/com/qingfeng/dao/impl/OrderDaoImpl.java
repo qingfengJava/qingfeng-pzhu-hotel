@@ -50,7 +50,7 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public List<OrderList> findAllOrders() {
-        String sql = "select order_id,table_name,username,total_num,order_total_price,order_create_time,order_status from t_order td,t_dinner_table tdt,t_user tu where td.table_id = tdt.table_id and td.user_id = tu.user_id";
+        String sql = "select order_id,table_name,nick_name,total_num,order_total_price,order_create_time,order_status from t_order td,t_dinner_table tdt,t_user tu where td.table_id = tdt.table_id and td.user_id = tu.user_id";
         return OrderSql.findAllOrders(sql);
     }
 
@@ -58,5 +58,11 @@ public class OrderDaoImpl implements OrderDao {
     public List<OrderDetailList> findOrderById(String orderListId) {
         String sql = "select food_name,num,food_total_price,order_detail_create_time from t_order_detail tod,t_food tf where tod.food_id = tf.food_id and order_id = " + orderListId;
         return OrderSql.findAllById(sql);
+    }
+
+    @Override
+    public List<OrderList> findAllOrderByUserId(Long userId) {
+        String sql = "select order_id,table_name,nick_name,total_num,order_total_price,order_create_time,order_status from t_order td,t_dinner_table tdt,t_user tu where td.table_id = tdt.table_id and td.user_id = tu.user_id and td.user_id = "+userId;
+        return OrderSql.findAllOrders(sql);
     }
 }

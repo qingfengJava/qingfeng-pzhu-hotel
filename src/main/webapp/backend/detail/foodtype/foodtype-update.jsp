@@ -4,9 +4,9 @@
 <head>
 <title>攀大美味餐厅——更新菜系</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="text/javascript" src="/backend/detail/style/js/page_common.js"></script>
-<link href="/backend/detail/style/css/common_style_blue.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="/backend/detail/style/css/index_1.css" />
+<script type="text/javascript" src="/backend-style/js/page_common.js"></script>
+<link href="/backend-style/css/common_style_blue.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="/backend-style/css/index_1.css" />
 
 	<script type="text/javascript">
 
@@ -35,7 +35,7 @@
 	<div id="TitleArea_Head"></div>
 	<div id="TitleArea_Title">
 		<div id="TitleArea_Title_Content">
-			<img border="0" width="13" height="13" src="/backend/detail/style/images/title_arrow.gif"/>  更新菜系
+			<img border="0" width="13" height="13" src="/backend-style/images/title_arrow.gif"/>  更新菜系
 		</div>
     </div>
 	<div id="TitleArea_End"></div>
@@ -51,7 +51,7 @@
 	
 		<!-- 本段标题（分段标题） -->
 		<div class="ItemBlock_Title">
-        	<img width="4" height="7" border="0" src="/backend/detail/style/images/item_point.gif"> 菜系信息&nbsp;
+        	<img width="4" height="7" border="0" src="/backend-style/images/item_point.gif"> 菜系信息&nbsp;
         </div>
 		<!-- 本段表单字段 -->
         <div class="ItemBlockBorder">

@@ -3,15 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="style/css/index.css" />
-	<link rel="stylesheet" type="text/css" href="style/css/index_1.css" />
+	<link rel="stylesheet" type="text/css" href="/front-style/css/index.css" />
+	<link rel="stylesheet" type="text/css" href="/front-style/css/index_1.css" />
 	<script type="text/javascript">
-		/** // 删除菜品项
-		function removeSorder(node) {
-			var gid = node.lang;
-			window.location.href = "/wirelessplatform/sorder.html?method=removeSorder&gid="+gid;
-		}
-		*/
 		// 下单
 		function genernateOrder() {
 			window.location.href = "/front?method=genernateOrder";
@@ -22,32 +16,32 @@
 <body style="text-align: center;background-color: goldenrod;">
 <div class="nav" style="text-align: left;font-family: 楷体;">
 	餐车
-	<span style="float: right;padding-right: 20px;font-size: 22px;color: black;padding-top: 20px;font-family: '楷体'">
-				<c:if test="${loginUser != null}">
-					<div>
-						<span>
-							欢迎：<span style="color: red">${loginUser.nickName}</span>光临就餐
-						</span>
-						<span>
-							&nbsp;&nbsp;&nbsp;累计成功登录次数：<span style="color: red">${loginUser.loginNum+1}</span>次
-						</span>
-						<br>
-						<span style="position: relative;top: 0px;">
-							当前就餐人数：<span style="color: red">${onlineCount}</span>人&nbsp;&nbsp;
-							时间：${day}
-							<a href="/user?method=quit" style="border: 1px solid darkgrey;border-radius: 10px;padding: 6px 5px;background-color: darkgrey;font-size: 15px;margin-left: 20px;">退出登录</a>
-						</span>
-					</div>
-				</c:if>
-				<c:if test="${loginUser == null}">
-					<span>
-						亲：<a href="/"><span style="color: red;font-size: 25px">登录才能点餐哟！！！</span></a>
-					</span>
-					<span style="position: relative;top: 0px;">
-						时间：${day}
-					</span>
-				</c:if>
+	<span style="float: right;padding-right: 20px">
+		<c:if test="${loginUser != null}">
+			<div style="position: relative;top: -15px;">
+				<span>
+					欢迎：<span style="color: red">${loginUser.nickName}</span>光临就餐
+				</span>
+				<span>
+					&nbsp;&nbsp;&nbsp;累计成功登录次数：<span style="color: red">${loginUser.loginNum+1}</span>次
+				</span>
+				<br>
+				<span style="position: relative;top: -70px;">
+					当前就餐人数：<span style="color: red">${onlineCount}</span>人&nbsp;&nbsp;
+					时间：${day}
+					<a href="/user?method=quit" style="border: 1px solid darkgrey;border-radius: 10px;padding: 6px 5px;background-color: darkgrey;font-size: 15px;margin-left: 20px;">退出登录</a>
+				</span>
+			</div>
+		</c:if>
+		<c:if test="${loginUser == null}">
+			<span>
+				亲：<a href="/"><span style="color: red;font-size: 25px">登录才能点餐哟！！！</span></a>
 			</span>
+			<span style="position: relative;top: 0px;">
+				时间：${day}
+			</span>
+		</c:if>
+	</span>
 </div>
 	<div id="all">
 		<div id="menu">
@@ -119,7 +113,7 @@
 					</c:forEach>
 					<li><a href=""></a></li>
 					<li>
-						<a href="/front/detail/clientCart.jsp">我的餐单</a>
+						<a href="/front?method=myClient&userId=${loginUser.userId}">我的历史餐单</a>
 					</li>
 				</ul>
 			</div>

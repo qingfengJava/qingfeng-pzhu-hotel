@@ -15,10 +15,4 @@
 		</frameset>
 		<frame noresize name="status_bar" scrolling="no" src="/backend/detail/bottom.jsp" />
 	</frameset>
-	<noframes>
-		<body>
-			你的浏览器不支持框架布局，推荐你使用<a href="http://www.firefox.com.cn/download/" style="text-decoration: none;">火狐浏览器</a>,
-			<a href="http://www.google.cn/intl/zh-CN/chrome/" style="text-decoration: none;">谷歌浏览器</a>
-		</body>
-	</noframes>
 </html>

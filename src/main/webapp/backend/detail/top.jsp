@@ -6,9 +6,8 @@
 <head>
     <title>Frame top</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<script type="text/javascript" src="/backend/detail/style/js/jquery.js"></script>
-	<script type="text/javascript" src="/backend/detail/style/js/page_common.js"></script>
-    <link href="/backend/detail/style/css/common_style_blue.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="/backend-style/js/page_common.js"></script>
+    <link href="/backend-style/css/common_style_blue.css" rel="stylesheet" type="text/css" />
 	
 	<style type="text/css">
 <!--
@@ -16,7 +15,7 @@ body {
 margin: 0;
 }
 #Head_1 {
-    background: url("style/images/img/top_head1_bg.gif") repeat-x scroll 0 0 transparent;
+    background: url("/backend-style/images/img/top_head1_bg.gif") repeat-x scroll 0 0 transparent;
     height: 64px;
     margin: 0 auto;
     width: 100%;
@@ -50,7 +49,7 @@ margin: 0;
 margin-left: 10px;
 }
 #Head_2 {
-   background: url("style/images/img/top_head2_bg.gif") repeat-x scroll 0 0 transparent;
+   background: url("/backend-style/images/img/top_head2_bg.gif") repeat-x scroll 0 0 transparent;
     border-bottom: 1px solid #FFFFFF;
     border-top: 1px solid #A0C6E1;
     height: 36px;
@@ -116,16 +115,16 @@ margin-left: 10px;
         </div>
 		<!-- 欢迎用户的文字 -->
 		<div id="Head_1_UserWelcome">
-			<img border="0" width="13" height="14" src="/backend/detail/style/images/user.gif" />
+			<img border="0" width="13" height="14" src="/backend-style/images/user.gif" />
 			<span style="font-size: 15px;">您好，<b>${adminUser.nickName}</b></span> &nbsp;<span style="font-size: 15px">${day}</span>
 		</div>
 		<!-- 一些链接按钮 -->
 		<div id="Head_1_FunctionButton">
 			<a target="right" href="javascript:void(0)">
-				<img width="78" height="20" src="/backend/detail/style/images/help2.gif" />
+				<img width="78" height="20" src="/backend-style/images/help2.gif" />
 			</a>
 			<a target="_parent" href="javascript:void(0)">
-				<img width="78" height="20" alt="退出系统" src="/backend/detail/style/images/logout.gif" />
+				<img width="78" height="20" alt="退出系统" src="/backend-style/images/logout.gif" />
 			</a>
 		</div>
 	</div>
@@ -140,18 +139,18 @@ margin-left: 10px;
 		
 		<div class="Head2_FunctionList" style="float:left">
 			<a href="javascript: window.parent.right.history.back();">
-				<img src="/backend/detail/style/images/Header_back.gif" width="24" height="24" style="margin-top: -8px;"/>
+				<img src="/backend-style/images/Header_back.gif" width="24" height="24" style="margin-top: -8px;"/>
 				<b>后退</b>
 			</a>
 			<a href="javascript: window.parent.right.history.forward();">
-				<img src="/backend/detail/style/images/Header_forward.gif" width="24" height="24" style="margin-top: -8px;"/>
+				<img src="/backend-style/images/Header_forward.gif" width="24" height="24" style="margin-top: -8px;"/>
 				<b>前进</b>		
 			</a>
         </div>
 
 		<div id="Head2_FunctionList">
 			<a href="javascript: window.parent.right.history.go(0);">
-				<img src="/backend/detail/style/images/Header_refresh.gif" width="24" height="24" style="margin-top: -8px;"/>
+				<img src="/backend-style/images/Header_refresh.gif" width="24" height="24" style="margin-top: -8px;"/>
 				<b>刷新)</b>
 			</a>
 

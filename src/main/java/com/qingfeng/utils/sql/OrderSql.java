@@ -104,13 +104,13 @@ public class OrderSql {
                     //将数据进行封装
                     String orderId = rs.getString("order_id");
                     String tableName = rs.getString("table_name");
-                    String username = rs.getString("nick_name");
+                    String nickName = rs.getString("nick_name");
                     int totalNum = rs.getInt("total_num");
                     double orderTotalPrice = rs.getDouble("order_total_price");
                     Date orderCreateTime = rs.getDate("order_create_time");
                     int orderStatus = rs.getInt("order_status");
                     //将数据封装到对象中
-                    ordersList.add(new OrderList(orderId,tableName,username,totalNum,orderCreateTime,orderTotalPrice,orderStatus));
+                    ordersList.add(new OrderList(orderId,tableName,nickName,totalNum,orderCreateTime,orderTotalPrice,orderStatus));
                 }
             }
         } catch (SQLException e) {

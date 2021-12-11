@@ -5,6 +5,7 @@ import com.qingfeng.constant.BeanFactoryConstant;
 import com.qingfeng.constant.MessageConstant;
 import com.qingfeng.controller.BaseServlet;
 import com.qingfeng.entity.CartItem;
+import com.qingfeng.entity.OrderList;
 import com.qingfeng.entity.PageBean;
 import com.qingfeng.entity.ResultVO;
 import com.qingfeng.factory.BeanFactory;
@@ -114,7 +115,7 @@ public class FrontController extends BaseServlet {
         }
 
         //因为后面加入餐车的操作，是加入到那个餐桌对应的餐车，所以这里要往session中存入一个餐桌的id
-        //注意：用户第一次登录插入餐桌id，过来，如果是在内部重复调用这个接口，会出现tableId不存在的情况，因此还要对session做判断
+        //注意：用户第一次登录传入餐桌id，过来，如果是在内部重复调用这个接口，会出现tableId不存在的情况，因此还要对session做判断
         if (request.getParameter("tableId") != null){
             //也说明是从首页进来的，表示这个餐桌已经被别人预定了，这时要修改餐桌的状态  还要判断是否有人登录
             if (session.getAttribute("loginUser") != null){
@@ -306,5 +307,26 @@ public class FrontController extends BaseServlet {
 
         //回去登录
         return MessageConstant.PREFIX_REDIRECT+"/front/detail/checkOut.jsp";
+    }
+
+    /**
+     * 查询历史订单记录
+     * @param request
+     * @param response
+     * @return
+     */
+    public String myClient(HttpServletRequest request, HttpServletResponse response){
+        //获取参数
+        String userId = request.getParameter("userId");
+        if (userId == null){
+            //说明用户没有登录，直接返回让用户登录
+            return MessageConstant.PREFIX_FORWAED+"/";
+        }
+        List<OrderList> orderList = orderService.findAllOrderByUserId(userId);
+
+        request.setAttribute("orderList",orderList);
+        System.out.println(orderList);
+
+        return MessageConstant.PREFIX_FORWAED+"/front/detail/myClient.jsp";
     }
 }
