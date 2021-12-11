@@ -222,28 +222,30 @@ public class FoodController extends BaseServlet {
      */
     public String deleteFood(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
         //获取前端传递过来菜品的id
-        String foodId = req.getParameter("foodId");
+        //String foodId = req.getParameter("foodId");
+        String[] foodIds = req.getParameterValues("foodId");
 
-        //根据id查询对象
-        Food food = foodService.findFoodById(foodId);
-        //拿到图片
-        String image = food.getFoodImage();
+        for (String foodId : foodIds) {
+            //根据id查询对象
+            Food food = foodService.findFoodById(foodId);
+            //拿到图片
+            String image = food.getFoodImage();
 
-        //上传成功，删除原来的图片
-        String oldFileName = image.substring(image.lastIndexOf("/") + 1);
-        //得到上传文件的目标位置
-        String desPath = req.getSession().getServletContext().getRealPath("/files/images/");
-        File file = new File(desPath,oldFileName);
-        if (file.exists()){
-            //如果文件存在，就删除
-            file.delete();
+            //上传成功，删除原来的图片
+            String oldFileName = image.substring(image.lastIndexOf("/") + 1);
+            //得到上传文件的目标位置
+            String desPath = req.getSession().getServletContext().getRealPath("/files/images/");
+            File file = new File(desPath,oldFileName);
+            if (file.exists()){
+                //如果文件存在，就删除
+                file.delete();
+            }
+
+            //调用业务层的方法删除id
+            foodService.deleteFood(foodId);
         }
-
-        //调用业务层的方法删除id
-        foodService.deleteFood(foodId);
         //删除成功，跳转到查询菜品的控制层方法
         return MessageConstant.PREFIX_REDIRECT+"/food?method=search&currentPage="+req.getParameter("currentPage");
     }
-
 
 }

@@ -29,6 +29,52 @@
 					location.href = "/food?method=deleteFood&foodId="+id+"&currentPage="+currentPage;
 				}
 			}
+
+			function deleteBySelect(currentPage){
+
+			}
+
+			window.onload = function() {
+
+				//给删除按钮绑定单击事件
+				document.getElementById("delSelectedFood").onclick = function(){
+					//提交表单之前给出提示信息
+					if (confirm("Are you sure you want to delete select all? \r\n你确定要删除所有选中的条目吗？")){
+
+						let flag = false;
+
+						//判断是否有选中条目
+						let cbs = document.getElementsByName("foodId");
+						//3、遍历
+						for (let i = 0; i < cbs.length; i++) {
+							if (cbs[i].checked){
+								//说明有条目被选中了
+								flag = true;
+								break;
+							}
+						}
+
+						//有条目被选中再提交表单
+						if (flag){
+							//表单提交
+							document.getElementById("form").submit();
+						}else {
+							alert("你没有选择任何一条菜品信息！！！")
+						}
+					}
+				};
+
+				//1、获取第一个复选框，绑定单击事件
+				document.getElementById("firstCb").onclick = function(){
+					//2、获取下边列表中的所有cb
+					let cbs = document.getElementsByName("foodId");
+					//3、遍历
+					for (let i = 0; i < cbs.length; i++) {
+						//4、设置这些cbs[i]的check状态 = firstCb.checked
+						cbs[i].checked = this.checked;
+					}
+				}
+			}
 	</script>
 
 </head>
@@ -62,30 +108,34 @@
 				菜品名称：&nbsp;<input type="text" name="foodName" title="请输入菜品名称" placeholder="请输入菜品名称...">
 			</c:if>
 			<input type="submit" value="搜索">
+			<a style="float: right;padding-right: 20px;" id="delSelectedFood" href="javascript:void(0);" ><input id="del_book" type="button" value="批量删除" /></a>
 		</form>
 	</div>
 <!-- 主内容区域（数据列表或表单显示） -->
 <div id="MainArea">
-    <table class="MainArea_Content" align="center" cellspacing="0" cellpadding="0">
-        <!-- 表头-->
-        <thead>
-            <tr align="center" valign="middle" id="TableTitle">
+	<form id="form" action="/food?method=deleteFood&currentPage=${pb.currentPage}" method="post">
+		<table class="MainArea_Content" align="center" cellspacing="0" cellpadding="0">
+			<!-- 表头-->
+			<thead>
+			<tr align="center" valign="middle" id="TableTitle">
+				<td><input id="firstCb" type="checkbox"></td>
 				<td>序号</td>
 				<td>菜品编号</td>
 				<td>菜名</td>
 				<td>所属菜系</td>
 				<td>图片</td>
 				<td>价格</td>
-                <td>会员价格</td>
+				<td>会员价格</td>
 				<td>描述信息</td>
 				<td>操作</td>
 			</tr>
-		</thead>	
-		<!--显示数据列表 -->
-        <tbody id="TableData" align="center">
+			</thead>
+			<!--显示数据列表 -->
+			<tbody id="TableData" align="center">
 			<%-- 遍历域对象中的foods集合。在页面渲染数据，varStatus="status"循环的状态。count是循环的次数 --%>
 			<c:forEach items="${pb.list}" var="food" varStatus="status">
 				<tr class="TableDetail1">
+					<td><input type="checkbox" name="foodId" value="${food.foodId}"></td>
 					<td>${status.count}</td>
 					<td>${food.foodId}</td>
 					<td>${food.foodName}</td>
@@ -95,14 +145,16 @@
 					<td>${food.foodMprice}</td>
 					<td>${food.foodDesc}</td>
 					<td>
-						<%-- 更新数据，要将数据的Id，一起传过去 --%>
+							<%-- 更新数据，要将数据的Id，一起传过去 --%>
 						<a href="/food?method=toSaveUI&foodId=${food.foodId}&currentPage=${pb.currentPage}" class="FunctionButton">更新</a>
 						<a href="javascript:deleteById(${food.foodId},${pb.currentPage});" style="color: red" class="FunctionButton">删除</a>
 					</td>
 				</tr>
 			</c:forEach>
-        </tbody>
-    </table>
+			</tbody>
+		</table>
+	</form>
+
 
 	<div style="margin-top: 40px">
 		<ul style="list-style-type: none;">

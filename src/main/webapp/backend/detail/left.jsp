@@ -6,14 +6,8 @@
 	<title>Frame left</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<script type="text/javascript" src="/backend-style/js/page_common.js"></script>
-	<script type="text/javascript" src="/backend-style/js/jquery.js"></script>
     <link href="/backend-style/css/common_style_blue.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript">
-		// 显示或隐藏二级菜单
-		function menuClick( menuDiv ){
-			$(".MenuLevel2").not( $(menuDiv).next() ).hide();
-			$(menuDiv).next().toggle();
-		}
 
 		window.onload = function (){
 			//当页面加载完成的时候，就访问/menu/list读取数据
@@ -48,8 +42,6 @@
 
 			// 默认只显示第1个二级菜单
 			document.getElementById("menuId").hidden;
-			/*$(".MenuLevel2").hide();
-			$(".MenuLevel2:first").show();*/
 		}
 
 	</script>
