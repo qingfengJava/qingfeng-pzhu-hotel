@@ -123,7 +123,7 @@ margin-left: 10px;
 			<a target="right" href="javascript:void(0)">
 				<img width="78" height="20" src="/backend-style/images/help2.gif" />
 			</a>
-			<a target="_parent" href="javascript:void(0)">
+			<a target="_parent" href="/user?method=quit">
 				<img width="78" height="20" alt="退出系统" src="/backend-style/images/logout.gif" />
 			</a>
 		</div>

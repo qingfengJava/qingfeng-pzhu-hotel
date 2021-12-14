@@ -1,19 +1,18 @@
 package com.qingfeng.listener;
-/**
- * @author 清风学Java
- * @date 2021/12/10
- * @version 1.0.0
- */
 
 import javax.servlet.ServletContext;
-import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
+/**
+ * @author 清风学Java
+ * @date 2021/12/10
+ * @version 1.0.0
+ */
 @WebListener
-public class LoginListener implements HttpSessionListener,ServletContextListener {
+public class LoginListener implements HttpSessionListener {
 
     /**
      * 当前服务会话开启时

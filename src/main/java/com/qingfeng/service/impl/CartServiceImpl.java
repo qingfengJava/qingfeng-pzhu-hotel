@@ -38,7 +38,7 @@ public class CartServiceImpl implements CartService {
             cartItem.setFood(food);
 
             //根据是否是会员，拿出餐车项菜品的单价
-            Double price = isMember.intValue() == 1 ? food.getFoodMprice():food.getFoodMprice();
+            Double price = isMember.intValue() == 1 ? food.getFoodMprice():food.getFoodPrice();
             //单价
             cartItem.setPrice(price);
             //根据是否是会员来计算小计

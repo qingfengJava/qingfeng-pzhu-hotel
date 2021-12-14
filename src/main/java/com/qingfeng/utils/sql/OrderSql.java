@@ -6,8 +6,12 @@ import com.qingfeng.pojo.Food;
 import com.qingfeng.pojo.Orders;
 import com.qingfeng.utils.DbUtils;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -43,7 +47,7 @@ public class OrderSql {
                     Long userId = rs.getLong("user_id");
                     int totalNum = rs.getInt("total_num");
                     double orderTotalPrice = rs.getDouble("order_total_price");
-                    Date orderCreateTime = rs.getDate("order_create_time");
+                    Date orderCreateTime = rs.getTimestamp("order_create_time");
                     int orderStatus = rs.getInt("order_status");
                     //将数据封装到对象中
                     orders = new Orders(orderId,tableId,userId,totalNum,orderTotalPrice,orderCreateTime,orderStatus);
@@ -107,7 +111,7 @@ public class OrderSql {
                     String nickName = rs.getString("nick_name");
                     int totalNum = rs.getInt("total_num");
                     double orderTotalPrice = rs.getDouble("order_total_price");
-                    Date orderCreateTime = rs.getDate("order_create_time");
+                    Date orderCreateTime = rs.getTimestamp("order_create_time");
                     int orderStatus = rs.getInt("order_status");
                     //将数据封装到对象中
                     ordersList.add(new OrderList(orderId,tableName,nickName,totalNum,orderCreateTime,orderTotalPrice,orderStatus));
@@ -138,7 +142,7 @@ public class OrderSql {
                     String foodName = rs.getString("food_name");
                     int num = rs.getInt("num");
                     Double foodTotalPrice = rs.getDouble("food_total_price");
-                    Date orderDetailCreateTime = rs.getDate("order_detail_create_time");
+                    Date orderDetailCreateTime = rs.getTimestamp("order_detail_create_time");
                     //将数据封装到对象中
                     ordersList.add(new OrderDetailList(foodName,num,foodTotalPrice,orderDetailCreateTime));
                 }
